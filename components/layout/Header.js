@@ -6,7 +6,6 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 // Import from React
 import React, { useEffect, useState } from "react"
-import Wishlist from "../../pages/shop-wishlist"
 
 const Header = ({
     totalCartItems,
