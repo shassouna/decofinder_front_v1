@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import Head from "next/head"
 import Breadcrumb from "./Breadcrumb"
-import Footer from "./Footer"
-import Header from "./Header"
-import MobileMenu from "./MobileMenu"
+
      
 const Layout = ({
     children,
@@ -35,12 +33,10 @@ const Layout = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Header headerStyle={headerStyle} isToggled={isToggled} toggleClick={toggleClick} translate={translate} superuniverss={superuniverss} exposants={exposants}/>
-            <MobileMenu isToggled={isToggled} toggleClick={toggleClick} />
+ 
             <main className="main">
                 {children}
             </main>
-            <Footer translate={translate}/>
         </>
     )
 }
