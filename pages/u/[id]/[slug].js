@@ -418,7 +418,7 @@ export async function getServerSideProps (context) {
             "localizations.categories.image",
         ]
       })
-    const universRes = await axios.get(`http://localhost:1337/api/universs/${context["params"]["id"]}?${query}`)
+    const universRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/universs/${context["params"]["id"]}?${query}`)
 
     // get localization univers
     findUnivers = universRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
