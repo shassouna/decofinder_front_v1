@@ -6,7 +6,6 @@ const { i18n } = require('./next-i18next.config');
       i18n,
       reactStrictMode: true,
       async rewrites(x) {
-        console.log(x)
         return {
           fallback: [
             // product

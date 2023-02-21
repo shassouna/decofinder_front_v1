@@ -16,14 +16,48 @@ import { useTranslation } from "next-i18next"
 import axios from "axios"
 
 
-function MyApp({ Component, pageProps }) {
+MyApp.getInitialProps = async (context) => {
+
+    // import qs
+    const qs =require('qs')
+    
+    // get data for the header menu 
+    const querySuperunivers = qs.stringify({
+          populate: [
+            'univers.categories',
+            'univers'
+        ],
+        locale : context["router"]["locale"]
+      }, 
+      {
+        encodeValuesOnly: true, // prettify URL
+      })
+    const resSuperunivers = await axios.get(`http://localhost:1337/api/superuniverss?${querySuperunivers}`)
+
+    // Query Exposants
+    const queryExposants = qs.stringify({
+        populate : [
+            "logo"
+        ],
+        locale: context["router"]["locale"]
+    })
+    const resExposants = await axios.get(`http://localhost:1337/api/exposants?${queryExposants}`)
+
+  return { 
+    superuniverss: resSuperunivers.data.data,
+    exposants: resExposants.data.data,   
+  }
+
+}
+
+function MyApp({ Component, pageProps, superuniverss, exposants }) {
 
 
     // Translations
     const {t : translate} = useTranslation("home")
 
     return (
-        <Layout noBreadcrumb="d-none"> 
+        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} exposants={exposants} translate={translate}> 
             <Component {...pageProps} GlobalFunctions={GlobalFunctions} />
 
         </Layout>

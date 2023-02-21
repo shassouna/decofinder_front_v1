@@ -393,7 +393,7 @@ export async function getServerSideProps (context) {
             "categories.image",
             // internationalization
             // categories of univers
-            /*"localizations.categories.typeprods.produits.exposant",
+            "localizations.categories.typeprods.produits.exposant",
             "localizations.categories.typeprods.produits.style",
             "localizations.categories.typeprods.produits.couleur",
             "localizations.categories.typeprods.produits.motif",
@@ -415,13 +415,13 @@ export async function getServerSideProps (context) {
             "localizations.superuniver.univers.categories.typeprods.produits.images",
             "localizations.superuniver.univers.categories.typeprods.produits.typeprod",
             // images of categories
-            "localizations.categories.image",*/
+            "localizations.categories.image",
         ]
       })
     const universRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/universs/${context["params"]["id"]}?${query}`)
 
     // get localization univers
-    //findUnivers = universRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
+    findUnivers = universRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
     if(!findUnivers) findUnivers = universRes["data"]["data"]
 
     // Get all products of univers

@@ -325,9 +325,9 @@ const Header = ({
                                                 : "categories-dropdown-wrap categories-dropdown-active-large font-heading"
                                         }
                                     >
-                                        <div className="d-flex categori-dropdown-inner">
+                                        {/*<div className="d-flex categori-dropdown-inner">
                                             <ExposantsTag exposants={exposants}/>
-                                        </div>
+                                    </div>*/}
                                         <div
                                             className="more_slide_open"
                                             style={{ display: "none" }}
