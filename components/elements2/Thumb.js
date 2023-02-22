@@ -30,9 +30,9 @@ const ThumbSlider = ({ Images }) => {
                 //navigation={true}
                 className="mySwiper2"
             >
-                {ImagesState.map((item, index) => (
-                    <SwiperSlide key={item["id"]+index}>
-                        <img src={`http://localhost:1337${item["attributes"]["url"]}`} />
+                {ImagesState.map(item => (
+                    <SwiperSlide key={item["id"]}>
+                        <img key={item["id"]} src={`http://localhost:1337${item["attributes"]["url"]}`} />
                     </SwiperSlide>
                 ))}
             </Swiper>
@@ -43,10 +43,10 @@ const ThumbSlider = ({ Images }) => {
                 watchSlidesProgress={true}
                 className="mySwiper"
                 >
-                {ImagesState.map((item, index) => (
+                {ImagesState.map(item => (
                     item["id"] != ImagesState[0]["id"]&&
-                    <SwiperSlide key={item["id"]+index} onClick={()=>handleChangePrincipalImage(item["id"])}>
-                        <img src={`http://localhost:1337${item["attributes"]["url"]}`} />
+                    <SwiperSlide key={item["id"]} onClick={()=>handleChangePrincipalImage(item["id"])}>
+                        <img key={item["id"]} src={`http://localhost:1337${item["attributes"]["url"]}`} />
                     </SwiperSlide>
                 ))}
             </Swiper>

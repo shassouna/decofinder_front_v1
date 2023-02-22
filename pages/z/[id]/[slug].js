@@ -16,9 +16,6 @@ import RelatedProducts from "../../../components/elements2/RelatedProducts"
 const ProductId = (props) => {
     /*---------------------------------------------------Hooks begin---------------------------------------------------*/
 
-    // Routers
-    const router = useRouter()
-
     // Translations
     const {t : translate} = useTranslation("product")
 
@@ -241,7 +238,8 @@ export async function getServerSideProps (context) {
 
   const productRes = await axios.get(`http://localhost:1337/api/produits/${context["params"]["id"]}?${query}`)
 
-  findProduct = productRes["data"]["data"]
+  findProduct = productRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
+  if(!findProduct) findProduct = productRes["data"]["data"]
 
   // Query produit Typeprod Exposant 
   let filters = {ID: {$ne : findProduct["id"]}, exposant:{}, typeprod:{}}
@@ -272,7 +270,7 @@ export async function getServerSideProps (context) {
 
   return {
     props: {
-      ...(await serverSideTranslations(context["locale"],["product"])),
+      ...(await serverSideTranslations(context["locale"],["product", "home"])),
       Product : findProduct,
       Exposant : findProduct["attributes"]["exposant"]["data"],
       Typeprod : findProduct["attributes"]["typeprod"]["data"],

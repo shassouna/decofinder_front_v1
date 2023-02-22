@@ -16,7 +16,7 @@ function LeftSideBar({activeIndex, setActiveIndex, translate}) {
             <Link href="/utile_exposant"><a className={activeIndex === 2 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(2)}>{translate("Utile pour l'exposant")}</a></Link>
             </li>
             <li className="nav-item">
-            <Link href="utile_acheteur"><a className={activeIndex === 3 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(3)}>{translate("Utile pour l'internaute")}</a></Link>
+            <Link href="/utile_acheteur"><a className={activeIndex === 3 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(3)}>{translate("Utile pour l'internaute")}</a></Link>
             </li>
             <li className="nav-item">
             <Link href="/revuedepresse"><a className={activeIndex === 4 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(4)}>{translate("La presse et le web en parlent")}</a></Link>
@@ -25,7 +25,7 @@ function LeftSideBar({activeIndex, setActiveIndex, translate}) {
             <Link href="/testimoniaux_exposants"><a className={activeIndex === 5 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(5)}>{translate("Témoignages Exposants")}</a></Link>
             </li>
             <li className="nav-item">
-            <Link href="testimoniaux_acheteurs"><a className={activeIndex === 6 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(6)}>{translate("Témoignages Acheteurs")}</a></Link>
+            <Link href="/testimoniaux_acheteurs"><a className={activeIndex === 6 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(6)}>{translate("Témoignages Acheteurs")}</a></Link>
             </li>
             <li className="nav-item">
             <a href='/assets/pdf/ow.pdf'className={activeIndex === 7 ? "nav-link active" : "nav-link"}  onClick={() => handleOnClick(7)}>{translate("Sondage OpinionWay")}</a>
