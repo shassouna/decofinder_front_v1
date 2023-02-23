@@ -139,7 +139,9 @@ const Header = ({
                                             <ul className="language-dropdown">
                                                 <li>
                                                 <Link href={
-                       "sdfsdfsd"} locale="fr">
+                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`.replace("//","/")
+                                                        :router["asPath"]} 
+                                                        as={router["asPath"]} locale="fr">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-fr.png"
@@ -151,7 +153,9 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                       "sdfsdfsd"} locale="en">
+                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`.replace("//","/")
+                                                        :router["asPath"]} 
+                                                        as={router["asPath"]} locale="en">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-gbr.png"
@@ -163,7 +167,9 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                       "sdfsdfsd"} locale="de">
+                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`.replace("//","/")
+                                                        :router["asPath"]} 
+                                                        as={router["asPath"]} locale="de">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-de.png"
@@ -175,7 +181,9 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                       "sdfsdfsd"} locale="it">
+                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`.replace("//","/")
+                                                        :router["asPath"]} 
+                                                        as={router["asPath"]} locale="it">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-it.png"
@@ -187,7 +195,9 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                       "sdfsdfsd"} locale="es">
+                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`.replace("//","/")
+                                                        :router["asPath"]} 
+                                                        as={router["asPath"]} locale="es">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-es.png"
