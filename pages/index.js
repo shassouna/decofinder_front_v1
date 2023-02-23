@@ -1,5 +1,5 @@
 // Import from components
-import Intro1 from "./../components/elements2/Intro1"
+import BigpictureTag from "./../components/elements2/Bigpicture"
 import SuperuniverssSlider from "./../components/elements2/SuperuniverssSlider"
 import RelatedProducts from "./../components/elements2/RelatedProducts"
 import NouveautesProducts from "./../components/elements2/NouveautesProducts"
@@ -26,6 +26,7 @@ export default function Home(props) {
     // States
     const [Superuniverss, setSuperuniverss] = useState(props["Superuniverss"])
     const [Products_Home, setProducts_Home] = useState(props["Products_Home"])
+    const [Bigpictures, setBigpictures] = useState(props["Bigpictures"])
     const [Communiques, setCommuniques] = useState(props["Communiques"])
     const [Products_Nouveautes, setProducts_Nouveautes] = useState(props["Products_Nouveautes"])
     const [showButtonInSingleProduct, setShowButtonInSingleProduct] = useState(true)
@@ -37,12 +38,12 @@ export default function Home(props) {
             <div className="home-slider position-relative mb-30">
                 <div className="container">
                     <div className="home-slide-cover mt-30">
-                        <Intro1 />
+                        <BigpictureTag Bigpictures = {Bigpictures}/>
                     </div>
                 </div>
             </div>
 
-            <div className="container mb-180">
+            <div className="container mb-120">
                 <div className="row">
                     <div className="col-12">
                         <div className="row related-products position-relative">
@@ -55,7 +56,7 @@ export default function Home(props) {
             <div className="container mb-60">
                 <div className="carausel-10-columns-cover position-relative">
                     <div className="col-12">
-                        <h3 className="section-title style-1 mb-30">{translate("Tous les Mega Univers")+" :"}</h3>
+                        <h3 className="section-title style-1 mb-20">{translate("Tous les Mega Univers")+" :"}</h3>
                     </div>
                     <div className="carausel-10-columns" id="carausel-10-columns">
                         <SuperuniverssSlider Superuniverss={Superuniverss} />
@@ -71,7 +72,7 @@ export default function Home(props) {
 
             <div className="container mb-60">
                 <div className="row">
-                    <h3 className="mb-25" style={{textAlign : "center"}}>{translate("DERNIERS COMMUNIQUÉS DE PRESSE")} : </h3>
+                    <h3 className="section-title style-1 mb-20">{translate("DERNIERS COMMUNIQUÉS DE PRESSE")} : </h3>
                     <div className="loop-grid loop-list pr-30 mb-30">
                         <CommuniquesTag items = {Communiques}/>   
                     </div>
@@ -85,7 +86,7 @@ export default function Home(props) {
 
             <div className="container">
                 <div className="row">
-                    <h3 style={{textAlign : "center"}}>{translate("Les Nouveautés")} : </h3>
+                    <h3 className="section-title style-1 mb-20">{translate("Les Nouveautés")} : </h3>
                     <div className="col-12 mt-25">
                         <div className="row related-products position-relative">
                             <NouveautesProducts Products = {Products_Nouveautes} translate = {translate} />
@@ -101,6 +102,19 @@ export async function getServerSideProps (context) {
 
     // Import qs
     const qs = require("qs")
+
+    // Query Big picture 
+    const queryBigPictures = qs.stringify({
+        populate : [
+            "image",
+            "univer"
+        ],
+        filters : {
+            Afficher_dans_homepage : {$eq : true}
+        },
+        locale: context["locale"]
+    })
+    const bigPicturesRes = await axios.get(`http://localhost:1337/api/grandephotos?${queryBigPictures}`) 
 
     // Query products to show in home page
     const queryProducts = qs.stringify({
@@ -149,8 +163,9 @@ export async function getServerSideProps (context) {
     return {
         props: {
             ...(await serverSideTranslations(context["locale"],["home"])),
-            Superuniverss : superuniversRes["data"]["data"],
             Products_Home : productsRes["data"]["data"],
+            Bigpictures : bigPicturesRes["data"]["data"],
+            Superuniverss : superuniversRes["data"]["data"],
             Communiques : communiquesRes["data"]["data"],
             Products_Nouveautes : productsNouveautesRes["data"]["data"]
         }

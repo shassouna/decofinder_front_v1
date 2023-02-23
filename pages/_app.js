@@ -20,46 +20,56 @@ MyApp.getInitialProps = async (context) => {
 
     // import qs
     const qs =require('qs')
-    
-    // get data for the header menu 
+ 
+    // Query (Selection) Banniere    
+    const querySelection = qs.stringify({
+      populate: [
+          'image',
+          'produits',
+      ],
+      filters : {
+        Afficher_dans_homepage : {$eq : true}
+      },
+      locale: context["router"]["locale"]
+    })
+    const resSelections = await axios.get(`http://localhost:1337/api/selectioncs?${querySelection}`)   
+
+    // Query Superunivers
     const querySuperunivers = qs.stringify({
-          populate: [
-            'univers.categories',
-            'univers'
-        ],
-        locale : context["router"]["locale"]
-      }, 
-      {
-        encodeValuesOnly: true, // prettify URL
-      })
+      populate: [
+          'univers.categories',
+          'univers'
+      ],
+      locale : context["router"]["locale"]
+    })
     const resSuperunivers = await axios.get(`http://localhost:1337/api/superuniverss?${querySuperunivers}`)
 
     // Query Exposants
     const queryExposants = qs.stringify({
-        populate : [
-            "logo"
-        ],
-        locale: context["router"]["locale"]
+      populate : [
+          "logo"
+      ],
+      locale: context["router"]["locale"]
     })
     const resExposants = await axios.get(`http://localhost:1337/api/exposants?${queryExposants}`)
 
   return { 
     superuniverss: resSuperunivers.data.data,
-    exposants: resExposants.data.data,   
+    exposants: resExposants.data.data,  
+    selection : resSelections.data.data[0]
   }
 
 }
 
-function MyApp({ Component, pageProps, superuniverss, exposants }) {
+function MyApp({ Component, pageProps, superuniverss, exposants, selection }) {
 
 
     // Translations
     const {t : translate} = useTranslation("home")
 
     return (
-        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} exposants={exposants} translate={translate}> 
+        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} exposants={exposants} selection={selection} translate={translate}> 
             <Component {...pageProps} GlobalFunctions={GlobalFunctions} />
-
         </Layout>
     )
 }

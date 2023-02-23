@@ -13,9 +13,10 @@ const Header = ({
     toggleClick,
     totalWishlistItems,
     translate,
-    superuniverss
+    superuniverss,
+    selection
 }) => {
-
+  
     const router = useRouter()
 
     const [isToggled, setToggled] = useState(false)
@@ -46,6 +47,20 @@ const Header = ({
     return (
         <>
             <header className="header-area header-style-1 header-height-2">
+                <div className="header-top header-top-ptb-1 d-none d-lg-block">
+                    <div className="container">
+                        <div className="row align-items-center">
+                            <div className="col-xl-12 col-lg-12">
+                                <div className="text-center">
+                                    <Link href={`/selection/${selection["id"]}/${selection["attributes"]["slug"]}`}>
+                                        <img src={process.env.BASE_URL_SERVER+selection["attributes"]["image"]["data"]["attributes"]["url"]}></img>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="header-middle header-middle-ptb-1 d-none d-lg-block">
                     <div className="container">
                         <div className="header-wrap">
@@ -124,9 +139,7 @@ const Header = ({
                                             <ul className="language-dropdown">
                                                 <li>
                                                 <Link href={
-                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`
-                                                        :router["asPath"]} 
-                                                        as={router["asPath"]} locale="fr">
+                       "sdfsdfsd"} locale="fr">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-fr.png"
@@ -138,9 +151,7 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`
-                                                        :router["asPath"]} 
-                                                        as={router["asPath"]} locale="en">
+                       "sdfsdfsd"} locale="en">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-gbr.png"
@@ -152,9 +163,7 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`
-                                                        :router["asPath"]} 
-                                                        as={router["asPath"]} locale="de">
+                       "sdfsdfsd"} locale="de">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-de.png"
@@ -166,9 +175,7 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`
-                                                        :router["asPath"]} 
-                                                        as={router["asPath"]} locale="it">
+                       "sdfsdfsd"} locale="it">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-it.png"
@@ -180,9 +187,7 @@ const Header = ({
                                                 </li>
                                                 <li>
                                                     <Link href={
-                                                        router["query"]["id"]?`${router["asPath"].split(router["asPath"].match(router["query"]["id"])[0])[0]}/${router["query"]["id"]}/${router["query"]["slug"]}`
-                                                        :router["asPath"]} 
-                                                        as={router["asPath"]} locale="es">
+                       "sdfsdfsd"} locale="es">
                                                         <a>
                                                             <img
                                                                 src="/assets/imgs/theme/flag-es.png"
@@ -597,3 +602,32 @@ const Header = ({
 
 
 export default Header
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

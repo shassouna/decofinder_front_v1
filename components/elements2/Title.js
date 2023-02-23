@@ -4,7 +4,7 @@ const Title = ({elements}) => {
 
     return (
         <>
-            <div className="totall-product">
+            <div>
                 <h2>
                 {
                 elements.map((element, index)=>
