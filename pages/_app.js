@@ -24,15 +24,14 @@ MyApp.getInitialProps = async (context) => {
     // Query (Selection) Banniere    
     const querySelection = qs.stringify({
       populate: [
-          'image',
-          'produits',
-      ],
+        'image'
+    ],
       filters : {
         Afficher_dans_homepage : {$eq : true}
       },
       locale: context["router"]["locale"]
     })
-    const resSelections = await axios.get(`http://localhost:1337/api/selectioncs?${querySelection}`)   
+    const resBannieres = await axios.get(`http://localhost:1337/api/bannieres?${querySelection}`)   
 
     // Query Superunivers
     const querySuperunivers = qs.stringify({
@@ -56,19 +55,19 @@ MyApp.getInitialProps = async (context) => {
   return { 
     superuniverss: resSuperunivers.data.data,
     exposants: resExposants.data.data,  
-    selection : resSelections.data.data[0]
+    bannieres : resBannieres.data.data
   }
 
 }
 
-function MyApp({ Component, pageProps, superuniverss, exposants, selection }) {
+function MyApp({ Component, pageProps, superuniverss, exposants, bannieres }) {
 
 
     // Translations
     const {t : translate} = useTranslation("home")
 
     return (
-        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} exposants={exposants} selection={selection} translate={translate}> 
+        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} exposants={exposants} bannieres={bannieres} translate={translate}> 
             <Component {...pageProps} GlobalFunctions={GlobalFunctions} />
         </Layout>
     )

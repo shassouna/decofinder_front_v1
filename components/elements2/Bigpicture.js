@@ -23,18 +23,14 @@ const Bigpicture = ({Bigpictures}) => {
             {Bigpictures.map(bigpicture=>(
                 <SwiperSlide key={bigpicture["id"]}>
                     <div className="single-hero-slider single-animation-wrap"
-                         style={{
+                        style={{
                             backgroundImage:`url(${process.env.BASE_URL_SERVER}${bigpicture["attributes"]["image"]["data"]["attributes"]["url"]})`,
                             display:"flex", 
                             justifyContent:"center", 
                             alignItems:"center"}}>
-                        <Link 
-                        href={`/u/${bigpicture["attributes"]["univer"]["data"]["id"]}/${bigpicture["attributes"]["univer"]["data"]["attributes"]["slug"]}`}
-                        as={`/u${bigpicture["attributes"]["univer"]["data"]["id"]}/${bigpicture["attributes"]["univer"]["data"]["attributes"]["slug"]}`}>
-                        <a className="btn">
+                        <a className="btn" href={bigpicture["attributes"]["lien"]}>
                             {bigpicture["attributes"]["titre"]}
                         </a>
-                        </Link>
                     </div>
                 </SwiperSlide> 
             ))}

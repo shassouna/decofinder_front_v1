@@ -10,7 +10,7 @@ const Layout = ({
     translate,
     superuniverss,
     exposants,
-    selection
+    bannieres
 }) => {
     const [isToggled, setToggled] = useState(false)
     const toggleClick = () => {
@@ -31,7 +31,7 @@ const Layout = ({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Header headerStyle={headerStyle} isToggled={isToggled} toggleClick={toggleClick} translate={translate} superuniverss={superuniverss} exposants={exposants} selection={selection}/>
+            <Header headerStyle={headerStyle} isToggled={isToggled} toggleClick={toggleClick} translate={translate} superuniverss={superuniverss} exposants={exposants} bannieres={bannieres}/>
             <MobileMenu isToggled={isToggled} toggleClick={toggleClick} />
             <main className="main">
                 {children}

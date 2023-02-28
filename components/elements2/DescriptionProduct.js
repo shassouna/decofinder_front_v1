@@ -70,7 +70,7 @@ const ProductTab = ({Product, Couleur, Style, Motif, Materiau, Exposant, Revende
                             </ul>
                         </div>
                     </div>
-                    <div className={activeIndex === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="Reviews" style={{display : activeIndex === 2 ? "flex":null, justifyContent : activeIndex === 2 ? "space-between":null}}>
+                    <div className={activeIndex === 2 ? "tab-pane fade show active" : "tab-pane fade"} id="Reviews" style={{display : activeIndex === 2 ? "flex":null, justifyContent : activeIndex === 2 ? "space-between":null, flexWrap : activeIndex === 2 ? "wrap":null}}>
                     {Revendeurs_produit.map((revendeur, index)=>(
                         <Revendeur item={revendeur} translate={translate} key={Exposant["id"]+index}/>
                     ))}

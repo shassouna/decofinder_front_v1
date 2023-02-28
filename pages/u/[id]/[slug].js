@@ -453,7 +453,7 @@ export async function getServerSideProps (context) {
 
     return {
         props: {
-            ...(await serverSideTranslations(context["locale"],["univers"])),
+            ...(await serverSideTranslations(context["locale"],["univers", "home"])),
             Univers : findUnivers,
             Categories: findUnivers["attributes"]["categories"]["data"],
             Superunivers : findUnivers["attributes"]["superuniver"]["data"],

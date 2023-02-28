@@ -1,35 +1,32 @@
+import React from "react"
 import Link from "next/link"
 
-const Communiques = ({ items }) => {
-
+const Communiques = ({communiques, translate}) => {
     return (
-            items.map((item, i) => (
-                <article className="wow fadeIn animated hover-up mb-30" key={item["id"]}>
-                    <div
-                        className="post-thumb"
-                        style={{
-                            backgroundImage: `url(http://localhost:1337${item["attributes"]["image"]["data"]["attributes"]["url"]})`,
-                        }}
-                    >
+        communiques.map(communique=>(
+            <div className="col-lg-4 col-md-6" key={communique["id"]}>
+                <div
+                    className="banner-img wow animate__animated animate__fadeInUp"
+                    data-wow-delay="0"
+                >
+                    {communique["attributes"]["images"]["data"]?
+                    <img src={`${process.env.BASE_URL_SERVER}${communique["attributes"]["images"]["data"][0]["attributes"]["url"]}`} alt="" style={{height:"300px", width:"100%", opacity: 0.5}}/>
+                    :
+                    <img src="/assets/imgs/theme/image_blanche.png" alt="" style={{height:"300px", width:"100%", opacity: 0.5}}/>   
+                    }
+                    <div className="banner-text">
+                        <h5 className="mb-5">{communique["attributes"]["titre"]}</h5>
+                        <p style={{color:"black"}}>{communique["attributes"]["description"].substring(0,200)}</p>
+                        <Link href="#">
+                            <a className="btn btn-xs">
+                            {translate("Lire plus")}<i className="fi-rs-arrow-small-right"></i>
+                             </a>
+                        </Link>
                     </div>
-                    <div className="entry-content-2">
-                        <p className="post-exerpt mb-30">
-                            {item["attributes"]["Communique"]}
-                        </p>
-                        <div className="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
-                            <div>
-                                <span className="post-on">
-                                    {" "} <i className="fi-rs-clock"></i>
-                                </span>
-                                <span className="post-on">
-                                    {item["attributes"]["DATE_INS"].split("T")[0]}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            ))
+                </div>
+            </div>
+        ))           
     )
 }
 
-export default Communiques 
+export default Communiques

@@ -60,7 +60,7 @@ function Superunivers(props) {
                     Universs.map(univers=>(
                         <section className="mb-50">
                             <h2 className="mb-30">{univers["attributes"]["LIB"]}</h2>
-                            <h3>{translate("Les catégories")} :</h3>
+                            <h3 className="mb-30">{translate("Les catégories")} :</h3>
                             <div className="loop-grid">
                                 <div className="row">
                                 {univers["attributes"]["categories"]["data"].map(category => (
@@ -109,7 +109,7 @@ export async function getServerSideProps (context) {
     
     return {
         props: {
-            ...(await serverSideTranslations(context["locale"],["superunivers"])),
+            ...(await serverSideTranslations(context["locale"],["superunivers", "home"])),
             Superunivers : findSuperunivers,
             Universs : findSuperunivers["attributes"]["univers"]["data"]
         }

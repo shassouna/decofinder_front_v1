@@ -14,7 +14,7 @@ const Header = ({
     totalWishlistItems,
     translate,
     superuniverss,
-    selection
+    bannieres
 }) => {
   
     const router = useRouter()
@@ -51,11 +51,14 @@ const Header = ({
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-xl-12 col-lg-12">
-                                <div className="text-center">
-                                    <Link href={`/selection/${selection["id"]}/${selection["attributes"]["slug"]}`}>
-                                        <img src={process.env.BASE_URL_SERVER+selection["attributes"]["image"]["data"]["attributes"]["url"]}></img>
-                                    </Link>
+                            {bannieres.map(banniere=>(
+                                <div className="text-center" key={banniere["id"]}>
+                                    <a href={banniere["attributes"]["lien"]}>
+                                        <img src={process.env.BASE_URL_SERVER+banniere["attributes"]["image"]["data"]["attributes"]["url"]}></img>
+                                    </a>
                                 </div>
+                            ))
+                            }
                             </div>
                         </div>
                     </div>
@@ -65,7 +68,7 @@ const Header = ({
                     <div className="container">
                         <div className="header-wrap">
                             <div className="logo logo-width-1">
-                                <Link href="/">
+                                <Link href="/" locale={router["locale"]}>
                                     <a>
                                         <img
                                             src="/assets/imgs/logos/logo_df.jpg"
@@ -217,7 +220,7 @@ const Header = ({
                                 <div className="header-action-right">
                                     <div className="header-action-2">
                                         <div className="header-action-icon-2">
-                                            <Link href="/shop-compare">
+                                            <Link href="#">
                                                 <a>
                                                     <span className="lable">
                                                         {translate("Inspirations")}
@@ -247,13 +250,13 @@ const Header = ({
                                         </div>
 
                                         <div className="header-action-icon-2">
-                                            <Link href="/shop-wishlist">
+                                            <Link href="/liste-envies">
                                                 <a style={{fontSize:wishlist.length>0?"40px":"40px"}}>
                                                 {wishlist.length>0 && "\u2764"}
                                                 {wishlist.length==0 && "\u2661"}
                                                 </a>
                                             </Link>
-                                            <Link href="/shop-wishlist">
+                                            <Link href="/liste-envies">
                                                 <a>
                                                     <span>
                                                         {wishlist.length}
@@ -432,17 +435,20 @@ const Header = ({
                                                 <ul className="mega-menu">
                                                 {superunivers["attributes"]["univers"]["data"].map(univers=>(
                                                 <li className="sub-mega-menu sub-mega-menu-width-22" key={univers["id"]}>
-                                                    <a
-                                                        className="menu-title"
-                                                        href="#"
-                                                    >
-                                                        {univers["attributes"]["LIB"]} 
-                                                    </a>
+                                                    <Link href={`/u/${univers["id"]}/${univers["attributes"]["slug"]}`}
+                                                            as={`/u${univers["id"]}/${univers["attributes"]["slug"]}`}>
+                                                        <a
+                                                            className="menu-title"
+                                                            href="#"
+                                                        >
+                                                            {univers["attributes"]["LIB"]} 
+                                                        </a>
+                                                    </Link>
                                                     <ul>
                                                     {univers["attributes"]["categories"]["data"].map(category=>(
                                                         <li key={category["id"]}>
-                                                            <Link href={`/c${category["id"]}/${category["attributes"]["slug"]}`}
-                                                            as={`/c/${category["id"]}/${category["attributes"]["slug"]}`}>
+                                                            <Link href={`/c/${category["id"]}/${category["attributes"]["slug"]}`}
+                                                            as={`/c${category["id"]}/${category["attributes"]["slug"]}`}>
                                                                 <a>
                                                                 {category["attributes"]["LIB"]}
                                                                 </a>

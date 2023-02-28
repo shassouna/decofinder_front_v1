@@ -4,7 +4,7 @@ import SuperuniverssSlider from "./../components/elements2/SuperuniverssSlider"
 import RelatedProducts from "./../components/elements2/RelatedProducts"
 import NouveautesProducts from "./../components/elements2/NouveautesProducts"
 import Description from "../components/elements2/DescriptionHome"
-import CommuniquesTag from "../components/elements2/Communiques"
+import CommuniquesTag from "./../components/elements2/Communiques"
 // Import from Next
 import { useRouter } from "next/router"
 import { useTranslation } from "next-i18next"
@@ -35,7 +35,7 @@ export default function Home(props) {
     return (
         <>
 
-            <div className="home-slider position-relative mb-30">
+            <div className="home-slider position-relative mb-60">
                 <div className="container">
                     <div className="home-slide-cover mt-30">
                         <BigpictureTag Bigpictures = {Bigpictures}/>
@@ -71,16 +71,13 @@ export default function Home(props) {
             </div>
 
             <div className="container mb-60">
-                <div className="row">
-                    <h3 className="section-title style-1 mb-20">{translate("DERNIERS COMMUNIQUÉS DE PRESSE")} : </h3>
-                    <div className="loop-grid loop-list pr-30 mb-30">
-                        <CommuniquesTag items = {Communiques}/>   
-                    </div>
-                    <div  style={{textAlign : "center"}}>
-                        <a className="btn w-25 hover-up" style={{minWidth : "400px"}}>
-                            {translate("Tous les communiqués de presse")}
-                        </a>
-                    </div>
+                <div className="row mb-25">
+                <CommuniquesTag communiques = {Communiques} translate={translate}/>  
+                </div>
+                <div  style={{textAlign : "center"}}>
+                    <a className="btn w-25 hover-up" style={{minWidth : "400px"}}>
+                        {translate("Tous les communiqués de presse")}
+                    </a>
                 </div>
             </div>
 
@@ -100,6 +97,11 @@ export default function Home(props) {
 
 export async function getServerSideProps (context) {
 
+    // Declaration
+    const timeNowMs = Date.now()
+    const timeSixMonthMs = 6*30*24*3600*1000
+    const timeBeforeSixMonthMs = timeNowMs - timeSixMonthMs
+
     // Import qs
     const qs = require("qs")
 
@@ -107,10 +109,10 @@ export async function getServerSideProps (context) {
     const queryBigPictures = qs.stringify({
         populate : [
             "image",
-            "univer"
         ],
         filters : {
-            Afficher_dans_homepage : {$eq : true}
+            date_debut : {$lt : timeNowMs},
+            date_fin : {$gt : timeNowMs}
         },
         locale: context["locale"]
     })
@@ -120,8 +122,9 @@ export async function getServerSideProps (context) {
     const queryProducts = qs.stringify({
         populate : [
             "images",
-            "exposant",
-            "typeprod"
+            "exposant.logo",
+            "typeprod",
+            "exposants_revendeurs"
         ],
         filters : {
             Afficher_dans_homepage : {$eq : true}
@@ -140,20 +143,23 @@ export async function getServerSideProps (context) {
  
     // Query communiques
     const queryCommuniques = qs.stringify({
-        populate : ["image"],
+        populate : ["images"],
         locale: context["locale"]
     })
     const communiquesRes = await axios.get(`http://localhost:1337/api/communiques?${queryCommuniques}`)
 
     // Query products Nouveautes
+
     const queryProductsNouveautes = qs.stringify({
         populate : [
             "images",
-            "exposant",
-            "typeprod"
+            "exposant.logo",
+            "typeprod",
+            "exposants_revendeurs"
         ],
         filters : {
-            NOUVEAUTE : {$eq : 1}
+            NOUVEAUTE : {$eq : 1},
+            createdAt: {$gt : timeBeforeSixMonthMs}  
         },
         locale: context["locale"]
     })

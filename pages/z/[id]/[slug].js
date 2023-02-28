@@ -3,7 +3,6 @@
 import axios from 'axios'
 // import from next
 import Link from 'next/link'
-import { useRouter } from "next/router"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 // import from react
@@ -35,6 +34,16 @@ const ProductId = (props) => {
 
     /*---------------------------------------------------Hooks end---------------------------------------------------*/
 
+    const handleAddToWishList = () => {
+        const wishlist = JSON.parse(localStorage.getItem('wishlist'))
+
+        if(wishlist==null){wishlist=[]}
+            if (!wishlist.find(item=>item["id"]==Product["id"])){
+                wishlist.push(Product)
+                localStorage.setItem('wishlist', JSON.stringify(wishlist))
+            }
+    }
+
     return (
             <div className="container">
                 <div className="row flex-row-reverse">
@@ -65,13 +74,14 @@ const ProductId = (props) => {
                                     </div>
                                     <div className="vendor-info">
 
-                                      <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("SITE WEB")}</a></Link>
+                                      <Link href={Exposant["attributes"]["SRV_INTERNET"]}><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("SITE WEB")}</a></Link>
                                       <br/>
                                       <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("QUESTION / DEVIS")}</a></Link>
                                       <br/>
                                       <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("POINTS DE VENTE")}</a></Link>
                                       <br/>
-                                      <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("METTRE EN FAVORIS")}</a></Link>
+                                      <a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}
+                                      onClick={handleAddToWishList}>{translate("METTRE EN FAVORIS")}</a>
                                     
                                       <div className="ollow-social mb-20 mt-40" style={{textAlign:"center"}}>
                                       {
