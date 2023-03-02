@@ -27,7 +27,7 @@ MyApp.getInitialProps = async (context) => {
         'image'
     ],
       filters : {
-        Afficher_dans_homepage : {$eq : true}
+        Afficher_dans_homepage : {$eq : false}
       },
       locale: context["router"]["locale"]
     })

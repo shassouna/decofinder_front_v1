@@ -342,13 +342,13 @@ const Header = ({
 
                             <div className="header-nav d-none d-lg-flex">
                                 <div className="main-categori-wrap d-none d-lg-block">
-                                    <a
+                                    {/*<a
                                         className="categories-button-active"
                                         onClick={handleToggle}
                                     >
                                         {translate("Exposants")}
                                         <i className="fi-rs-angle-down"></i>
-                                    </a>
+                                    </a>*/}
 
                                     <div
                                         className={

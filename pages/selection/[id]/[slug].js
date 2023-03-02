@@ -437,7 +437,7 @@ export async function getServerSideProps (context) {
                 "localizations.produits.materiau",            
         ],
     })
-    const selectionRes = await axios.get(`http://localhost:1337/api/selectioncs/${context["params"]["id"]}?${query}`) 
+    const selectionRes = await axios.get(`http://localhost:1337/api/selection-dfs/${context["params"]["id"]}?${query}`) 
 
     // get localization category
     findSelection = selectionRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
