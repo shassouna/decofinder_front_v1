@@ -7,6 +7,7 @@ import Description from "../components/elements2/DescriptionHome"
 import CommuniquesTag from "./../components/elements2/Communiques"
 import Section4 from "./../components/elements2/Section4"
 // Import from Next
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
@@ -70,7 +71,7 @@ export default function Home(props) {
                 </div>
             </div>
 
-            <div className="container mb-60">
+            <div className="container mb-60" style={{background : "black", padding : "25px"}}>
                 <div className="row align-items-center">
                     <div className="col-xl-12 col-lg-12">
                     {Bannieres.map(banniere=>(
@@ -104,9 +105,11 @@ export default function Home(props) {
                 <CommuniquesTag communiques = {Communiques} translate={translate}/>  
                 </div>
                 <div  style={{textAlign : "center"}}>
-                    <a className="btn w-25 hover-up" style={{minWidth : "400px"}}>
-                        {translate("Tous les communiqués de presse")}
-                    </a>
+                    <Link href="/cps/Tous-Les-Communiques-De-Presse.html">
+                        <a className="btn w-25 hover-up" style={{minWidth : "400px"}}>
+                            {translate("Tous les communiqués de presse")}
+                        </a>
+                    </Link>
                 </div>
             </div>
 
@@ -202,8 +205,8 @@ export async function getServerSideProps (context) {
     // Query Recent three exposants
     const queryTroisDerniersExposants = qs.stringify({
         populate : ["logo"],
+        sort: ['createdAt:desc'],
         pagination: {
-            sort:"DESC",
             limit: 3
         },
         locale: context["locale"]      
@@ -234,7 +237,8 @@ export async function getServerSideProps (context) {
             "images",
             "exposant.logo",
             "typeprod",
-            "exposants_revendeurs"
+            "exposants_revendeurs",
+            "pay"
         ],
         filters : {
             NOUVEAUTE : {$eq : 1},

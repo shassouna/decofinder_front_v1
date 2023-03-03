@@ -1,4 +1,7 @@
+// Import from Components
 import SliderSelection from "./SliderSlection"
+// Import from Next
+import Link from "next/link"
 
 function Section4({Selections, Designers, Exposants, Section_Libres, translate}) {
 
@@ -8,11 +11,17 @@ function Section4({Selections, Designers, Exposants, Section_Libres, translate})
             <div className="row mb-25">
                 {Exposants.map(exposant=>(
                 <div className="col-lg-4 col-md-6 col-sm-6 col-4" key={exposant["id"]}>
-                    <img
+                    <Link href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                    as={`/ss${exposant["id"]}/${exposant["attributes"]["slug"]}`}>
+                    {exposant["attributes"]["logo"]["data"]?
+                        <img
                         src={`${process.env.BASE_URL_SERVER}${exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`}
                         alt=""
                         style={{width:"100%"}}
-                    />
+                        />
+                    : <div style={{border : "1px solid", padding : "5px"}}><a><h6>{exposant["attributes"]["NOM"]}</h6></a></div>
+                     }
+                    </Link>
                 </div>
                 ))}
             </div>
@@ -21,12 +30,14 @@ function Section4({Selections, Designers, Exposants, Section_Libres, translate})
                     <p className="text-center">{translate("NOUVELLES ENTREPRISES RÉFÉRENCÉES")}</p>
                 </div>                
                 <div className="col-lg-12 col-md-12 col-sm-12 col-12 text-center">
-                    <a className="btn hover-up">{translate("Toutes les nouvelles marques")}</a>
+                    <Link href="/index.cfm/nouvellesmarques">
+                        <a className="btn hover-up">{translate("Toutes les nouvelles marques")}</a>
+                    </Link>
                 </div>
             </div>
             <div className="row">
                 {Section_Libres.map(section_libre=>(
-                <div className="col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
+                <div key={section_libre["id"]} className="col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
                     <section className="text-center mb-50 ml-5 mr-5">
                         <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12 col-12 mb-24">
@@ -35,7 +46,7 @@ function Section4({Selections, Designers, Exposants, Section_Libres, translate})
                                     <img src={section_libre["attributes"]["image"]["data"]?`${process.env.BASE_URL_SERVER}${section_libre["attributes"]["image"]["data"]["attributes"]["url"]}`:"/assets/imgs/theme/image_blanche.png"} alt="" />
                                     <h4>{section_libre["attributes"]["titre"]}</h4>
                                     <p>{section_libre["attributes"]["description"].substring(0,200)}</p>
-                                    <a href="#">{translate("Lire plus")}</a>
+                                    <a href={section_libre["attributes"]["lien"]} target="_blank">{translate("Lire plus")}</a>
                                 </div>
                             </div>
                         </div>
@@ -59,12 +70,12 @@ function Section4({Selections, Designers, Exposants, Section_Libres, translate})
                     </a>
                 </div>
             ))}
-                <h6 className="text-center mb-20">Le mag déco</h6>
-                <h6 className="text-center">PORTRAITS DE DESIGNERS</h6>
+                <h6 className="text-center mb-20">Mag déco</h6>
+                <h6 className="text-center">{translate("PORTRAITS DE DESIGNERS")}</h6>
             </div>
             {
             Selections.map(selection=>(            
-            <div className="row mb-25 featured-card ml-5 mr-5">
+            <div key={selection["id"]} className="row mb-25 featured-card ml-5 mr-5">
                 <div className="col-lg-1 col-md-1 col-sm-1 col-1">
                 </div>
                 <div className="col-lg-10 col-md-10 col-sm-10 col-10"> 
@@ -72,7 +83,11 @@ function Section4({Selections, Designers, Exposants, Section_Libres, translate})
                         <SliderSelection key={selection["id"]} Item={selection}/>
                     </div>        
                     <h4 className="text-center">{selection["attributes"]["titre"]}</h4>
-                    <div className="text-center"><button className="btn">{translate("Voir la sélection")}</button></div>
+                    <div className="text-center">
+                        <Link href={`/selection/${selection["id"]}/${selection["attributes"]["slug"]}`}>
+                            <button className="btn">{translate("Voir la sélection")}</button>
+                        </Link>
+                    </div>
                 </div>
                 <div className="col-lg-1 col-md-1 col-sm-1 col-1">
                 </div>
@@ -87,7 +102,11 @@ function Section4({Selections, Designers, Exposants, Section_Libres, translate})
                 <input type="email" placeholder={translate("Merci de renseigner votre adresse mail")}/>
                 <button className="btn">Ok</button>
             </form>
-            <h6 className="mb-40 ml-10"><a className="btn hover-up">{translate("Voir toutes les Newsletters")}</a></h6>
+            <Link href="/index.cfm/nl_archive">
+                <h6 className="mb-40 ml-10">
+                    <a className="btn hover-up">{translate("Voir toutes les Newsletters")}</a>
+                </h6>            
+            </Link>
             <div className="ollow-social mb-20">
                 <h6 className="mb-20 ml-10">{translate("Suivez-nous")}</h6>
                 <div className="row">
