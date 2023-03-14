@@ -1,5 +1,5 @@
 // Import from Components
-import SingleProduct from "../../components/elements2/SingleProduct"
+import SingleProduct from "../../components/elements/SingleProduct"
 // Import from Next
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
@@ -103,7 +103,7 @@ export async function getServerSideProps (context) {
         },
         locale : context["locale"]      
     })
-    const derniersExposantsRes = await axios.get(`http://localhost:1337/api/exposants?${queryDerniersExposants}`)
+    const derniersExposantsRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/exposants?${queryDerniersExposants}`)
 
     return {
         props: {

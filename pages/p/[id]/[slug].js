@@ -1,13 +1,13 @@
 
 
 // Import from components
-import GlobalFunctions from "../../../components/elements2/GlobalFunctions"
-import Sidebar from "../../../components/elements2/sideBar"
-import Pagination from "../../../components/elements2/Pagination"
-import Title from "../../../components/elements2/Title"
-import SingleProduct from "../../../components/elements2/SingleProduct"
-import TypeprodAssociated from "../../../components/elements2/Typeprod"
-import SelectionsSlider from "../../../components/elements2/intro3"
+import GlobalFunctions from "../../../components/elements/GlobalFunctions"
+import Sidebar from "../../../components/elements/sideBar"
+import Pagination from "../../../components/elements/Pagination"
+import Title from "../../../components/elements/Title"
+import SingleProduct from "../../../components/elements/SingleProduct"
+import TypeprodAssociated from "../../../components/elements/Typeprod"
+import SelectionsSlider from "../../../components/elements/Premiums"
 // Import from libraries
 import axios from "axios"
 // Import from react 
@@ -472,7 +472,7 @@ export async function getServerSideProps (context) {
       ]
   })
 
-    const typeprodRes = await axios.get(`http://localhost:1337/api/typeprods/${context["params"]["id"]}?${query}`)
+    const typeprodRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/typeprods/${context["params"]["id"]}?${query}`)
 
     // get localization typeprod
     findTypeprod = typeprodRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])

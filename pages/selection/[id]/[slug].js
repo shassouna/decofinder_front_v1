@@ -1,10 +1,10 @@
 
 // Import from components
-import GlobalFunctions from "../../../components/elements2/GlobalFunctions"
-import Sidebar from "../../../components/elements2/sideBar"
-import Title from "../../../components/elements2/Title"
-import SingleProduct from "../../../components/elements2/SingleProduct"
-import Pagination from "../../../components/elements2/Pagination"
+import GlobalFunctions from "../../../components/elements/GlobalFunctions"
+import Sidebar from "../../../components/elements/sideBar"
+import Title from "../../../components/elements/Title"
+import SingleProduct from "../../../components/elements/SingleProduct"
+import Pagination from "../../../components/elements/Pagination"
 // Import from react
 import  {useState, useEffect} from "react"
 // Import from libraries
@@ -437,7 +437,7 @@ export async function getServerSideProps (context) {
                 "localizations.produits.materiau",            
         ],
     })
-    const selectionRes = await axios.get(`http://localhost:1337/api/selection-dfs/${context["params"]["id"]}?${query}`) 
+    const selectionRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/selection-dfs/${context["params"]["id"]}?${query}`) 
 
     // get localization category
     findSelection = selectionRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])

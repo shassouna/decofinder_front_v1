@@ -8,9 +8,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 // import from react
 import { useState } from 'react'
 // import from components
-import ThumbSlider from "../../../components/elements2/Thumb"
-import DescriptionProduct from "../../../components/elements2/DescriptionProduct"
-import RelatedProducts from "../../../components/elements2/RelatedProducts"
+import ThumbSlider from "../../../components/elements/Thumb"
+import DescriptionProduct from "../../../components/elements/DescriptionProduct"
+import RelatedProducts from "../../../components/elements/RelatedProducts"
+import Revendeur from "../../../components/elements/Revendeur"
 
 const ProductId = (props) => {
     /*---------------------------------------------------Hooks begin---------------------------------------------------*/
@@ -22,7 +23,8 @@ const ProductId = (props) => {
     const [Product, setProduct] = useState(props["Product"])
     const [Exposant, setExposant] = useState(props["Exposant"])  
     const [Typeprod, setTypeprod] = useState(props["Typeprod"])
-    const [Revendeurs_produit, setRevendeurs_produit] = useState(props["Revendeurs_produit"])
+    //const [Revendeurs_produit, setRevendeurs_produit] = useState(props["Revendeurs_produit"])
+    const [Liens_Revendeurs_Produit, setLiens_Revendeurs_Produit] = useState(props["Liens_Revendeurs_Produit"])
     const [Couleur, setCouleur] = useState(props["Couleur"])
     const [Style, setStyle] = useState(props["Style"])
     const [Motif, setMotif] = useState(props["Motif"])
@@ -59,7 +61,7 @@ const ProductId = (props) => {
                             </div>
                             <div className="col-md-6 col-sm-12 col-xs-12" style={{display : "flex", justifyContent : "center", alignItems : "center"}}>
                                 <div className="detail-info  pr-30 pl-30">
-                                {Exposant&&<img className="mb-10" id={Exposant["id"]} src={`http://localhost:1337${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`} />}
+                                {Exposant&&<img className="mb-10" id={Exposant["id"]} src={`${process.env.BASE_URL_SERVER}${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`} />}
                                     <br/>
                                     {Exposant&&<strong>{Exposant["attributes"]["NOM"]}</strong>}
                                     {Typeprod&&<h2 className="title-detail mt-10">{`${Typeprod["attributes"]["LIB"]} - ${Product["attributes"]["TITRE"]}`}</h2>}
@@ -74,18 +76,13 @@ const ProductId = (props) => {
                                     </div>
                                     <div className="vendor-info">
 
-                                      <Link href={Exposant["attributes"]["SRV_INTERNET"]}><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("SITE WEB")}</a></Link>
+                                      <Link href={Exposant["attributes"]["SRV_INTERNET"]}><a className="btn btn-xs" style={{width:"80%", display:"flex", justifyContent:"center"}}>{translate("SITE WEB")}</a></Link>
                                       <br/>
-                                      <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("QUESTION / DEVIS")}</a></Link>
-                                      <br/>
-                                      <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("POINTS DE VENTE")}</a></Link>
-                                      <br/>
-                                      <a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}
+                                      <a className="btn btn-xs" style={{width:"80%", display:"flex", justifyContent:"center"}}
                                       onClick={handleAddToWishList}>{translate("METTRE EN FAVORIS")}</a>
                                     
                                       <div className="ollow-social mb-20 mt-40" style={{textAlign:"center"}}>
-                                      {
-                                      Exposant&&
+                                      {Exposant&&
                                         <ul className="social-network">
                                             {
                                             Exposant["attributes"]["TWITTER"]&&
@@ -142,48 +139,64 @@ const ProductId = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <>
-                            <DescriptionProduct Product={Product} Couleur={Couleur} Style={Style} Motif={Motif} Materiau={Materiau} Exposant={Exposant} Revendeurs_produit={Revendeurs_produit} translate={translate}/>
 
-                            {Products_Typeprod_Product.length>0&&
-                            <div className="row mt-60">
-                                <div className="col-12">
-                                    <h3 className="section-title style-1 mb-30">{translate("Autres produits")+ " " +Typeprod["attributes"]["LIB"]}</h3>
-                                </div>      
-                                <div className="col-12">
-                                    <div className="row related-products position-relative">
-                                        <RelatedProducts Products = {Products_Typeprod_Product} translate = {translate} />
+                        {Liens_Revendeurs_Produit.length>0&&
+                        <div className="row mb-60">
+                            <div className="col-12">
+                                <h3 className="section-title style-1 mb-30">{translate("Revendeurs")}</h3>
+                            </div>      
+                            <div className="col-12">
+                                <div className="row related-products position-relative">
+                                {Liens_Revendeurs_Produit.map(lien_revendeur=>(
+                                    <div className="col-lg-3 col-md-4 col-sm-6 col-12 text-center">
+                                        <Revendeur lien_revendeur={lien_revendeur} translate={translate} key={lien_revendeur["id"]}/>
                                     </div>
+                                ))}
                                 </div>
                             </div>
-                            }
+                        </div>
+                        }   
 
-                            {Products_Exposant_Product.length>0&&
-                            <div className="row mt-60">
-                                <div className="col-12">
-                                    <h3 className="section-title style-1 mb-30">{translate("Toute la collection de")+ " " + Exposant["attributes"]["NOM"]}</h3>
-                                </div>      
-                                <div className="col-12">
-                                    <div className="row related-products position-relative">
-                                        <RelatedProducts Products = {Products_Exposant_Product} translate = {translate} />
-                                    </div>
+                        <DescriptionProduct Product={Product} Couleur={Couleur} Style={Style} Motif={Motif} Materiau={Materiau} Exposant={Exposant} Liens_Revendeurs_Produit={Liens_Revendeurs_Produit} translate={translate}/> 
+
+                        {Products_Typeprod_Product.length>0&&
+                        <div className="row mt-60">
+                            <div className="col-12">
+                                <h3 className="section-title style-1 mb-30">{translate("Autres produits")+ " " +Typeprod["attributes"]["LIB"]}</h3>
+                            </div>      
+                            <div className="col-12">
+                                <div className="row related-products position-relative">
+                                    <RelatedProducts Products = {Products_Typeprod_Product} translate = {translate} />
                                 </div>
                             </div>
-                            }
+                        </div>
+                        }
 
-                            {Products_SameExposant_SameTypeprods.length>0&&
-                            <div className="row mt-60">
-                                <div className="col-12">
-                                    <h3 className="section-title style-1 mb-30">{translate("Produits associés")}</h3>
-                                </div>
-                                <div className="col-12">
-                                    <div className="row related-products position-relative">
-                                        <RelatedProducts Products = {Products_SameExposant_SameTypeprods} translate = {translate} />
-                                    </div>
+                        {Products_Exposant_Product.length>0&&
+                        <div className="row mt-60">
+                            <div className="col-12">
+                                <h3 className="section-title style-1 mb-30">{translate("Toute la collection de")+ " " + Exposant["attributes"]["NOM"]}</h3>
+                            </div>      
+                            <div className="col-12">
+                                <div className="row related-products position-relative">
+                                    <RelatedProducts Products = {Products_Exposant_Product} translate = {translate} />
                                 </div>
                             </div>
-                            }
-                        </>
+                        </div>
+                        }
+
+                        {Products_SameExposant_SameTypeprods.length>0&&
+                        <div className="row mt-60">
+                            <div className="col-12">
+                                <h3 className="section-title style-1 mb-30">{translate("Produits associés")}</h3>
+                            </div>
+                            <div className="col-12">
+                                <div className="row related-products position-relative">
+                                    <RelatedProducts Products = {Products_SameExposant_SameTypeprods} translate = {translate} />
+                                </div>
+                            </div>
+                        </div>
+                        }
                       </div>
                     </div>
                 </div>
@@ -221,8 +234,8 @@ export async function getServerSideProps (context) {
       "exposant.produits.typeprod",
       "exposant.revendeurs",
       "exposant.logo",
-      // exposants revendeurs
-      "exposants_revendeurs",
+      // lienrevendeurproduits
+      "lienrevendeurproduits.exposant.logo",
       // Internationalization
       // product
       "localizations.couleur",
@@ -240,13 +253,13 @@ export async function getServerSideProps (context) {
       "localizations.exposant.produits.typeprod",
       "localizations.exposant.revendeurs",
       "localizations.exposant.logo",
-      // exposants revendeurs
-      "localizations.exposants_revendeurs",
+      // lienrevendeurproduits
+      "localizations.lienrevendeurproduits.exposant.logo",
     ]
 
   })
 
-  const productRes = await axios.get(`http://localhost:1337/api/produits/${context["params"]["id"]}?${query}`)
+  const productRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/produits/${context["params"]["id"]}?${query}`)
 
   findProduct = productRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
   if(!findProduct) findProduct = productRes["data"]["data"]
@@ -270,13 +283,12 @@ export async function getServerSideProps (context) {
       // typeprod
       "typeprod",
       // exposant
-      "exposant",
-
+      "exposant"
     ],
         filters : filters
     }
   )
-  const exposantTypeprodRes = await axios.get(`http://localhost:1337/api/produits?${queryExposantTypeProd}`) 
+  const exposantTypeprodRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/produits?${queryExposantTypeProd}`) 
 
   return {
     props: {
@@ -285,7 +297,8 @@ export async function getServerSideProps (context) {
       Exposant : findProduct["attributes"]["exposant"]["data"],
       Typeprod : findProduct["attributes"]["typeprod"]["data"],
       Images : findProduct["attributes"]["images"]["data"],
-      Revendeurs_produit : findProduct["attributes"]["exposants_revendeurs"]["data"],
+      Liens_Revendeurs_Produit : findProduct["attributes"]["lienrevendeurproduits"]["data"],
+      //Revendeurs_produit : findProduct["attributes"]["exposants_revendeurs"]["data"],
       Couleur : findProduct["attributes"]["couleur"]["data"],
       Style : findProduct["attributes"]["style"]["data"],
       Motif : findProduct["attributes"]["motif"]["data"],

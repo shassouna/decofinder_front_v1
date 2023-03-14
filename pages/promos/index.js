@@ -1,10 +1,10 @@
 
 // Import from components
-import GlobalFunctions from "../../components/elements2/GlobalFunctions"
-import Sidebar from "../../components/elements2/sideBar"
-import Title from "../../components/elements2/Title"
-import SingleProduct from "../../components/elements2/SingleProduct"
-import Pagination from "../../components/elements2/Pagination"
+import GlobalFunctions from "../../components/elements/GlobalFunctions"
+import Sidebar from "../../components/elements/sideBar"
+import Title from "../../components/elements/Title"
+import SingleProduct from "../../components/elements/SingleProduct"
+import Pagination from "../../components/elements/Pagination"
 // Import from react
 import  {useState, useEffect} from "react"
 // Import from libraries
@@ -423,7 +423,7 @@ export async function getServerSideProps (context) {
         },
         locale: context["locale"]
     })
-    const resProducts = await axios.get(`http://localhost:1337/api/produits?${query}`)
+    const resProducts = await axios.get(`${process.env.BASE_URL_SERVER}/api/produits?${query}`)
 
     // Create filtres
     resProducts["data"]["data"].forEach(product => {

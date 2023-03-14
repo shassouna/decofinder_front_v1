@@ -1,7 +1,7 @@
 
 // Import from components
-import UniversTag from "../../../components/elements2/Univers"
-import CategoryTag from "../../../components/elements2/Category"
+import UniversTag from "../../../components/elements/Univers"
+import CategoryTag from "../../../components/elements/Category"
 // Import from libraries
 import axios from "axios"
 // Import from react 
@@ -101,7 +101,7 @@ export async function getServerSideProps (context) {
         ]
 
       })
-    const superuniversRes = await axios.get(`http://localhost:1337/api/superuniverss/${context["params"]["id"]}?${query}`)
+    const superuniversRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/superuniverss/${context["params"]["id"]}?${query}`)
 
     // get localization univers
     findSuperunivers = superuniversRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])

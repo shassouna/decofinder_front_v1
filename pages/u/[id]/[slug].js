@@ -1,11 +1,11 @@
 
 // Import from components
-import GlobalFunctions from "../../../components/elements2/GlobalFunctions"
-import Sidebar from "../../../components/elements2/sideBar"
-import Experts  from "../../../components/elements2/Experts"
-import Category  from "../../../components/elements2/Category"
-import SelectionsSlider from "../../../components/elements2/intro3"
-import SingleProduct from "../../../components/elements2/SingleProduct"
+import GlobalFunctions from "../../../components/elements/GlobalFunctions"
+import Sidebar from "../../../components/elements/sideBar"
+import Experts  from "../../../components/elements/Experts"
+import Category  from "../../../components/elements/Category"
+import SelectionsSlider from "../../../components/elements/Premiums"
+import SingleProduct from "../../../components/elements/SingleProduct"
 // Import from libraries
 import axios from "axios"
 // Import from react 

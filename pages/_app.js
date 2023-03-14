@@ -1,16 +1,10 @@
-// import "react-input-range/lib/css/index.css"
 import "react-perfect-scrollbar/dist/css/styles.css"
 import 'react-toastify/dist/ReactToastify.css'
-// import "slick-carousel/slick/slick-theme.css"
-// import "slick-carousel/slick/slick.css"
-//import "react-responsive-modal/styles.css"
-// import WOW from 'wowjs'
-// Swiper Slider
 import "swiper/css"
 import "swiper/css/navigation"
 import "../public/assets/css/main.css"
 import { appWithTranslation } from 'next-i18next'
-import GlobalFunctions from "./../components/elements2/GlobalFunctions"
+import GlobalFunctions from "./../components/elements/GlobalFunctions"
 import Layout from "./../components/layout/Layout"
 import { useTranslation } from "next-i18next"
 import axios from "axios"
@@ -23,15 +17,13 @@ MyApp.getInitialProps = async (context) => {
  
     // Query (Selection) Banniere    
     const querySelection = qs.stringify({
-      populate: [
-        'image'
-    ],
+      populate: ['image'],
       filters : {
         Afficher_dans_homepage : {$eq : false}
       },
       locale: context["router"]["locale"]
     })
-    const resBannieres = await axios.get(`http://localhost:1337/api/bannieres?${querySelection}`)   
+    const resBannieres = await axios.get(`${process.env.BASE_URL_SERVER}/api/bannieres?${querySelection}`)   
 
     // Query Superunivers
     const querySuperunivers = qs.stringify({
@@ -41,34 +33,26 @@ MyApp.getInitialProps = async (context) => {
       ],
       locale : context["router"]["locale"]
     })
-    const resSuperunivers = await axios.get(`http://localhost:1337/api/superuniverss?${querySuperunivers}`)
-
-    // Query Exposants
-    const queryExposants = qs.stringify({
-      populate : [
-          "logo"
-      ],
-      locale: context["router"]["locale"]
-    })
-    const resExposants = await axios.get(`http://localhost:1337/api/exposants?${queryExposants}`)
+    const resSuperunivers = await axios.get(`${process.env.BASE_URL_SERVER}/api/superuniverss?${querySuperunivers}`)
 
   return { 
     superuniverss: resSuperunivers.data.data,
-    exposants: resExposants.data.data,  
     bannieres : resBannieres.data.data
   }
 
 }
 
-function MyApp({ Component, pageProps, superuniverss, exposants, bannieres }) {
+function MyApp({ Component, pageProps, superuniverss, bannieres }) {
 
 
     // Translations
     const {t : translate} = useTranslation("home")
 
     return (
-        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} exposants={exposants} bannieres={bannieres} translate={translate}> 
+        <Layout noBreadcrumb="d-none" superuniverss={superuniverss} bannieres={bannieres} translate={translate}> 
+          <div style={{minHeight : "2000px"}}>
             <Component {...pageProps} GlobalFunctions={GlobalFunctions} />
+          </div>
         </Layout>
     )
 }

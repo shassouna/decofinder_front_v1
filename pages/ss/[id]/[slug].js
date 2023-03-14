@@ -1,18 +1,21 @@
 // Import from components
-import GlobalFunctions from "../../../components/elements2/GlobalFunctions"
-import Sidebar from "../../../components/elements2/sideBar"
-import SelectionsSlider from "../../../components/elements2/intro3"
-import SingleProduct from "../../../components/elements2/SingleProduct"
-import Revendeur from "../../../components/elements2/Revendeur"
-import CommuniquesTag from "../../../components/elements2/Communiques"
+import GlobalFunctions from "../../../components/elements/GlobalFunctions"
+import Sidebar from "../../../components/elements/sideBar"
+import PremiumsTag from "../../../components/elements/Premiums"
+import SingleProduct from "../../../components/elements/SingleProduct"
+import Revendeur from "../../../components/elements/RevendeurExposant"
+import CommuniquesTag from "../../../components/elements/Communiques"
+import PopupPointsDeVente from "../../../components/popups/PopupPointsDeVente"
 
 // Import from react 
 import { useState, useEffect } from "react"
+
 // Import from Next
 import { useRouter } from "next/router"
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+
 // Import from libraries
 import axios from "axios"
 
@@ -37,6 +40,8 @@ const Exposant = (props) => {
     const [Activites, setActivites] = useState(props["Activites"])
     const [Products, setProducts] = useState(props["Products"])
     const [Revendeurs, setRevendeurs] = useState(props["Revendeurs"])
+    const [Premiums, setPremiums] = useState(props["Premiums"])
+    const [Catalogues, setCatalogues] = useState(props["Catalogues"])
 
     const [Marques, setMarques] = useState(props["marques"])  
     const [Prices, setPrices] = useState(props["prices"])  
@@ -51,6 +56,9 @@ const Exposant = (props) => {
 
     const [executeOthersUseEffect, setExecuteOthersUseEffect] = useState(false)
 
+    const [showPopupPointsDeVente, setShowPopupPointsDeVente] = useState(false)
+
+    console.log(Catalogues)
     useEffect(()=>{
 
         // initialize sidebar checkboxs 
@@ -316,230 +324,281 @@ const Exposant = (props) => {
         }
 
     }
+
+    const handleShowPopupPointsDeVente = (e) => {
+        e.preventDefault()
+        setShowPopupPointsDeVente(!showPopupPointsDeVente)
+    }
 /*---------------------------------------------------Functions begin---------------------------------------------------*/
 
     return (
-            <div className="container custom mt-50">
-                <div className="row flex-row mb-100">
-                    <div className="col-lg-1-5">
-                        {/* Exposant informations begin */}
-                        <div className="sidebar-widget widget-store-info mb-30 bg-3 border-0">
-                            <div className="vendor-logo mb-30">
-                                <img src={`/assets/imgs/vendor/vendor-1.png`} alt="" />
+        <>
+        {/* Popup points de vente */}
+        <PopupPointsDeVente
+        showPopup={showPopupPointsDeVente} 
+        setShowPopup={setShowPopupPointsDeVente} 
+        revendeurs={Revendeurs}
+        translate={translate}/>
+
+        <div className="container custom mt-50">
+
+            {/* first part begin*/}
+            <div className="row flex-row justify-content-center mb-100">
+                {/* Exposant informations begin */}
+                <div className="col-lg-3 col-md-3 col-sm-12 text-center">   
+                    <div className="sidebar-widget widget-store-info mb-30 p-10" style={{background : "rgba(240,240,240,0.5)"}}>
+                        <div className="vendor-logo mb-30">
+                            <img src={`${process.env.BASE_URL_SERVER}${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`} alt="" />
+                        </div>
+                        <div className="vendor-info">
+
+                            <div className="ollow-social mb-20">
+                                <h6 className="mb-5">{translate("Suivez-nous")}</h6>
+                                <ul className="social-network">
+                                    {Exposant["attributes"]["TWITTER"]&&
+                                    <li className="hover-up">
+                                        <a href={Exposant["attributes"]["TWITTER"]} target="_blank">
+                                            <img src="/assets/imgs/theme/icons/social-tw.svg" alt="" />
+                                        </a>
+                                    </li>
+                                    }
+                                    {Exposant["attributes"]["FACEBOOK"]&&
+                                    <li className="hover-up">
+                                        <a href={Exposant["attributes"]["FACEBOOK"]} target="_blank">
+                                            <img src="/assets/imgs/theme/icons/social-fb.svg" alt="" />
+                                        </a>
+                                    </li>
+                                    }
+                                    {Exposant["attributes"]["INSTAGRAM"]&&
+                                    <li className="hover-up">
+                                        <a href={Exposant["attributes"]["INSTAGRAM"]} target="_blank">
+                                            <img src="/assets/imgs/theme/icons/social-insta.svg" alt="" />
+                                        </a>
+                                    </li>
+                                    }
+                                    {Exposant["attributes"]["PINTEREST"]&&
+                                    <li className="hover-up">
+                                        <a href={Exposant["attributes"]["PINTEREST"]} target="_blank">
+                                            <img src="/assets/imgs/theme/icons/social-pin.svg" alt="" />
+                                        </a>
+                                    </li>
+                                    }
+                                    {Exposant["attributes"]["YOUTUBE"]&&
+                                    <li className="hover-up">
+                                        <a href={Exposant["attributes"]["YOUTUBE"]} target="_blank">
+                                            <img src="/assets/imgs/theme/icons/social-youtube.svg" alt="" />
+                                        </a>
+                                    </li>                                    
+                                    }
+                                    {Exposant["attributes"]["VIMEO"]&&
+                                    <li className="hover-up">
+                                        <a href={Exposant["attributes"]["VIMEO"]} target="_blank">
+                                            <img src="/assets/imgs/theme/icons/social-vimeo.svg" alt="" />
+                                        </a>
+                                    </li>
+                                    }
+                                </ul>
                             </div>
+
                             <div className="vendor-info">
-                                <div className="ollow-social mb-20">
-                                    <h6 className="mb-5">{translate("Suivez-nous")}</h6>
-                                    <ul className="social-network">
-                                        <li className="hover-up">
-                                            <a href={Exposant["attributes"]["TWITTER"]} target="_blank">
-                                                <img src="/assets/imgs/theme/icons/social-tw.svg" alt="" />
-                                            </a>
-                                        </li>
-                                        <li className="hover-up">
-                                            <a href={Exposant["attributes"]["FACEBOOK"]} target="_blank">
-                                                <img src="/assets/imgs/theme/icons/social-fb.svg" alt="" />
-                                            </a>
-                                        </li>
-                                        <li className="hover-up">
-                                            <a href={Exposant["attributes"]["INSTAGRAM"]} target="_blank">
-                                                <img src="/assets/imgs/theme/icons/social-insta.svg" alt="" />
-                                            </a>
-                                        </li>
-                                        <li className="hover-up">
-                                            <a href={Exposant["attributes"]["PINTEREST"]} target="_blank">
-                                                <img src="/assets/imgs/theme/icons/social-pin.svg" alt="" />
-                                            </a>
-                                        </li>
-                                        <li className="hover-up">
-                                            <a href={Exposant["attributes"]["YOUTUBE"]} target="_blank">
-                                                <img src="/assets/imgs/theme/icons/social-youtube.svg" alt="" />
-                                            </a>
-                                        </li>
-                                        <li className="hover-up">
-                                            <a href={Exposant["attributes"]["VIMEO"]} target="_blank">
-                                                <img src="/assets/imgs/theme/icons/social-vimeo.svg" alt="" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="vendor-info">
-                                    <h6 className="mb-5">{translate("Coordonnées")}</h6>
-                                    <ul className="ont-sm mb-20">
-                                        <li><strong>{translate("Adresse")} : </strong> <span>{Exposant["attributes"]["ADRESSE"]}</span></li>
-                                        <li><span>{Exposant["attributes"]["CP"]}</span></li>
-                                        <li><span>{Exposant["attributes"]["VILLE"]}</span></li>
-                                        <li><span>{Exposant["attributes"]["pay"]["data"]&&Exposant["attributes"]["pay"]["data"]["attributes"]["LIB"]}</span></li>
-                                        <li><strong>{translate("Appelez-nous")} : </strong><span>{Exposant["attributes"]["TELEPHONE"]}</span></li>
-                                        <li><strong>{translate("Fax")} : </strong><span>{Exposant["attributes"]["TELEPHONE"]}</span></li>
-                                        <li><strong>{translate("Show Room")} : </strong><span>{Exposant["attributes"]["SHOW_ROOM"]}</span></li>
-                                    </ul>
-                                    <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("Documentation")}</a></Link>
-                                    <br/>
-                                    <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("Contacter l'entreprise")}</a></Link>
-                                    <br/>
-                                    <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("Points de vente")}</a></Link>
-                                    <br/>
-                                    <Link href="/vendor/1"><a className="btn btn-xs" style={{width:"100%", display:"flex", justifyContent:"center"}}>{translate("Visiter le site")}</a></Link>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Exposant informations end */}
-                    </div>
-                    <div className="col-lg-4-5">
-                        <div className="border p-md-4 p-30 border-radius cart-totals">
-                            {/* Exposant description begin */}
-                            <div className="heading_s1 mb-3">
-                                <h4 className="mb-10" style={{minWidth:"50px", width:"30%"}}>{Exposant["attributes"]["NOM"]}</h4>
-                                {Activites.length>0&&
-                                <>
-                                    {translate("Activités")} :
-                                    <span>
-                                        {Activites.map((activite, index)=>index  == Activites.length-1? activite["attributes"]["LIB"]: activite["attributes"]["LIB"]+", ")}
-                                    </span>
-                                </>
+                                <h6 className="mb-5">{translate("Coordonnées")}</h6>
+                                <ul className="ont-sm mb-20">
+                                    <li><strong>{translate("Adresse")} : </strong> <span>{Exposant["attributes"]["ADRESSE"]}</span></li>
+                                    <li><span>{Exposant["attributes"]["CP"]}</span></li>
+                                    <li><span>{Exposant["attributes"]["VILLE"]}</span></li>
+                                    <li><span>{Exposant["attributes"]["pay"]["data"]&&Exposant["attributes"]["pay"]["data"]["attributes"]["LIB"]}</span></li>
+                                    <li><strong>{translate("Appelez-nous")} : </strong><span>{Exposant["attributes"]["TELEPHONE"]}</span></li>
+                                    <li><strong>{translate("Fax")} : </strong><span>{Exposant["attributes"]["FAX"]}</span></li>
+                                    <li><strong>{translate("Show Room")} : </strong><span>{Exposant["attributes"]["SHOW_ROOM"]}</span></li>
+                                </ul>
+                                <a onClick={handleShowPopupPointsDeVente} className="btn btn-xs" style={{display:"flex", justifyContent:"center"}}>{translate("Points de vente")}</a>
+                                <br/>
+                                {Exposant["attributes"]["SRV_INTERNET"]&&
+                                <a target="_blank" href={Exposant["attributes"]["SRV_INTERNET"]} className="btn btn-xs" style={{display:"flex", justifyContent:"center"}}>{translate("Visiter le site")}</a>
                                 }
-                                <div className="mt-10 mb-10">{Exposant["attributes"]["SLOGAN"]}</div>
-                                <div dangerouslySetInnerHTML={{__html: Exposant["attributes"]["DESC"]}}/>
                             </div>
-                            {/* Exposant description end */}
-
-                            {/* list of selections begin */}
-                            <section className="mb-100">
-                                    <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez nos sélections")} :</h2>
-                                    <div className="home-slide-cover">
-                                        <SelectionsSlider />
-                                    </div>
-                            </section>
-                            {/* list of selections end */}
                         </div>
                     </div>
                 </div>
-                {/* filters begin */}
-                <div className="row mb-50">
-                    <div className="title">
-                        <ul className="list-inline nav nav-tabs links">
-                            <li className="list-inline-item nav-item">
-                                <a className={filter==1?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(1)}>{translate("Produits")}</a>
-                            </li>
-                            <li className="list-inline-item nav-item">
-                                <a className={filter==2?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(2)}>{translate("Marques")}</a>
-                            </li>
-                            <li className="list-inline-item nav-item">
-                                <a className={filter==3?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(3)}>{translate("Catalogues")}</a>
-                            </li>
-                            <li className="list-inline-item nav-item">
-                                <a className={filter==4?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(4)}>{translate("News")}</a>
-                            </li>
-                            <li className="list-inline-item nav-item">
-                                <a className={filter==5?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(5)}>{translate("Newsletters")}</a>
-                            </li>
-                        </ul>
+                {/* Exposant informations end */}
+
+                {/* Exposant description + selections begin */}
+                <div className="col-lg-9 col-md-9 col-sm-12">
+                    <div className="border p-md-4 p-30 border-radius cart-totals">
+                        {/* Exposant description begin */}
+                        <div className="heading_s1 mb-3">
+                            <h4 className="mb-10" style={{minWidth:"50px", width:"30%"}}>{Exposant["attributes"]["NOM"]}</h4>
+                            {Activites.length>0&&
+                            <>
+                                {translate("Activités")} :
+                                <span>
+                                    {Activites.map((activite, index)=>index  == Activites.length-1? activite["attributes"]["LIB"]: activite["attributes"]["LIB"]+", ")}
+                                </span>
+                            </>
+                            }
+                            <div className="mt-10 mb-10">{Exposant["attributes"]["SLOGAN"]}</div>
+                            <div dangerouslySetInnerHTML={{__html: Exposant["attributes"]["DESC"]}}/>
+                        </div>
+                        {/* Exposant description end */}
+
+                        {/* list of selections begin */}
+                        <section className="mb-100">
+                                <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez nos sélections")} :</h2>
+                                <div className="home-slide-cover">
+                                    <PremiumsTag premiums={Premiums}/>
+                                </div>
+                        </section>
+                        {/* list of selections end */}
                     </div>
                 </div>
-                {/* filters end */}
+                {/* Exposant description + selections begin */}
+            </div>
+            {/* first part end */}
 
-                {/* case Produits or filter number 1 begin*/}
-                {filter == 1 &&
-                <div className="row mb-50">
-                    {/* SideBar filters begin */}
-                    <div className="col-lg-3 primary-sidebar sticky-sidebar">
-                        <Sidebar 
-                        Marques = {Marques}
-                        Prices = {Prices}
-                        Designers = {Designers}
-                        Styles = {Styles}
-                        Couleurs = {Couleurs}
-                        Motifs = {Motifs}
-                        Materiaux = {Materiaux}
-                        handleFilter = {handleFilter}
-                        marquesFilter = {marquesFilter}
-                        pricesFilter = {pricesFilter}
-                        designersFilter = {designersFilter}
-                        stylesFilter = {stylesFilter}
-                        couleursFilter = {couleursFilter}
-                        materiauxFilter = {materiauxFilter}
-                        motifsFilter = {motifsFilter}
-                        translate = {translate}
-                        />
-                    </div>
-                    {/* SideBar filters end */}
-                    <div className="col-lg-9">
-                        {/* list of products begin */}
-                            <div className="row product-grid-3">
-                                {
-                                Products.length === 0 && (
-                                    <h3>{translate("Pas de produits")}</h3>
-                                )}
-                                {
-                                Products.length > 0 && <h2 className="mb-30">{translate("PRODUITS VENDUS PAR") + " " + Exposant["attributes"]["NOM"]} : </h2>
-                                }    
-                                {
-                                Products.length > 0 && Products.map((product, i) => (
-                                    <div
-                                        className="col-lg-1-5 col-md-4 col-12 col-sm-6"
-                                        key={i}
-                                    >
-                                        <SingleProduct product={product} translate={translate}/>
-                                    </div>
-                                ))}
-                            </div>
-                        {/* list of products end */}
-                    </div>
+            {/* filters begin */}
+            <div className="row mb-50">
+                <div className="title">
+                    <ul className="list-inline nav nav-tabs links">
+                        <li className="list-inline-item nav-item">
+                            <a className={filter==1?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(1)}>{translate("Produits")}</a>
+                        </li>
+                        <li className="list-inline-item nav-item">
+                            <a className={filter==2?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(2)}>{translate("Marques")}</a>
+                        </li>
+                        <li className="list-inline-item nav-item">
+                            <a className={filter==3?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(3)}>{translate("Catalogues")}</a>
+                        </li>
+                        <li className="list-inline-item nav-item">
+                            <a className={filter==4?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(4)}>{translate("News")}</a>
+                        </li>
+                        <li className="list-inline-item nav-item">
+                            <a className={filter==5?"nav-link active":"nav-link"} onClick={()=>handleChoseFilter(5)}>{translate("Newsletters")}</a>
+                        </li>
+                    </ul>
                 </div>
-                }
-                {/* case Produits or filter number 1 end*/}
+            </div>
+            {/* filters end */}
 
-                {/* case Marques or filter number 2 begin*/}
-                {filter == 2 &&
-                <div className="row vendor-grid">
-                    <h3 className="mb-20">{translate("Marques Revendues")} : </h3>
-                    {Revendeurs.map((item, i) => (                         
-                        <Revendeur item={item} translate={translate} key={item["id"]+i}/>
-                    ))}
+            {/* case Produits or filter number 1 begin*/}
+            {filter == 1 &&
+            <div className="row mb-50">
+                {/* SideBar filters begin */}
+                <div className="col-lg-3 primary-sidebar sticky-sidebar">
+                    <Sidebar 
+                    Marques = {Marques}
+                    Prices = {Prices}
+                    Designers = {Designers}
+                    Styles = {Styles}
+                    Couleurs = {Couleurs}
+                    Motifs = {Motifs}
+                    Materiaux = {Materiaux}
+                    handleFilter = {handleFilter}
+                    marquesFilter = {marquesFilter}
+                    pricesFilter = {pricesFilter}
+                    designersFilter = {designersFilter}
+                    stylesFilter = {stylesFilter}
+                    couleursFilter = {couleursFilter}
+                    materiauxFilter = {materiauxFilter}
+                    motifsFilter = {motifsFilter}
+                    translate = {translate}
+                    />
                 </div>
-                }
-                {/* case Produits or filter number 1 end*/}
-
-                {/* communiques begin*/}
-                {filter == 4 &&
-                <div className="row">
-                    <div className="col-lg-12">
+                {/* SideBar filters end */}
+                <div className="col-lg-9">
+                    {/* list of products begin */}
+                    <div className="row product-grid-3">
                         {
-                        Communiques.length === 0 && (
-                            <h3>{translate("Pas de communiqués")}</h3>
+                        Products.length === 0 && (
+                            <h3>{translate("Pas de produits")}</h3>
                         )}
                         {
-                        Communiques.length > 0 &&
-                        <>
-                            <h3 className="mb-20">{translate("Communiqués de presse")} : </h3>
-                            <div className="loop-grid loop-list pr-30">
-                                <CommuniquesTag items = {Communiques}/>   
+                        Products.length > 0 && <h2 className="mb-30">{translate("PRODUITS VENDUS PAR") + " " + Exposant["attributes"]["NOM"]} : </h2>
+                        }    
+                        {
+                        Products.length > 0 && Products.map((product, i) => (
+                            <div
+                                className="col-lg-1-5 col-md-4 col-12 col-sm-6"
+                                key={i}
+                            >
+                                <SingleProduct product={product} translate={translate}/>
                             </div>
-                        </>
-                        }
+                        ))}
                     </div>
+                    {/* list of products end */}
                 </div>
-                }
-                {/* communiques end*/}
-
-                {/* newsletters begin*/}
-                {filter == 5 &&
-                <div className="row">
-                    <div className="col-lg-12">
-                        <h3>{translate("Pas de newsletters")}</h3>
-                    </div>
-                </div>
-                }
-                {/* newsletters end*/}
             </div>
+            }
+            {/* case Produits or filter number 1 end*/}
+
+            {/* case Marques or filter number 2 begin*/}
+            {filter == 2 &&
+            <div className="row vendor-grid">
+                <h3 className="mb-20">{translate("Marques Revendues")} : </h3>
+                {Revendeurs.map((item, i) => (                         
+                    <Revendeur item={item} translate={translate} key={item["id"]}/>
+                ))}
+            </div>
+            }
+            {/* case Marques or filter number 2 end*/}
+
+            {/* case Catalogues or filter number 3 begin*/}
+            {filter == 3 &&
+            <div className="row">
+                <h3 className="mb-40">{translate("Catalogues")} : </h3>
+                {Catalogues.map(catalogue=>(
+                    <div key={catalogue["id"]} className="col-lg-3">
+                        <a target="_blank" href={`${process.env.BASE_URL_SERVER}${catalogue["attributes"]["fichier"]["data"][0]["attributes"]["url"]}`}>
+                            <img className="mb-5" style={{width : "120px"}} src="/assets/imgs/theme/PDF.png"/>
+                            <h6>{catalogue["attributes"]["titre"]}</h6>
+                        </a>
+                    </div>
+                ))}
+            </div> 
+            }
+            {/* case Catalogues or filter number 3 end*/}
+
+            {/* communiques begin*/}
+            {filter == 4 &&
+            <div className="row">
+                <div className="col-lg-12">
+                    {
+                    Communiques.length === 0 && (
+                        <h3>{translate("Pas de communiqués")}</h3>
+                    )}
+                    {
+                    Communiques.length > 0 &&
+                    <>
+                        <h3 className="mb-20">{translate("Communiqués de presse")} : </h3>
+                        <div className="row">
+                            <CommuniquesTag communiques = {Communiques} translate={translate}/>   
+                        </div>
+                    </>
+                    }
+                </div>
+            </div>
+            }
+            {/* communiques end*/}
+
+            {/* newsletters begin*/}
+            {filter == 5 &&
+            <div className="row">
+                <div className="col-lg-12">
+                    <h3>{translate("Pas de newsletters")}</h3>
+                </div>
+            </div>
+            }
+            {/* newsletters end*/}
+        </div>
+        </>
     )
 }
 
 export default Exposant
 
 export async function getServerSideProps (context) {
+
+    // Declaration
+    const timeNowMs = Date.now()
 
     let findExposant = undefined
 
@@ -563,17 +622,19 @@ export async function getServerSideProps (context) {
     const qs = require("qs")
 
     // Query exposant
-    const query = qs.stringify({
+    const queryExposant = qs.stringify({
 
       populate: [
+        // logo
+        "logo",
         // pays
         "pay",
         // activites
         "typeexposants",
         // revendeurs
-        "revendeurs",
+        "revendeurs.pay",
         // communiques
-        "communiques.image",
+        "communiques.images",
         // products of exposant
         "produits.exposant",
         "produits.typeprod", 
@@ -583,14 +644,16 @@ export async function getServerSideProps (context) {
         "produits.motif",
         "produits.materiau",
         // Internationalization
+        // logo
+        "localizations.logo",
         // pays
         "localizations.pay",
         // activites
         "localizations.typeexposants",
         // revendeurs
-        "localizations.revendeurs",
+        "localizations.revendeurs.pay",
         // communiques
-        "localizations.communiques.image",
+        "localizations.communiques.images",
         // products of exposant
         "localizations.produits.exposant",
         "localizations.produits.typeprod", 
@@ -602,7 +665,7 @@ export async function getServerSideProps (context) {
       ]
 
     })
-    const exposantRes = await axios.get(`http://localhost:1337/api/exposants/${context["params"]["id"]}?${query}`)
+    const exposantRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/exposants/${context["params"]["id"]}?${queryExposant}`)
 
     // get localization typeprod
     findExposant = exposantRes["data"]["data"]["attributes"]["localizations"]["data"].find(e=>e["attributes"]["locale"]==context["locale"])
@@ -648,14 +711,52 @@ export async function getServerSideProps (context) {
         filterMateriaux = typeof context.query.materiau == "string" ? [parseInt(context.query.materiau)] : context.query.materiau.map(element=>parseInt(element))
     }
 
+    // Query Premium
+    const queryPremium = qs.stringify({
+
+        populate: [
+          // image
+          "image",
+          // exposant
+          "exposant",
+        ],
+        filters : {
+            date_debut : {$lt : timeNowMs},
+            date_fin : {$gt : timeNowMs},
+            exposant : {id :{$eq : findExposant["id"]}}
+        },
+        locale: context["locale"]
+  
+      })
+    const premiumRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/premiums?${queryPremium}`)
+
+    // Query Catalogues
+    const queryCatalogues = qs.stringify({
+
+        populate: [
+          // fichier
+          "fichier",
+          // exposant
+          "exposant",
+        ],
+        filters : {
+            exposant : {id :{$eq : findExposant["id"]}}
+        },
+        locale: context["locale"]
+  
+      })
+    const cataloguesRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/catalogues?${queryCatalogues}`)  
+
     return {
       props: {
         ...(await serverSideTranslations(context["locale"],["exposant"])),
         Exposant : findExposant,
-        Activites : findExposant["attributes"]["typeexposants"]["data"],
-        Revendeurs : findExposant["attributes"]["revendeurs"]["data"],
-        Products : findExposant["attributes"]["produits"]["data"],
-        Communiques : findExposant["attributes"]["communiques"]["data"],
+        Activites : findExposant["attributes"]["typeexposants"]["data"]?findExposant["attributes"]["typeexposants"]["data"]:[],
+        Revendeurs : findExposant["attributes"]["revendeurs"]["data"]?findExposant["attributes"]["revendeurs"]["data"]:[],
+        Products : findExposant["attributes"]["produits"]["data"]?findExposant["attributes"]["produits"]["data"]:[],
+        Communiques : findExposant["attributes"]["communiques"]["data"]?findExposant["attributes"]["communiques"]["data"]:[],
+        Premiums : premiumRes["data"]["data"],
+        Catalogues : cataloguesRes["data"]["data"],
         marques : marques,
         prices : prices,
         designers : designers,

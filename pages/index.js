@@ -1,11 +1,11 @@
 // Import from components
-import SliderPictureTag from "./../components/elements2/SliderPicture"
-import SuperuniverssSlider from "../components/elements2/SliderSuperuniverss"
-import RelatedProducts from "./../components/elements2/RelatedProducts"
-import NouveautesProducts from "./../components/elements2/NouveautesProducts"
-import Description from "../components/elements2/DescriptionHome"
-import CommuniquesTag from "./../components/elements2/Communiques"
-import Section4 from "./../components/elements2/Section4"
+import SliderPictureTag from "../components/elements/SliderPicture"
+import SuperuniverssSlider from "../components/elements/SliderSuperuniverss"
+import RelatedProducts from "../components/elements/RelatedProducts"
+import NouveautesProducts from "../components/elements/NouveautesProducts"
+import Description from "../components/elements/DescriptionHome"
+import CommuniquesTag from "../components/elements/Communiques"
+import Section4 from "../components/elements/Section4"
 // Import from Next
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -38,7 +38,7 @@ export default function Home(props) {
     const [Bannieres, setBannieres] = useState(props["Bannieres"])
     const [showButtonInSingleProduct, setShowButtonInSingleProduct] = useState(true)
     /*---------------------------------------------------Hooks end---------------------------------------------------*/
-    console.log(Section_Libres)
+
     return (
         <>
 
@@ -102,7 +102,7 @@ export default function Home(props) {
 
             <div className="container mb-60">
                 <div className="row mb-25">
-                <CommuniquesTag communiques = {Communiques} translate={translate}/>  
+                    <CommuniquesTag communiques = {Communiques} translate={translate}/>  
                 </div>
                 <div  style={{textAlign : "center"}}>
                     <Link href="/cps/Tous-Les-Communiques-De-Presse.html">
@@ -148,7 +148,7 @@ export async function getServerSideProps (context) {
         },
         locale: context["locale"]
     })
-    const bigPicturesRes = await axios.get(`http://localhost:1337/api/grandephotos?${queryBigPictures}`) 
+    const bigPicturesRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/grandephotos?${queryBigPictures}`) 
 
     // Query products to show in home page
     const queryProducts = qs.stringify({
@@ -156,33 +156,31 @@ export async function getServerSideProps (context) {
             "images",
             "exposant.logo",
             "typeprod",
-            "exposants_revendeurs"
+            "lienrevendeurproduits.exposant.logo"
         ],
         filters : {
             Afficher_dans_homepage : {$eq : true}
         },
         locale: context["locale"]
     })
-    const productsRes = await axios.get(`http://localhost:1337/api/produits?${queryProducts}`)  
+    const productsRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/produits?${queryProducts}`)  
 
     // Query superunivers
     const querySuperunivers = qs.stringify({
         populate : ["image"],
         locale: context["locale"]
     })
-    const superuniversRes = await axios.get(`http://localhost:1337/api/superuniverss?${querySuperunivers}`)
+    const superuniversRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/superuniverss?${querySuperunivers}`)
 
     // Query (Selection) Banniere    
     const querySelection = qs.stringify({
-        populate: [
-          'image'
-      ],
+        populate: ["image"],
         filters : {
           Afficher_dans_homepage : {$eq : true}
         },
         locale: context["locale"]
       })
-      const resBannieres = await axios.get(`http://localhost:1337/api/bannieres?${querySelection}`)   
+      const resBannieres = await axios.get(`${process.env.BASE_URL_SERVER}/api/bannieres?${querySelection}`)   
 
     // Query selections
     const querySelections = qs.stringify({
@@ -193,14 +191,14 @@ export async function getServerSideProps (context) {
         },
         locale: context["locale"]      
     })
-    const selectionsRes = await axios.get(`http://localhost:1337/api/selection-dfs?${querySelections}`)
+    const selectionsRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/selection-dfs?${querySelections}`)
 
     // Query designers mag
     const queryDesigners = qs.stringify({
         populate : ["image"],
         locale: context["locale"]      
     })
-    const designersRes = await axios.get(`http://localhost:1337/api/designer-mags?${queryDesigners}`)
+    const designersRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/designer-mags?${queryDesigners}`)
   
     // Query Recent three exposants
     const queryTroisDerniersExposants = qs.stringify({
@@ -211,7 +209,7 @@ export async function getServerSideProps (context) {
         },
         locale: context["locale"]      
     })
-    const troisDerniersExposantsRes = await axios.get(`http://localhost:1337/api/exposants?${queryTroisDerniersExposants}`)
+    const troisDerniersExposantsRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/exposants?${queryTroisDerniersExposants}`)
 
     // Query Section Libre
     const querySectionLibre = qs.stringify({
@@ -222,14 +220,14 @@ export async function getServerSideProps (context) {
         },
         locale: context["locale"]    
     })
-    const sectionLibreRes = await axios.get(`http://localhost:1337/api/section-libres?${querySectionLibre}`)
+    const sectionLibreRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/section-libres?${querySectionLibre}`)
 
     // Query communiques
     const queryCommuniques = qs.stringify({
         populate : ["images"],
         locale: context["locale"]
     })
-    const communiquesRes = await axios.get(`http://localhost:1337/api/communiques?${queryCommuniques}`)
+    const communiquesRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/communiques?${queryCommuniques}`)
 
     // Query products Nouveautes
     const queryProductsNouveautes = qs.stringify({
@@ -237,7 +235,7 @@ export async function getServerSideProps (context) {
             "images",
             "exposant.logo",
             "typeprod",
-            "exposants_revendeurs",
+            "lienrevendeurproduits.exposant.logo",
             "pay"
         ],
         filters : {
@@ -246,7 +244,7 @@ export async function getServerSideProps (context) {
         },
         locale: context["locale"]
     })
-    const productsNouveautesRes = await axios.get(`http://localhost:1337/api/produits?${queryProductsNouveautes}`)  
+    const productsNouveautesRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/produits?${queryProductsNouveautes}`)  
 
     
     return {

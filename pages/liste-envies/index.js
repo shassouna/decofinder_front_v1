@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 // Import from components
-import PopupRevendeurs from "../../components/elements2/popupRevendeurs"
+import PopupRevendeurs from "../../components/popups/PopupRevendeurs"
 
 const Wishlist = () => {
 
@@ -28,7 +28,7 @@ const Wishlist = () => {
     /*---------------------------------------------------Hooks end---------------------------------------------------*/
     
     const handleShowPopupRevendeurs= (product) => {
-        setSelectedRevendeurs_produit(product["attributes"]["exposants_revendeurs"]["data"])
+        setSelectedRevendeurs_produit(product["attributes"]["lienrevendeurproduits"]["data"])
         setShowPopupRevendeurs(!showPopupRevendeurs)
     }
 
@@ -40,9 +40,9 @@ const Wishlist = () => {
     return (
         <>
             <PopupRevendeurs 
-            showPopupRevendeurs={showPopupRevendeurs} 
-            setShowPopupRevendeurs={setShowPopupRevendeurs} 
-            revendeurs_produit={selectedRevendeurs_produit}
+            showPopup={showPopupRevendeurs} 
+            setShowPopup={setShowPopupRevendeurs} 
+            revendeurs={selectedRevendeurs_produit}
             translate={translate}
             />
             <section className="mt-50 mb-50">
@@ -67,12 +67,13 @@ const Wishlist = () => {
                                             <tr className="pt-30 text-center" key={product["id"]}>
                                                 <td className="image product-thumbnail pt-40">
                                                     <img
-                                                        src={`${process.env.BASE_URL_SERVER}${product["attributes"]["images"]["data"]["0"]["attributes"]["url"]}`}
+                                                        src={product["attributes"]["images"]["data"]?
+                                                            `${process.env.BASE_URL_SERVER}${product["attributes"]["images"]["data"]["0"]["attributes"]["url"]}`
+                                                            :"/assets/imgs/theme/image_blanche.png"}
                                                         alt=""
                                                         className="img-fluid"
                                                     />
                                                 </td>
-
                                                 <td className="product-des product-name">
                                                     <h6 className="product-name"><a>{product["attributes"]["TITRE"]}</a></h6>
                                                 </td>

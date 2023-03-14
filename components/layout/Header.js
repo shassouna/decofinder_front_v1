@@ -1,6 +1,5 @@
 // Import from Components
-import ExposantsTag from "../elements2/Exposants"
-import Search from "../elements2/Search"
+import Search from "../elements/Search"
 // Import from Next
 import { useRouter } from "next/router"
 import Link from "next/link"
@@ -8,10 +7,7 @@ import Link from "next/link"
 import React, { useEffect, useState } from "react"
 
 const Header = ({
-    totalCartItems,
-    totalCompareItems,
     toggleClick,
-    totalWishlistItems,
     translate,
     superuniverss,
     bannieres
@@ -265,7 +261,7 @@ const Header = ({
                                             </Link>
                                         </div>
  
-                                        <div className="header-action-icon-2">
+                                        {/*<div className="header-action-icon-2">
                                             <Link href="/page-account">
                                                 <a>
                                                     <img
@@ -282,48 +278,7 @@ const Header = ({
                                                     </span>
                                                 </a>
                                             </Link>
-                                            <div className="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
-                                                <ul>
-                                                    <li>
-                                                        <Link href="/page-account">
-                                                             <a>
-                                                                <i className="fi fi-rs-user mr-10"></i>
-                                                                My Account
-                                                            </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-account"><a>
-                                                            <i className="fi fi-rs-location-alt mr-10"></i>
-                                                            Order Tracking
-                                                        </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-account"><a>
-                                                            <i className="fi fi-rs-label mr-10"></i>
-                                                            My Voucher
-                                                        </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/shop-wishlist"><a>
-                                                            <i className="fi fi-rs-heart mr-10"></i>
-                                                            My Wishlist
-                                                        </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-account"><a>
-                                                            <i className="fi fi-rs-settings-sliders mr-10"></i>
-                                                            Setting
-                                                        </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/page-login"><a>
-                                                            <i className="fi fi-rs-sign-out mr-10"></i>
-                                                            Sign out
-                                                        </a></Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        </div>*/}
                                     </div>
                                 </div>
                             </div>
@@ -359,57 +314,11 @@ const Header = ({
                                     >
                                         {/*<div className="d-flex categori-dropdown-inner">
                                             <ExposantsTag exposants={exposants}/>
-                                    </div>*/}
+                                           </div>*/}
                                         <div
                                             className="more_slide_open"
                                             style={{ display: "none" }}
                                         >
-                                            <div className="d-flex categori-dropdown-inner">
-                                                <ul>
-                                                    <li>
-                                                        <Link href="/products"><a>
-                                                            {" "}
-                                                            <img
-                                                                src="/assets/imgs/theme/icons/icon-1.svg"
-                                                                alt=""
-                                                            />
-                                                            Milks and Dairies
-                                                        </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/products"><a>
-                                                            {" "}
-                                                            <img
-                                                                src="/assets/imgs/theme/icons/icon-2.svg"
-                                                                alt=""
-                                                            />
-                                                            Clothing & beauty
-                                                        </a></Link>
-                                                    </li>
-                                                </ul>
-                                                <ul className="end">
-                                                    <li>
-                                                        <Link href="/products"><a>
-                                                            {" "}
-                                                            <img
-                                                                src="/assets/imgs/theme/icons/icon-3.svg"
-                                                                alt=""
-                                                            />
-                                                            Wines & Drinks
-                                                        </a></Link>
-                                                    </li>
-                                                    <li>
-                                                        <Link href="/products"><a>
-                                                            {" "}
-                                                            <img
-                                                                src="/assets/imgs/theme/icons/icon-4.svg"
-                                                                alt=""
-                                                            />
-                                                            Fresh Seafood
-                                                        </a></Link>
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </div>
                                         <div className="more_categories">
                                             <span className="icon"></span>{" "}
@@ -471,130 +380,17 @@ const Header = ({
                             <div className="header-action-right d-block d-lg-none">
                                 <div className="header-action-2">
                                     <div className="header-action-icon-2">
-                                        <Link href="/shop-wishlist">
-                                            <a>
-                                                <img
-                                                    alt="Evara"
-                                                    src="/assets/imgs/theme/icons/icon-compare.svg"
-                                                />
-                                                <span className="pro-count white">
-                                                    {totalCompareItems}
-                                                </span>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    <div className="header-action-icon-2">
-                                        <Link href="/shop-wishlist">
+                                        <Link href="/liste-envies">
                                             <a>
                                                 <img
                                                     alt="Evara"
                                                     src="/assets/imgs/theme/icons/icon-heart.svg"
                                                 />
                                                 <span className="pro-count white">
-                                                    {totalWishlistItems}
+                                                    {wishlist.length}
                                                 </span>
                                             </a>
                                         </Link>
-                                    </div>
-                                    <div className="header-action-icon-2">
-                                        <Link href="/shop-cart">
-                                            <a className="mini-cart-icon">
-                                                <img
-                                                    alt="Evara"
-                                                    src="/assets/imgs/theme/icons/icon-cart.svg"
-                                                />
-                                                <span className="pro-count white">
-                                                    {totalCartItems}
-                                                </span>
-                                            </a>
-                                        </Link>
-                                        <div className="cart-dropdown-wrap cart-dropdown-hm2">
-                                            <ul>
-                                                <li>
-                                                    <div className="shopping-cart-img">
-                                                        <Link href="/shop-grid-right">
-                                                            <a>
-                                                                <img
-                                                                    alt="Evara"
-                                                                    src="/assets/imgs/shop/thumbnail-3.jpg"
-                                                                />
-                                                            </a>
-                                                        </Link>
-                                                    </div>
-                                                    <div className="shopping-cart-title">
-                                                        <h4>
-                                                            <Link href="/shop-grid-right">
-                                                                <a>
-                                                                    Plain
-                                                                    Striola
-                                                                    Shirts
-                                                                </a>
-                                                            </Link>
-                                                        </h4>
-                                                        <h3>
-                                                            <span>1 × </span>
-                                                            $800.00
-                                                        </h3>
-                                                    </div>
-                                                    <div className="shopping-cart-delete">
-                                                        <Link href={router["asPath"]}>
-                                                            <a>
-                                                                <i className="fi-rs-cross-small"></i>
-                                                            </a>
-                                                        </Link>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div className="shopping-cart-img">
-                                                        <Link href="/shop-grid-right">
-                                                            <a>
-                                                                <img
-                                                                    alt="Evara"
-                                                                    src="/assets/imgs/shop/thumbnail-4.jpg"
-                                                                />
-                                                            </a>
-                                                        </Link>
-                                                    </div>
-                                                    <div className="shopping-cart-title">
-                                                        <h4>
-                                                            <Link href="/shop-grid-right">
-                                                                <a>
-                                                                    Macbook Pro
-                                                                    2022
-                                                                </a>
-                                                            </Link>
-                                                        </h4>
-                                                        <h3>
-                                                            <span>1 × </span>
-                                                            $3500.00
-                                                        </h3>
-                                                    </div>
-                                                    <div className="shopping-cart-delete">
-                                                        <Link href={router["asPath"]}>
-                                                            <a>
-                                                                <i className="fi-rs-cross-small"></i>
-                                                            </a>
-                                                        </Link>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div className="shopping-cart-footer">
-                                                <div className="shopping-cart-total">
-                                                    <h4>
-                                                        Total
-                                                        <span>$383.00</span>
-                                                    </h4>
-                                                </div>
-                                                <div className="shopping-cart-button">
-                                                    <Link href="/shop-cart">
-                                                        <a>View cart</a>
-                                                    </Link>
-                                                    <Link href="/shop-checkout">
-                                                        <a>Checkout</a>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div className="header-action-icon-2 d-block d-lg-none">
                                         <div

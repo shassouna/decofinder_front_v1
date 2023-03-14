@@ -1,7 +1,7 @@
 import Link from "next/link"
 import React, { useState } from "react"
-import LeftSideBar from "../../../components/elements2/LeftSideBar"
-import RightSideBar from "../../../components/elements2/RightSideBar"
+import LeftSideBar from "../../../components/elements/LeftSideBar"
+import RightSideBar from "../../../components/elements/RightSideBar"
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 export default function APropos() {

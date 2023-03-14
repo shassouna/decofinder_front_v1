@@ -9,7 +9,6 @@ const Layout = ({
     headerStyle,
     translate,
     superuniverss,
-    exposants,
     bannieres
 }) => {
     const [isToggled, setToggled] = useState(false)
@@ -28,11 +27,11 @@ const Layout = ({
             <Head>
                 <title>Decofinder</title>
                 <meta name="description" content="decofinder" />
-                <link rel="icon" href="/favicon.ico" />
+                {/*<link rel="icon" href="/favicon.ico" />*/}
             </Head>
 
-            <Header headerStyle={headerStyle} isToggled={isToggled} toggleClick={toggleClick} translate={translate} superuniverss={superuniverss} exposants={exposants} bannieres={bannieres}/>
-            <MobileMenu isToggled={isToggled} toggleClick={toggleClick} />
+            <Header headerStyle={headerStyle} isToggled={isToggled} toggleClick={toggleClick} translate={translate} superuniverss={superuniverss} bannieres={bannieres}/>
+            <MobileMenu isToggled={isToggled} toggleClick={toggleClick} translate={translate} superuniverss={superuniverss}/>
             <main className="main">
                 {children}
             </main>
