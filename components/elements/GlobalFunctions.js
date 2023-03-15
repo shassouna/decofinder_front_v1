@@ -28,8 +28,37 @@ const GlobalFunctions = {
     }
     res = res.filter(e=>e.count>0)
     return(res) 
+   },
+  
+   // get sum of products of category
+   handleGetSumOfProductsOfCategory : (categorie) => {
+
+    let sum = categorie["attributes"]["typeprods"]["data"].reduce((sum, curValue)=> {
+
+        return sum += curValue["attributes"]["produits"]["data"].length
+      
+      }, 0)
+
+      if(categorie["attributes"]["produits"]){
+        return sum +categorie["attributes"]["produits"]["data"].length
+      }
+      else {
+        return sum
+      }
+   },
+
+   // get sum of products of univers
+   handleGetSumOfProductsOfUnivers : (univers) => {
+
+    let sum = univers["attributes"]["categories"]["data"].reduce((sum, curValue)=> {
+
+        return sum += GlobalFunctions["handleGetSumOfProductsOfCategory"](curValue)
+      
+      }, 0)
+
+      return sum
    }
-   
+
 }
 
 export default GlobalFunctions

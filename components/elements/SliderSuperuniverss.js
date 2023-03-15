@@ -45,12 +45,12 @@ const CategorySlider = ({Superuniverss}) => {
                     }
                 }}
             >
-                {Superuniverss.map((superunivers, i) => (
-                    <SwiperSlide key={superunivers["id"]+i}>
+                {Superuniverss.map(superunivers => (
+                    <SwiperSlide key={superunivers["id"]}>
                         <div className={`card-2 bg-0 wow animate__animated animate__fadeInUp`} onClick={(e) => selectCategory(e, superunivers)}>
                             <figure className="img-hover-scale overflow-hidden">
                                 <a>
-                                    <img src={`${process.env.BASE_URL_SERVER}${superunivers["attributes"]["image"]["data"]["attributes"]["url"]}`} alt="" />
+                                    <img src={superunivers["attributes"]["image"]["data"]?`${process.env.BASE_URL_SERVER}${superunivers["attributes"]["image"]["data"]["attributes"]["url"]}`: "/assets/imgs/theme/image_blanche.png"} alt="" />
                                 </a>
                             </figure>
                             <h6>
@@ -75,40 +75,3 @@ const CategorySlider = ({Superuniverss}) => {
 
 export default CategorySlider
 
-
-// import SwiperCore, { Navigation } from "swiper"
-// import { Swiper, SwiperSlide } from "swiper/react"
-
-// SwiperCore.use([Navigation])
-
-// const CategorySlider = () => {
-//     return (
-//         <>
-//             <Swiper
-//                 slidesPerView={1}
-//                 spaceBetween={30}
-//                 
-//                 navigation={{
-//                     prevEl: ".custom_prev",
-//                     nextEl: ".custom_next",
-//                 }}
-//                 className="custom-class"
-//             >
-//                 <SwiperSlide>1</SwiperSlide>
-//                 <SwiperSlide>2</SwiperSlide>
-//                 <SwiperSlide>3</SwiperSlide>
-//             </Swiper>
-
-//             <div className="custom-nav">
-//                 <button type="button" className="custom_prev">
-//                     Prev
-//                 </button>
-//                 <button type="button" className="custom_next">
-//                     Next
-//                 </button>
-//             </div>
-//         </>
-//     )
-// }
-
-// export default CategorySlider

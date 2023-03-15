@@ -3,7 +3,7 @@ import Link from "next/link"
 // Import from components
 import Checkboxs from "./Checkboxs"
 import CheckboxsPrices from "./CheckboxsPrices"
-
+import GlobalFunctions from "./GlobalFunctions"
 
 const Sidebar = ({
                   Category, 
@@ -51,10 +51,7 @@ const Sidebar = ({
                             href={`/c${category["id"]}/${category["attributes"]["slug"]}`}  
                             as={`/c/${category["id"]}/${category["attributes"]["slug"]}`}                      
                             ><a>{category["attributes"]["LIB"]}</a></Link>
-                            <span className="count">{category["attributes"]["typeprods"]["data"]
-                                                     .map(e=>e["attributes"]["produits"]["data"].length)
-                                                     .reduce((a, b) => a + b, category["attributes"]["produits"]["data"].length)}
-                            </span>
+                            <span className="count">{GlobalFunctions["handleGetSumOfProductsOfCategory"](category)}</span>
                         </li>
                     ))}
                     </ul>
@@ -67,10 +64,14 @@ const Sidebar = ({
                     <ul>
                     {Universs_Superunivers_Univers.map(univers=>(
                         <li key={univers["id"]}>
-                            <Link 
-                            href={`/u/${univers["id"]}/${univers["attributes"]["slug"]}`}  
-                            as={`/u${univers["id"]}/${univers["attributes"]["slug"]}`}                      
-                            ><a>{univers["attributes"]["LIB"]}</a></Link>
+                            <Link href={`/u/${univers["id"]}/${univers["attributes"]["slug"]}`}  
+                                  as={`/u${univers["id"]}/${univers["attributes"]["slug"]}`}                      
+                            >
+                                <a>{univers["attributes"]["LIB"]}</a>
+                            </Link>
+                            <span className="count">
+                                {GlobalFunctions["handleGetSumOfProductsOfUnivers"](univers)}
+                            </span>
                         </li>
                     ))}
                     </ul>
@@ -83,13 +84,13 @@ const Sidebar = ({
                     <ul>
                     {Categories_Univers_Category.map(category=>(
                         <li key={category["id"]}>
-                            <Link 
-                            href={`/c${category["id"]}/${category["attributes"]["slug"]}`}  
-                            as={`/c/${category["id"]}/${category["attributes"]["slug"]}`}                      
-                            ><a>{category["attributes"]["LIB"]}</a></Link>
-                            <span className="count">{category["attributes"]["typeprods"]["data"]
-                                                     .map(e=>e["attributes"]["produits"]["data"].length)
-                                                     .reduce((a, b) => a + b, category["attributes"]["produits"]["data"].length)}
+                            <Link href={`/c/${category["id"]}/${category["attributes"]["slug"]}`}  
+                                  as={`/c${category["id"]}/${category["attributes"]["slug"]}`}                      
+                            >
+                                <a>{category["attributes"]["LIB"]}</a>
+                            </Link>
+                            <span className="count">
+                                {GlobalFunctions["handleGetSumOfProductsOfCategory"](category)}
                             </span>
                         </li>
                     ))}

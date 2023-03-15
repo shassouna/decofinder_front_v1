@@ -7,7 +7,7 @@ import Pagination from "../../../components/elements/Pagination"
 import Title from "../../../components/elements/Title"
 import SingleProduct from "../../../components/elements/SingleProduct"
 import Typeprod from "../../../components/elements/Typeprod"
-import SelectionsSlider from "../../../components/elements/Premiums"
+import PremiumsTag from "../../../components/elements/Premiums"
 // Import from libraries
 import axios from "axios"
 // Import from react 
@@ -43,6 +43,7 @@ function Category(props) {
     const [Category, setCategory] = useState(props["Category"])
     const [Products, setProducts] = useState(props["Products"])
     const [Typeprods, setTypeprods] = useState(props["Typeprods"])
+    const [Premiums, setPremiums] = useState(props["Premiums"])
 
     const [Categories_Univers_Category, setCategories_Univers_Category] = useState(props["Categories_Univers_Category"])
     const [Univers_Category, setUnivers_Category] = useState(props["Univers_Category"])
@@ -341,7 +342,6 @@ function Category(props) {
                         Couleurs = {Couleurs}
                         Motifs = {Motifs}
                         Materiaux = {Materiaux}
-                        handleFilter = {handleFilter}
                         marquesFilter = {marquesFilter}
                         pricesFilter = {pricesFilter}
                         designersFilter = {designersFilter}
@@ -349,6 +349,7 @@ function Category(props) {
                         couleursFilter = {couleursFilter}
                         materiauxFilter = {materiauxFilter}
                         motifsFilter = {motifsFilter}
+                        handleFilter = {handleFilter}
                         translate = {translate}
                         />
                     </div>
@@ -374,7 +375,7 @@ function Category(props) {
                         <section className="mb-100">
                                 <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez nos sélections")} :</h2>
                                 <div className="home-slide-cover">
-                                    <SelectionsSlider />
+                                   <PremiumsTag premiums={Premiums}/>
                                 </div>
                         </section>
                         {/* list of selections end */}
@@ -422,7 +423,9 @@ export default Category
 
 export async function getServerSideProps (context) {
 
-    // Declarations 
+    // Declaration
+    const timeNowMs = Date.now()
+    
     let categoryProducts = []
 
     let marques = []
@@ -548,12 +551,34 @@ export async function getServerSideProps (context) {
         filterMateriaux = typeof context.query.materiau == "string" ? [parseInt(context.query.materiau)] : context.query.materiau.map(element=>parseInt(element))
     }
 
+    const typeprodsIds = findCategory["attributes"]["typeprods"]["data"].map(typeprod=>typeprod["id"])
+    const queryPremium = qs.stringify({
+
+        populate: [
+          // image
+          "image",
+          // exposant
+          "exposant",
+          // typeprod
+          "typeprod",
+        ],
+        filters : {
+            date_debut : {$lt : timeNowMs},
+            date_fin : {$gt : timeNowMs},
+            typeprod : {id :{$in : typeprodsIds}}
+        },
+        locale: context["locale"]
+  
+      })
+    const premiumRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/premiums?${queryPremium}`)
+
     return {
         props: {
             ...(await serverSideTranslations(context["locale"],["category", "home"])),
             Category : findCategory,
             Typeprods : findCategory["attributes"]["typeprods"]["data"],
             Products : categoryProducts,
+            Premiums : premiumRes["data"]["data"],
             Univers_Category : findCategory["attributes"]["univer"]["data"],
             Categories_Univers_Category : findCategory["attributes"]["univer"]["data"]["attributes"]["categories"]["data"],
             marques : marques,

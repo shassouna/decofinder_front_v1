@@ -1,7 +1,7 @@
 {
     "Tous les Mega Univers" : "All Mega Universe",
     "DERNIERS COMMUNIQUÉS DE PRESSE" : "Latest press releases",
-    "Tous les communiqués de presse" : "Tous les communiqués de presse",
+    "Tous les communiqués de presse" : "All press releases",
     "Les Nouveautés" : "The news",
     "Adresse" : "Address",
     "Appelez-nous" : "Call Us",
@@ -48,5 +48,13 @@
     "Merci de renseigner votre adresse mail" : "Please enter your email address",
     "INSCRIVEZ-VOUS À NOS NEWSLETTERS" : "Register for our newsletters",
     "Voir toutes les Newsletters" : "See all newsletters",
-    "PORTRAITS DE DESIGNERS" : "Portraits of designers"
+    "PORTRAITS DE DESIGNERS" : "Portraits of designers",
+    "Toutes les sélections du Jury" : "All jury selections",
+    "Tous les coups de coeur" : "All favorites",
+    "Tous les achats en ligne" : "All online purchases",
+    "Toutes les promotions" : "All promotions",
+    "Prix sur demande" : "Price upon request",
+    "Pas d'exposant" : "No exhibitor",
+    "Pas de type produit" : "No product type",
+    "Pas de nom" : "No name"
 }

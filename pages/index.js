@@ -1,10 +1,12 @@
 // Import from components
 import SliderPictureTag from "../components/elements/SliderPicture"
 import SuperuniverssSlider from "../components/elements/SliderSuperuniverss"
-import RelatedProducts from "../components/elements/RelatedProducts"
+import FourProducts from "../components/elements/FourProducts"
+import FourButtons from "../components/elements/FourButtons"
 import NouveautesProducts from "../components/elements/NouveautesProducts"
 import Description from "../components/elements/DescriptionHome"
 import CommuniquesTag from "../components/elements/Communiques"
+import BannieresTag from "../components/elements/Bannieres"
 import Section4 from "../components/elements/Section4"
 // Import from Next
 import Link from "next/link"
@@ -36,7 +38,7 @@ export default function Home(props) {
     const [Trois_Derniers_Exposants, setTrois_Derniers_Exposants] = useState(props["Trois_Derniers_Exposants"])
     const [Section_Libres, setSection_Libres] = useState(props["Section_Libres"])
     const [Bannieres, setBannieres] = useState(props["Bannieres"])
-    const [showButtonInSingleProduct, setShowButtonInSingleProduct] = useState(true)
+
     /*---------------------------------------------------Hooks end---------------------------------------------------*/
 
     return (
@@ -50,21 +52,17 @@ export default function Home(props) {
                 </div>
             </div>
 
+            <div className="container mb-60">
+                <FourProducts Products = {Products_Home} translate = {translate}/>
+            </div>
+
             <div className="container mb-120">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="row related-products position-relative">
-                            <RelatedProducts Products = {Products_Home} translate = {translate} showButtonInSingleProduct={showButtonInSingleProduct}/>
-                        </div>
-                    </div>
-                </div>
+                <FourButtons translate = {translate}/>
             </div>
 
             <div className="container mb-80">
                 <div className="carausel-10-columns-cover position-relative">
-                    <div className="col-12">
-                        <h3 className="section-title style-1 mb-20">{translate("Tous les Mega Univers")+" :"}</h3>
-                    </div>
+                    <h3 className="section-title style-1 mb-20">{translate("Tous les Mega Univers")+" :"}</h3>
                     <div className="carausel-10-columns" id="carausel-10-columns">
                         <SuperuniverssSlider Superuniverss={Superuniverss} />
                     </div>
@@ -72,21 +70,10 @@ export default function Home(props) {
             </div>
 
             <div className="container mb-60" style={{background : "black", padding : "25px"}}>
-                <div className="row align-items-center">
-                    <div className="col-xl-12 col-lg-12">
-                    {Bannieres.map(banniere=>(
-                        <div className="text-center" key={banniere["id"]}>
-                            <a href={banniere["attributes"]["lien"]}>
-                                <img src={process.env.BASE_URL_SERVER+banniere["attributes"]["image"]["data"]["attributes"]["url"]}></img>
-                            </a>
-                        </div>
-                    ))
-                    }
-                    </div>
-                </div>
+                <BannieresTag bannieres={Bannieres}/>
             </div>
 
-            <div className="container mb-60">
+            <div className="container mb-0">
                 <div className="carausel-10-columns-cover position-relative">
                     <div className="carausel-10-columns" id="carausel-10-columns">
                         <Section4 Selections={Selections} Designers={Designers} Exposants={Trois_Derniers_Exposants} Section_Libres={Section_Libres} translate={translate}/>
@@ -94,17 +81,13 @@ export default function Home(props) {
                 </div>
             </div>
 
-            <div className="container mb-60">
-                <div className="row">
-                    <Description locale={router["locale"]}/>
-                </div>
+            <div className="container mb-60">     
+                <Description locale={router["locale"]}/>
             </div>
 
             <div className="container mb-60">
-                <div className="row mb-25">
-                    <CommuniquesTag communiques = {Communiques} translate={translate}/>  
-                </div>
-                <div  style={{textAlign : "center"}}>
+                <CommuniquesTag communiques = {Communiques} translate={translate}/>  
+                <div style={{textAlign : "center"}}>
                     <Link href="/cps/Tous-Les-Communiques-De-Presse.html">
                         <a className="btn w-25 hover-up" style={{minWidth : "400px"}}>
                             {translate("Tous les communiqués de presse")}
@@ -114,13 +97,9 @@ export default function Home(props) {
             </div>
 
             <div className="container">
-                <div className="row">
-                    <h3 className="section-title style-1 mb-20">{translate("Les Nouveautés")} : </h3>
-                    <div className="col-12 mt-25">
-                        <div className="row related-products position-relative">
-                            <NouveautesProducts Products = {Products_Nouveautes} translate = {translate} />
-                        </div>
-                    </div>
+                <h3 className="section-title style-1 mb-20">{translate("Les Nouveautés")} : </h3>
+                <div className="row related-products position-relative">
+                    <NouveautesProducts Products = {Products_Nouveautes} translate = {translate} />
                 </div>
             </div>
         </>

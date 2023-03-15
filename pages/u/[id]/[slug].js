@@ -4,7 +4,7 @@ import GlobalFunctions from "../../../components/elements/GlobalFunctions"
 import Sidebar from "../../../components/elements/sideBar"
 import Experts  from "../../../components/elements/Experts"
 import Category  from "../../../components/elements/Category"
-import SelectionsSlider from "../../../components/elements/Premiums"
+import PremiumsTag from "../../../components/elements/Premiums"
 import SingleProduct from "../../../components/elements/SingleProduct"
 // Import from libraries
 import axios from "axios"
@@ -284,7 +284,7 @@ function Univers(props) {
                             <section className="mb-100">
                                 <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez nos sélections")} :</h2>
                                 <div className="home-slide-cover">
-                                    <SelectionsSlider />
+                                    {/*<PremiumsTag />*/}
                                 </div>
                             </section>
                             {/* list of selections end */}

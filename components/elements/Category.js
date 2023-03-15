@@ -5,7 +5,7 @@ function category({category}) {
 
     return(
         <article
-            className="col-xl-3 col-lg-4 col-md-6 text-center hover-up animated"
+            className="col-xl-3 col-lg-4 col-md-6 col-12 text-center hover-up animated"
         >
             <div className="post-thumb">
                 <Link href={`/c${category["id"]}/${category["attributes"]["slug"]}`}>

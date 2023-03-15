@@ -110,37 +110,6 @@ const SingleProduct = ({
                     </div>
                 </div>
             </div>
-            {showButtonInSingleProduct ==true&&
-            <>
-            {
-            product["attributes"]["SELECTION"]==1?
-            <Link href="/jury">
-                <a className="btn w-100 hover-up">
-                    Toutes les sélections du Jury
-                </a>              
-            </Link>
-            :product["attributes"]["COUP_DE_COEUR"]==1?
-            <Link href="/jury">
-                <a className="btn w-100 hover-up">
-                    Tous les coups de coeur
-                </a>               
-            </Link>
-            :product["attributes"]["ACHAT_EN_LIGNE"]==1?
-            <Link href="/jury">
-                <a className="btn w-100 hover-up">
-                    Tous les achats en ligne 
-                </a>                
-            </Link>
-            :product["attributes"]["A_SAISIR"]==1?
-            <Link href="/jury">
-                <a className="btn w-100 hover-up">
-                    Toutes les promotions
-                </a>
-            </Link>
-            :null           
-            }
-            </>
-            }
         </>
     )
 }
