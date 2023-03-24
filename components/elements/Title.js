@@ -3,18 +3,11 @@ import React from 'react'
 const Title = ({elements}) => {
 
     return (
-        <>
-            <div>
-                <h2>
-                {
-                elements.map((element, index)=>
-                    elements.indexOf(element)==elements.length-1?
-                    <div key={index}>{element} :</div>:
-                    <div key={index}>{element} -</div>
-                )}
-                </h2>
-            </div>
-        </>
+            <h2>
+            {elements.map((element, index)=>
+                index==elements.length-1?element + " : " : element + " - "
+            )}
+            </h2>
     )
 }
 

@@ -5,7 +5,7 @@ import CategoryTag from "../../../components/elements/Category"
 // Import from libraries
 import axios from "axios"
 // Import from react 
-import { useState, useEffect } from "react"
+import { useState} from "react"
 // Import from Next
 import { useTranslation } from "next-i18next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
@@ -23,58 +23,46 @@ function Superunivers(props) {
 
     return (
         <div className="container custom mt-50">
-            <div className="row mb-50">
 
                 {/* Superunivers decription begin */}        
-                <section className="newsletter mb-15  wow animate__animated animate__fadeIn">
+                <div className="newsletter mb-15  wow animate__animated animate__fadeIn">
                     <div className="position-relative newsletter-inner">
                         <div className="newsletter-content" style={{textAlign:"center"}}>
-                            <h2 className="mb-20">
-                                Superunivers : {Superunivers["attributes"]["LIB"]} 
-                            </h2>
+                            <h2 className="mb-20">Superunivers : {Superunivers["attributes"]["LIB"]}</h2>
                             <p className="mb-20" dangerouslySetInnerHTML={{__html: Superunivers["attributes"]["DESCR"]}}/>
                         </div>
                     </div>
-                </section>    
+                </div>    
                 {/* Superunivers decription end */}
 
-            </div>
-            <div className="row">
-                <div className="col-lg-12">
+                {/* list of univers begin */}
+                <div className="mb-50">
+                    <h2 className="mb-30">{translate("Les Univers")} :</h2>
+                    <div className="loop-grid">
+                        <div className="row">
+                        {Universs.map(univers => (
+                            <UniversTag key={univers["id"]} univers={univers}/>
+                        ))}
+                        </div>
+                    </div>
+                </div>
+                {/* list of univers end */}
 
-                    {/* list of univers begin */}
-                    <section className="mb-50">
-                        <h2 className="mb-30">{translate("Les Univers")} :</h2>
+                {/* list of univers categories begin */}
+                {Universs.map(univers=>(
+                    <div className="mb-50">
+                        <h2 className="mb-30">{univers["attributes"]["LIB"]}</h2>
+                        <h3 className="mb-30">{translate("Les catégories")} :</h3>
                         <div className="loop-grid">
                             <div className="row">
-                            {Universs.map(univers => (
-                                <UniversTag key={univers["id"]} univers={univers}/>
+                            {univers["attributes"]["categories"]["data"].map(category => (
+                                <CategoryTag key={category["id"]} category={category}/>
                             ))}
                             </div>
                         </div>
-                    </section>
-                    {/* list of univers end */}
-
-                    {/* list of univers categories begin */}
-                    {       
-                    Universs.map(univers=>(
-                        <section className="mb-50">
-                            <h2 className="mb-30">{univers["attributes"]["LIB"]}</h2>
-                            <h3 className="mb-30">{translate("Les catégories")} :</h3>
-                            <div className="loop-grid">
-                                <div className="row">
-                                {univers["attributes"]["categories"]["data"].map(category => (
-                                    <CategoryTag key={category["id"]} category={category}/>
-                                ))}
-                                </div>
-                            </div>
-                        </section>
-                    ))
-                    }
-                    {/* list of univers categories end */}
-
-                </div>
-            </div>
+                    </div>
+                ))}
+                {/* list of univers categories end */}
         </div>
     )
 }

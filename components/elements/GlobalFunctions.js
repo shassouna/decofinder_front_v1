@@ -57,6 +57,15 @@ const GlobalFunctions = {
       }, 0)
 
       return sum
+   },
+
+   // get Typeprods of univers 
+   handleGetIdsOfTypeProdssOfUnivers : (univers) => {
+
+    return univers["attributes"]["categories"]["data"]
+    .map(category=>category["attributes"]["typeprods"]["data"]
+    .map(typeprod=>typeprod["id"]))
+    .reduce((sum, curValue)=> {return sum.concat(curValue)}, [])
    }
 
 }

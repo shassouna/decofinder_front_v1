@@ -2,7 +2,7 @@
 // Import from components
 import GlobalFunctions from "../../../components/elements/GlobalFunctions"
 import Sidebar from "../../../components/elements/sideBar"
-import Experts  from "../../../components/elements/Experts"
+import ExpertsTag  from "../../../components/elements/Experts"
 import Category  from "../../../components/elements/Category"
 import PremiumsTag from "../../../components/elements/Premiums"
 import SingleProduct from "../../../components/elements/SingleProduct"
@@ -41,7 +41,8 @@ function Univers(props) {
     const [Categories, setCategories] = useState(props["Categories"])
     const [Superunivers, setSuperuinvers] = useState(props["Superunivers"])
     const [Products, setProducts] = useState(props["Products"])
-
+    const [Premiums, setPremiums] = useState(props["Premiums"])
+    const [Experts, setExperts] = useState(props["Experts"])
     const [Universs_Superunivers_Univers, setUniverss_Superunivers_Univers] = useState(props["Universs_Superunivers_Univers"])
 
     const [Marques, setMarques] = useState(props["marques"])  
@@ -193,7 +194,7 @@ function Univers(props) {
 
     return (
             <div className="container custom mt-50">
-                <div className="row mb-50">
+                <div className="mb-50">
                     {/* Univers decription begin */}  
                     {             
                     !Marques.find(marque=>marque["checked"]) &&
@@ -203,23 +204,23 @@ function Univers(props) {
                     !Couleurs.find(couleur=>couleur["checked"]) &&       
                     !Motifs.find(motif=>motif["checked"]) && 
                     !Materiaux.find(materiau=>materiau["checked"]) &&         
-                    <section className="newsletter mb-15  wow animate__animated animate__fadeIn">
+                    <div className="newsletter mb-15  wow animate__animated animate__fadeIn">
                         <div className="position-relative newsletter-inner">
                             <div className="newsletter-content" style={{textAlign:"center"}}>
                                 <h2 className="mb-20">
                                     Univers : {Univers["attributes"]["LIB"]} 
                                 </h2>
                                 <p className="mb-20" dangerouslySetInnerHTML={{__html: Univers["attributes"]["DOSSIER_TEXTE"].substring(0, Univers["attributes"]["DOSSIER_TEXTE"].length/3)+" ..."}}/>
-                                <a
+                                {Univers["attributes"]["DOSSIER_TEXTE"]&&<a
                                     href="#univers-description-detail"
                                     aria-label="Lire la suite"
                                     className="btn"
                                 >
                                     {translate("Lire la suite")}
-                                </a>
+                                </a>}
                             </div>
                         </div>
-                    </section>
+                    </div>
                     }      
                     {/* Univers decription end */}
                 </div>
@@ -261,48 +262,49 @@ function Univers(props) {
                         !Materiaux.find(materiau=>materiau["checked"]) &&   
                         <>
                         {/* list of experts begin */}
-                        <section className="mb-0">
+                        {Experts.length>0&&
+                        <div>
                             <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez la sélection de")} :</h2>
-                            <Experts/>
-                        </section>
+                            <ExpertsTag experts={Experts}/>
+                        </div>}
                         {/* list of experts end */}
 
-                            {/* list of categories begin */}
-                            <section className="mb-50">
-                                <h2 className="mb-30">{translate("Dans cet univers")} :</h2>
-                                <div className="loop-grid">
-                                    <div className="row">
-                                        {Categories.map(category => (
-                                            <Category key={category["id"]} category={category}/>
-                                        ))}
-                                    </div>
+                        {/* list of categories begin */}
+                        <div className="mb-50">
+                            <h2 className="mb-30">{translate("Dans cet univers")} :</h2>
+                            <div className="loop-grid">
+                                <div className="row">
+                                    {Categories.map(category => (
+                                        <Category key={category["id"]} category={category} translate={translate}/>
+                                    ))}
                                 </div>
-                            </section>
-                            {/* list of categories end */}
+                            </div>
+                        </div>
+                        {/* list of categories end */}
 
-                            {/* list of selections begin */}
-                            <section className="mb-100">
-                                <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez nos sélections")} :</h2>
-                                <div className="home-slide-cover">
-                                    {/*<PremiumsTag />*/}
-                                </div>
-                            </section>
-                            {/* list of selections end */}
+                        {/* list of selections begin */}
+                        <div className="mb-100">
+                            <h2 className="mb-30" style={{textAlign:"center"}}>{translate("Découvrez nos sélections")} :</h2>
+                            <div className="home-slide-cover">
+                                <PremiumsTag premiums={Premiums}/>
+                            </div>
+                        </div>
+                        {/* list of selections end */}
 
-                            {/* Univers detail begin */}
-                            <section id="univers-description-detail" className="row mb-50">
-                                <div className="col-lg-6">
-                                    <div className="pl-25">
-                                        <div dangerouslySetInnerHTML={{__html: Univers["attributes"]["DOSSIER_TEXTE"].substring(0, Univers["attributes"]["DOSSIER_TEXTE"].length/2)+" ..."}}/>        
-                                    </div>
+                        {/* Univers detail begin */}
+                        <div id="univers-description-detail" className="row mb-50">
+                            <div className="col-lg-6">
+                                <div className="pl-25">
+                                    <div dangerouslySetInnerHTML={{__html: Univers["attributes"]["DOSSIER_TEXTE"].substring(0, Univers["attributes"]["DOSSIER_TEXTE"].length/2)+" ..."}}/>        
                                 </div>
-                                <div className="col-lg-6">
-                                    <div className="pl-25">
-                                        <div dangerouslySetInnerHTML={{__html: Univers["attributes"]["DOSSIER_TEXTE"].substring(Univers["attributes"]["DOSSIER_TEXTE"].length/2, Univers["attributes"]["DOSSIER_TEXTE"].length)+" ..."}}/>        
-                                    </div>
+                            </div>
+                            <div className="col-lg-6">
+                                <div className="pl-25">
+                                    <div dangerouslySetInnerHTML={{__html: Univers["attributes"]["DOSSIER_TEXTE"].substring(Univers["attributes"]["DOSSIER_TEXTE"].length/2, Univers["attributes"]["DOSSIER_TEXTE"].length)+" ..."}}/>        
                                 </div>
-                            </section>
-                            {/* Univers detail end */}
+                            </div>
+                        </div>
+                        {/* Univers detail end */}
                         </>      
                         }
 
@@ -316,24 +318,18 @@ function Univers(props) {
                         Motifs.find(motif=>motif["checked"]) || 
                         Materiaux.find(materiau=>materiau["checked"])                         
                         ) &&
-                        <section>
-                            <div className="row product-grid-3">
-                                {Products.length === 0 && (
-                                    <h3>{translate("Pas de produits")}</h3>
-                                )}
-                                <h2 className="mb-30">{translate("Découvrez tous les produits de l'univers") + " " + Univers["attributes"]["LIB"]} : </h2>
-                                {
-                                Products.slice((currentPage-1)*limit, currentPage*limit)
-                                .map((product, i) => (
-                                    <div
-                                        className="col-lg-1-5 col-md-4 col-12 col-sm-6"
-                                        key={i}
-                                    >
-                                        <SingleProduct product={product} translate={translate}/>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
+                        <div className="row product-grid-3">
+                            {Products.length === 0 && (
+                                <h3>{translate("Pas de produits")}</h3>
+                            )}
+                            <h2 className="mb-30">{translate("Découvrez tous les produits de l'univers") + " " + Univers["attributes"]["LIB"]} : </h2>
+                            {
+                            Products.slice((currentPage-1)*limit, currentPage*limit).map(product => (
+                                <div key={product["id"]} className="col-lg-1-5 col-md-4 col-sm-6 col-12 ">
+                                    <SingleProduct product={product} translate={translate}/>
+                                </div>
+                            ))}
+                        </div>
                         }
                         {/* list of products end */}
                     </div>
@@ -347,9 +343,13 @@ export default Univers
 export async function getServerSideProps (context) {
 
     // Declarations 
+    const timeNowMs = Date.now()
+
     let findUnivers = undefined
  
     let universProducts = []
+
+    let typeprodsIds = []
 
     let marques = []
     let prices = []
@@ -451,13 +451,51 @@ export async function getServerSideProps (context) {
     motifs=GlobalFunctions["handleCountProductsOfEachFilter"](motifs,"LIB")
     materiaux=GlobalFunctions["handleCountProductsOfEachFilter"](materiaux,"LIB")
 
+    // Query Experts
+    const queryExperts = qs.stringify({
+
+        populate: [
+           // image
+           "image",
+           // selection
+           "selection_df"
+        ],
+        locale: context["locale"]        
+
+    })
+    const expertRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/experts?${queryExperts}`)
+
+    // Query Premiums
+    typeprodsIds = GlobalFunctions["handleGetIdsOfTypeProdssOfUnivers"](findUnivers)
+    const queryPremium = qs.stringify({
+
+        populate: [
+          // image
+          "image",
+          // exposant
+          "exposant",
+          // typeprod
+          "typeprod",
+        ],
+        filters : {
+            date_debut : {$lt : timeNowMs},
+            date_fin : {$gt : timeNowMs},
+            typeprod : {id :{$in : typeprodsIds}}
+        },
+        locale: context["locale"]
+  
+      })
+    const premiumRes = await axios.get(`${process.env.BASE_URL_SERVER}/api/premiums?${queryPremium}`)
+
     return {
         props: {
             ...(await serverSideTranslations(context["locale"],["univers", "home"])),
             Univers : findUnivers,
             Categories: findUnivers["attributes"]["categories"]["data"],
             Superunivers : findUnivers["attributes"]["superuniver"]["data"],
-            Universs_Superunivers_Univers : findUnivers["attributes"]["superuniver"]["data"]["attributes"]["univers"]["data"],
+            Premiums : premiumRes["data"]["data"],
+            Experts : expertRes["data"]["data"],
+            Universs_Superunivers_Univers : findUnivers["attributes"]["superuniver"]["data"]?findUnivers["attributes"]["superuniver"]["data"]["attributes"]["univers"]["data"]:[],
             marques : marques,
             prices : prices,
             designers : designers,

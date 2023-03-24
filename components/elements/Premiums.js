@@ -29,14 +29,9 @@ const Premiums = ({premiums}) => {
                 premium["attributes"]["image"]["data"]&&
                 <SwiperSlide key={premium["id"]}>
                     <a target="_blank" href={premium["attributes"]["exposant"]["data"]&&premium["attributes"]["exposant"]["data"]["attributes"]["SRV_INTERNET"]}>
-                        <div
-                            className="single-hero-slider single-animation-wrap"
-                        >
+                        <div className="single-hero-slider single-animation-wrap">
                             <div className="slider-img" style={{width:"100%", display:'flex', justifyContent:'center', alignItems:'center'}}>
-                                <img
-                                    src={`${process.env.BASE_URL_SERVER}${premium["attributes"]["image"]["data"]["attributes"]["url"]}`}
-                                    alt=""
-                                />
+                                <img src={`${process.env.BASE_URL_SERVER}${premium["attributes"]["image"]["data"]["attributes"]["url"]}`} alt=""/>
                             </div>
                         </div>
                     </a>

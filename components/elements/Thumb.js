@@ -32,7 +32,7 @@ const ThumbSlider = ({ Images }) => {
             >
                 {ImagesState.map(item => (
                     <SwiperSlide key={item["id"]}>
-                        <img className="w-100 text-center" src={`${process.env.BASE_URL_SERVER}${item["attributes"]["url"]}`} />
+                        <img className="w-100 text-center" src={item["attributes"]["url"]?`${process.env.BASE_URL_SERVER}${item["attributes"]["url"]}`:"/assets/imgs/theme/image_blanche.png"} />
                     </SwiperSlide>
                 ))}
             </Swiper>
