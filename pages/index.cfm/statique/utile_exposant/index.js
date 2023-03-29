@@ -1,6 +1,6 @@
 // import from components
-import LeftSideBar from "../../../components/elements/LeftSideBar";
-import RightSideBar from "../../../components/elements/RightSideBar";
+import LeftSideBar from "../../../../components/elements/LeftSideBar";
+import RightSideBar from "../../../../components/elements/RightSideBar";
 
 // import from libraries
 import { useTranslation } from "next-i18next";
