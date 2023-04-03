@@ -6,7 +6,14 @@ import Link from "next/link";
 // Import from React
 import React, { useEffect, useState } from "react";
 
-const Header = ({ toggleClick, translate, superuniverss, bannieres }) => {
+const Header = ({
+  toggleClick,
+  translate,
+  superuniverss,
+  bannieres,
+  setShowSearchingPage,
+  setShowFilteringPage,
+}) => {
   const router = useRouter();
 
   const [isToggled, setToggled] = useState(false);
@@ -31,8 +38,6 @@ const Header = ({ toggleClick, translate, superuniverss, bannieres }) => {
       }
     }, [localStorage.getItem("wishlist")]);
   }
-
-  const handleToggle = () => setToggled(!isToggled);
 
   return (
     <>
@@ -256,7 +261,11 @@ const Header = ({ toggleClick, translate, superuniverss, bannieres }) => {
                   </ul>
                 </div>
                 <div className="search-style-2">
-                  <Search translate={translate} />
+                  <Search
+                    setShowSearchingPage={setShowSearchingPage}
+                    setShowFilteringPage={setShowFilteringPage}
+                    translate={translate}
+                  />
                 </div>
                 <div className="header-action-right">
                   <div className="header-action-2">
@@ -305,25 +314,6 @@ const Header = ({ toggleClick, translate, superuniverss, bannieres }) => {
                         </a>
                       </Link>
                     </div>
-
-                    {/*<div className="header-action-icon-2">
-                                            <Link href="/page-account">
-                                                <a>
-                                                    <img
-                                                        className="svgInject"
-                                                        alt="Nest"
-                                                        src="/assets/imgs/theme/icons/icon-user.svg"
-                                                    />
-                                                </a>
-                                            </Link>
-                                            <Link href="/page-account">
-                                                <a className="ml-5">
-                                                    <span className="lable ml-0">
-                                                        {translate("Compte")}
-                                                    </span>
-                                                </a>
-                                            </Link>
-                                        </div>*/}
                   </div>
                 </div>
               </div>
@@ -341,14 +331,6 @@ const Header = ({ toggleClick, translate, superuniverss, bannieres }) => {
             <div className="header-wrap header-space-between position-relative">
               <div className="header-nav d-none d-lg-flex">
                 <div className="main-categori-wrap d-none d-lg-block">
-                  {/*<a
-                                        className="categories-button-active"
-                                        onClick={handleToggle}
-                                    >
-                                        {translate("Exposants")}
-                                        <i className="fi-rs-angle-down"></i>
-                                    </a>*/}
-
                   <div
                     className={
                       isToggled
@@ -356,9 +338,6 @@ const Header = ({ toggleClick, translate, superuniverss, bannieres }) => {
                         : "categories-dropdown-wrap categories-dropdown-active-large font-heading"
                     }
                   >
-                    {/*<div className="d-flex categori-dropdown-inner">
-                                            <ExposantsTag exposants={exposants}/>
-                                           </div>*/}
                     <div
                       className="more_slide_open"
                       style={{ display: "none" }}

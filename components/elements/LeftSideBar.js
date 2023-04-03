@@ -77,7 +77,7 @@ function LeftSideBar({ activeIndex, setActiveIndex, translate }) {
         </a>
       </li>
       <li className="nav-item">
-        <Link href="/audience">
+        <Link href="/index.cfm/statique/audience">
           <a
             className={activeIndex === 8 ? "nav-link active" : "nav-link"}
             onClick={() => handleOnClick(8)}
@@ -87,7 +87,7 @@ function LeftSideBar({ activeIndex, setActiveIndex, translate }) {
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/recrutement">
+        <Link href="/index.cfm/statique/recrutement">
           <a
             className={activeIndex === 9 ? "nav-link active" : "nav-link"}
             onClick={() => handleOnClick(9)}
@@ -97,100 +97,80 @@ function LeftSideBar({ activeIndex, setActiveIndex, translate }) {
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/enregistrement">
+        <Link href="/index.cfm/statique/conditions_generales_de_vente">
           <a
             className={activeIndex === 10 ? "nav-link active" : "nav-link"}
             onClick={() => handleOnClick(10)}
-          >
-            {translate("Exposer")}
-          </a>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link href="/la_marketplace">
-          <a
-            className={activeIndex === 11 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(11)}
-          >
-            {translate("Vendre")}
-          </a>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link href="/conditions_generales_de_vente">
-          <a
-            className={activeIndex === 12 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(12)}
           >
             {translate("Conditions générales de vente")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/faq_acheteur">
+        <Link href="/index.cfm/statique/faq_acheteur">
           <a
-            className={activeIndex === 13 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(13)}
+            className={activeIndex === 11 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(11)}
           >
             {translate("FAQ Acheteur")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/faq_exposant">
+        <Link href="/index.cfm/statique/faq_exposant">
           <a
-            className={activeIndex === 14 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(14)}
+            className={activeIndex === 12 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(12)}
           >
             {translate("FAQ Exposant")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/qui_sommes_nous">
+        <Link href="/index.cfm/statique/qui_sommes_nous">
           <a
-            className={activeIndex === 15 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(15)}
+            className={activeIndex === 13 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(13)}
           >
             {translate("L'équipe")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/contacts">
+        <Link href="/index.cfm/statique/contacts">
           <a
-            className={activeIndex === 16 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(16)}
+            className={activeIndex === 14 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(14)}
           >
             {translate("Contacts")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/mentions_legales">
+        <Link href="/index.cfm/statique/mentions_legales">
           <a
-            className={activeIndex === 17 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(17)}
+            className={activeIndex === 15 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(15)}
           >
             {translate("Mentions légales")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/informations_cookies">
+        <Link href="/index.cfm/statique/informations_cookies">
           <a
-            className={activeIndex === 18 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(18)}
+            className={activeIndex === 16 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(16)}
           >
             {translate("Informations Cookies")}
           </a>
         </Link>
       </li>
       <li className="nav-item">
-        <Link href="/politique_confidentialite">
+        <Link href="/index.cfm/statique/politique_confidentialite">
           <a
-            className={activeIndex === 19 ? "nav-link active" : "nav-link"}
-            onClick={() => handleOnClick(19)}
+            className={activeIndex === 17 ? "nav-link active" : "nav-link"}
+            onClick={() => handleOnClick(17)}
           >
             {translate("Politique de confidentialité")}
           </a>

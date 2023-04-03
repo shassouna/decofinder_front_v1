@@ -32,7 +32,7 @@ export default function TestimoniauxAcheteurs() {
         </div>
         <div className="col-lg-7 col-md-7 col-sm-12 col-12">
           <div className="card-header mb-50">
-            <h1 className="mb-10">{translate("DECOFINDER : TÉMOIGNAGES")}</h1>
+            <h1 className="mb-10">{translate("DECOFINDER")}</h1>
           </div>
           <div
             className="row mb-40"
@@ -48,7 +48,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Je tenais")}
               </p>
             </div>
@@ -67,7 +73,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Je tiens")}
               </p>
             </div>
@@ -86,7 +98,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("J’ai découvert")}
               </p>
             </div>
@@ -105,7 +123,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Superbe site")}
               </p>
             </div>
@@ -124,7 +148,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Super beau")}
               </p>
             </div>
@@ -143,7 +173,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Bravo! Que")}
               </p>
             </div>
@@ -162,7 +198,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Votre site")}
               </p>
             </div>
@@ -181,7 +223,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Je profite")}
               </p>
             </div>
@@ -200,7 +248,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Excellent site")}
               </p>
             </div>
@@ -219,7 +273,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Allez-vous")}
               </p>
             </div>
@@ -238,7 +298,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("j'ai reçu")}
               </p>
             </div>
@@ -257,7 +323,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Votre site 2")}
               </p>
             </div>
@@ -276,7 +348,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Votre site 3")}
               </p>
             </div>
@@ -295,7 +373,13 @@ export default function TestimoniauxAcheteurs() {
               </p>
             </div>
             <div className="col-lg-9 col-md-9 col-sm-9 col-9 text-center">
-              <p className="w-80" style={{ border: "1px solid green" }}>
+              <p
+                className="w-80"
+                style={{
+                  background: "rgba(200,200,200,0.2)",
+                  borderRadius: "2px",
+                }}
+              >
                 {translate("Touchez à")}
               </p>
             </div>

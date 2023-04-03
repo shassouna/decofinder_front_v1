@@ -12,7 +12,7 @@ import React, { useState } from "react";
 export default function ConditionsGeneralesDeVente() {
   /*---------------------------------------------------Hooks begin---------------------------------------------------*/
   // States
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(10);
 
   // Translations
   const { t: translate } = useTranslation("conditions_generales_de_vente");
@@ -22,7 +22,16 @@ export default function ConditionsGeneralesDeVente() {
     <div className="container page-content pt-40 pb-40">
       <div className="row">
         <div className="col-lg-2 col-md-2 col-sm-12 col-12">
-          <div className="dashboard-menu">
+          <div
+            className="dashboard-menu"
+            style={{
+              position: "sticky",
+              height: "2000px",
+              top: 75,
+              bottom: 0,
+              textAlign: "center",
+            }}
+          >
             <LeftSideBar
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
@@ -137,7 +146,15 @@ export default function ConditionsGeneralesDeVente() {
             </div>
           </div>
         </div>
-        <div className="col-lg-3 col-md-3 col-sm-12 col-12">
+        <div
+          className="col-lg-3 col-md-3 col-sm-12 col-12"
+          style={{
+            position: "sticky",
+            height: "2000px",
+            top: 0,
+            bottom: 0,
+          }}
+        >
           {<RightSideBar />}
         </div>
       </div>

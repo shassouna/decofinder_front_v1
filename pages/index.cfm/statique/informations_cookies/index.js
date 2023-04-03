@@ -12,7 +12,7 @@ import React, { useState } from "react";
 export default function InformationsCookies() {
   /*---------------------------------------------------Hooks begin---------------------------------------------------*/
   // States
-  const [activeIndex, setActiveIndex] = useState(18);
+  const [activeIndex, setActiveIndex] = useState(16);
 
   // Translations
   const { t: translate } = useTranslation("informations_cookies");

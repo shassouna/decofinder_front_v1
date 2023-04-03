@@ -12,7 +12,7 @@ import React, { useState } from "react";
 export default function Contacts() {
   /*---------------------------------------------------Hooks begin---------------------------------------------------*/
   // States
-  const [activeIndex, setActiveIndex] = useState(4);
+  const [activeIndex, setActiveIndex] = useState(14);
 
   // Translations
   const { t: translate } = useTranslation("contacts");

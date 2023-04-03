@@ -5,9 +5,11 @@ import "swiper/css/navigation";
 import "../public/assets/css/main.css";
 import { appWithTranslation } from "next-i18next";
 import GlobalFunctions from "./../components/elements/GlobalFunctions";
+import ResearchResult from "../components/elements/ResearchResult";
 import Layout from "./../components/layout/Layout";
 import { useTranslation } from "next-i18next";
 import axios from "axios";
+import { useState } from "react";
 
 MyApp.getInitialProps = async (context) => {
   // Declaration
@@ -49,16 +51,23 @@ function MyApp({ Component, pageProps, superuniverss, bannieres }) {
   // Translations
   const { t: translate } = useTranslation("home");
 
+  // States
+  const [search, setShowSearchingPage] = useState(false);
+  const [filter, setShowFilteringPage] = useState("");
   return (
     <Layout
       noBreadcrumb="d-none"
       superuniverss={superuniverss}
       bannieres={bannieres}
       translate={translate}
+      setShowSearchingPage={setShowSearchingPage}
+      setShowFilteringPage={setShowFilteringPage}
     >
-      <div style={{ minHeight: "2000px" }}>
+      {search ? (
+        <ResearchResult filter={filter} />
+      ) : (
         <Component {...pageProps} GlobalFunctions={GlobalFunctions} />
-      </div>
+      )}
     </Layout>
   );
 }
