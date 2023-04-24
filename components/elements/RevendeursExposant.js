@@ -7,7 +7,10 @@ const Revendeur = ({ revendeurs, translate }) => {
       <h3 className="mb-20">{translate("Marques Revendues")} : </h3>
       {revendeurs.map((item) => (
         <div key={item["id"]} className="col-lg-4 col-md-6 col-sm-6 col-12">
-          <div className="vendor-wrap mb-10  style-2">
+          <div
+            className="vendor-wrap mb-10  style-2"
+            style={{ background: "rgba(225,225,225,0.25)" }}
+          >
             <div className="vendor-img-action-wrap">
               <div className="vendor-img">
                 <Link
@@ -17,7 +20,11 @@ const Revendeur = ({ revendeurs, translate }) => {
                   <a>
                     <img
                       className="default-img"
-                      src={`/assets/imgs/vendor/vendor-1.png`}
+                      src={
+                        item["attributes"]["logo"]["data"]
+                          ? `${process.env.BASE_URL_SERVER}${item["attributes"]["logo"]["data"]["attributes"]["url"]}`
+                          : "/assets/imgs/theme/image_blanche.png"
+                      }
                       alt=""
                     />
                   </a>
