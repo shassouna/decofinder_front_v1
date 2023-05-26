@@ -13,7 +13,7 @@ function category({ category, translate }) {
             style={{ height: "250px" }}
             src={
               category["attributes"]["image"]["data"]
-                ? `${process.env.BASE_URL_SERVER}${category["attributes"]["image"]["data"]["attributes"]["url"]}`
+                ? `${category["attributes"]["image"]["data"]["attributes"]["url"]}`
                 : "/assets/imgs/theme/image_blanche.png"
             }
             alt=""

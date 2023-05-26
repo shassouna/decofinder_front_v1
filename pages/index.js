@@ -42,6 +42,7 @@ export default function Home(props) {
   const [Section_Libres, setSection_Libres] = useState(props["Section_Libres"]);
   const [Bannieres, setBannieres] = useState(props["Bannieres"]);
 
+  console.log(Superuniverss);
   /*---------------------------------------------------Hooks end---------------------------------------------------*/
 
   return (

@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps, superuniverss, bannieres }) {
       setShowFilteringPage={setShowFilteringPage}
     >
       {search ? (
-        <ResearchResult filter={filter} />
+        <ResearchResult filter={filter} translate={translate} />
       ) : (
         <Component {...pageProps} GlobalFunctions={GlobalFunctions} />
       )}

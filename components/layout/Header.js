@@ -51,7 +51,6 @@ const Header = ({
                     <a href={banniere["attributes"]["lien"]}>
                       <img
                         src={
-                          process.env.BASE_URL_SERVER +
                           banniere["attributes"]["image"]["data"]["attributes"][
                             "url"
                           ]

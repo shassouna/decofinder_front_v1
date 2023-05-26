@@ -12,13 +12,13 @@ function Typeprod({ typeprods }) {
             >
               <a>
                 <img
-                  className="border-radius-15"
                   src={
                     typeprod["attributes"]["image"]["data"]
-                      ? `${process.env.BASE_URL_SERVER}${typeprod["attributes"]["image"]["data"]["attributes"]["url"]}`
+                      ? `${typeprod["attributes"]["image"]["data"]["attributes"]["url"]}`
                       : "/assets/imgs/theme/image_blanche.png"
                   }
                   alt=""
+                  className="border-radius-15"
                 />
               </a>
             </Link>

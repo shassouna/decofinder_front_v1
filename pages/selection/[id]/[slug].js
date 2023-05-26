@@ -424,7 +424,7 @@ function Slug(props) {
                   Selection["attributes"]["expert"]["data"]["attributes"][
                     "image"
                   ]["data"]
-                    ? `${process.env.BASE_URL_SERVER}${Selection["attributes"]["expert"]["data"]["attributes"]["image"]["data"]["attributes"]["url"]}`
+                    ? `${Selection["attributes"]["expert"]["data"]["attributes"]["image"]["data"]["attributes"]["url"]}`
                     : "/assets/imgs/theme/image_blanche.png"
                 }
                 alt=""

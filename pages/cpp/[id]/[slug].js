@@ -38,7 +38,7 @@ function PageCommuniqueSingle({ Communique, Designers, Section_Libres }) {
                         <img
                           src={
                             section_libre["attributes"]["image"]["data"]
-                              ? `${process.env.BASE_URL_SERVER}${section_libre["attributes"]["image"]["data"]["attributes"]["url"]}`
+                              ? `${section_libre["attributes"]["image"]["data"]["attributes"]["url"]}`
                               : "/assets/imgs/theme/image_blanche.png"
                           }
                           alt=""
@@ -68,7 +68,7 @@ function PageCommuniqueSingle({ Communique, Designers, Section_Libres }) {
                     className="card"
                     src={
                       designer["attributes"]["image"]["data"]
-                        ? `${process.env.BASE_URL_SERVER}${designer["attributes"]["image"]["data"]["attributes"]["url"]}`
+                        ? `${designer["attributes"]["image"]["data"]["attributes"]["url"]}`
                         : "/assets/imgs/theme/image_blanche.png"
                     }
                     alt=""

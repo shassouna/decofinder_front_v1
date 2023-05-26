@@ -56,7 +56,7 @@ const SingleProduct = ({ product, translate, showButtonInSingleProduct }) => {
                 <a>
                   <img
                     className="default-img"
-                    src={`${process.env.BASE_URL_SERVER}${product["attributes"]["images"]["data"][0]["attributes"]["url"]}`}
+                    src={`${product["attributes"]["images"]["data"][0]["attributes"]["url"]}`}
                     alt=""
                   />
                 </a>

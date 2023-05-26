@@ -15,7 +15,7 @@ function ExposantInformations({
           <img
             src={
               Exposant["attributes"]["logo"]["data"]["attributes"]["url"]
-                ? `${process.env.BASE_URL_SERVER}${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`
+                ? `${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`
                 : "/assets/imgs/theme/image_blanche.png"
             }
             alt=""

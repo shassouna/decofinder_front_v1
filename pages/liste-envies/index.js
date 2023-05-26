@@ -83,7 +83,7 @@ const Wishlist = () => {
                           <img
                             src={
                               product["attributes"]["images"]["data"]
-                                ? `${process.env.BASE_URL_SERVER}${product["attributes"]["images"]["data"]["0"]["attributes"]["url"]}`
+                                ? `${product["attributes"]["images"]["data"]["0"]["attributes"]["url"]}`
                                 : "/assets/imgs/theme/image_blanche.png"
                             }
                             alt=""
@@ -114,7 +114,7 @@ const Wishlist = () => {
                                   product["attributes"]["exposant"]["data"][
                                     "attributes"
                                   ]["logo"]["data"]
-                                    ? `${process.env.BASE_URL_SERVER}${product["attributes"]["exposant"]["data"]["attributes"]["logo"]["data"]["attributes"]["url"]}`
+                                    ? `${product["attributes"]["exposant"]["data"]["attributes"]["logo"]["data"]["attributes"]["url"]}`
                                     : "/assets/imgs/theme/image_blanche.png"
                                 }
                                 alt=""

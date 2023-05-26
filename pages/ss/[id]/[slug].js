@@ -585,6 +585,7 @@ export async function getServerSideProps(context) {
       "typeexposants",
       // revendeurs
       "revendeurs.pay",
+      "revendeurs.logo",
       // communiques
       "communiques.images",
       // products of exposant
@@ -604,6 +605,7 @@ export async function getServerSideProps(context) {
       "localizations.typeexposants",
       // revendeurs
       "localizations.revendeurs.pay",
+      "localizations.revendeurs.logo",
       // communiques
       "localizations.communiques.images",
       // products of exposant

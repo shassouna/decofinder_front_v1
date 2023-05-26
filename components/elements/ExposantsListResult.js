@@ -42,7 +42,7 @@ export default function ExposantsListResult({ translate }) {
                       className="default-img"
                       src={
                         item["attributes"]["logo"]["data"]
-                          ? `${process.env.BASE_URL_SERVER}${item["attributes"]["logo"]["data"]["attributes"]["url"]}`
+                          ? `${item["attributes"]["logo"]["data"]["attributes"]["url"]}`
                           : "/assets/imgs/theme/image_blanche.png"
                       }
                       alt=""

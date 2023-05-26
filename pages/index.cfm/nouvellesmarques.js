@@ -40,7 +40,7 @@ function Nouvellesmarques({ Exposants }) {
                 <a>
                   <img
                     className="default-img"
-                    src={`${process.env.BASE_URL_SERVER}${exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`}
+                    src={`${exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`}
                     alt=""
                   />
                 </a>

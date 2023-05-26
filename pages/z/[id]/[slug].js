@@ -85,7 +85,7 @@ const ProductId = (props) => {
                     <img
                       className="mb-10"
                       id={Exposant["id"]}
-                      src={`${process.env.BASE_URL_SERVER}${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`}
+                      src={`${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`}
                     />
                   )}
                   <br />
@@ -238,7 +238,7 @@ const ProductId = (props) => {
                         <div className="col-lg-3 col-md-4 col-sm-6 col-12 text-center">
                           <Revendeur
                             key={lien_revendeur["id"]}
-                            lien_revendeur={lien_revendeur}
+                            revendeur={lien_revendeur}
                             translate={translate}
                           />
                         </div>

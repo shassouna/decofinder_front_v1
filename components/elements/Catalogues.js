@@ -7,7 +7,7 @@ const Catalogues = ({ catalogues, translate }) => {
           <div key={catalogue["id"]} className="col-lg-3">
             <a
               target="_blank"
-              href={`${process.env.BASE_URL_SERVER}${catalogue["attributes"]["fichier"]["data"][0]["attributes"]["url"]}`}
+              href={`${catalogue["attributes"]["fichier"]["data"][0]["attributes"]["url"]}`}
             >
               <img
                 className="mb-5"

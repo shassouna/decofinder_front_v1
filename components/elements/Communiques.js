@@ -19,7 +19,7 @@ const Communiques = ({ communiques, translate }) => {
                 >
                   {communique["attributes"]["images"]["data"] ? (
                     <img
-                      src={`${process.env.BASE_URL_SERVER}${communique["attributes"]["images"]["data"][0]["attributes"]["url"]}`}
+                      src={`${communique["attributes"]["images"]["data"][0]["attributes"]["url"]}`}
                       alt=""
                       style={{ height: "300px", width: "100%", opacity: 0.5 }}
                     />
