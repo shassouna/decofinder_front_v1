@@ -42,17 +42,18 @@ export default function Home(props) {
   const [Section_Libres, setSection_Libres] = useState(props["Section_Libres"]);
   const [Bannieres, setBannieres] = useState(props["Bannieres"]);
 
-  console.log(Superuniverss);
   /*---------------------------------------------------Hooks end---------------------------------------------------*/
 
   return (
     <>
       <div className="home-slider position-relative mb-60">
-        <div className="container">
-          <div className="home-slide-cover mt-30">
-            <SliderPictureTag Items={Bigpictures} />
+        {Bigpictures.length > 5 && (
+          <div className="container">
+            <div className="home-slide-cover mt-30">
+              <SliderPictureTag Items={Bigpictures} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="container mb-60">
@@ -262,6 +263,7 @@ export async function getServerSideProps(context) {
     `${process.env.BASE_URL_SERVER}/api/produits?${queryProductsNouveautes}`
   );
 
+  console.log(bigPicturesRes["data"]["data"]);
   return {
     props: {
       ...(await serverSideTranslations(context["locale"], ["home"])),
