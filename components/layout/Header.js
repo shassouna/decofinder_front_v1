@@ -279,11 +279,9 @@ const Header = ({
                     </div>
 
                     <div className="header-action-icon-2">
-                      <Link href="https://mag.decofinder.com/">
-                        <a>
-                          <span className="lable">{translate("LE MAG")}</span>
-                        </a>
-                      </Link>
+                      <a target="_blank" href="https://mag.decofinder.com/">
+                        <span className="lable">{translate("LE MAG")}</span>
+                      </a>
                     </div>
 
                     <div className="header-action-icon-2">
@@ -359,8 +357,8 @@ const Header = ({
                           key={superunivers["id"]}
                         >
                           <Link
-                            href={`/su${superunivers["id"]}/${superunivers["slug"]}`}
-                            as={`/su/${superunivers["id"]}/${superunivers["slug"]}`}
+                            href={`/su${superunivers["id"]}/${superunivers["attributes"]["slug"]}`}
+                            as={`/su/${superunivers["id"]}/${superunivers["attributes"]["slug"]}`}
                           >
                             <a>
                               {superunivers["attributes"]["LIB"]}

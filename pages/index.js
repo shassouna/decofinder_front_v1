@@ -47,7 +47,7 @@ export default function Home(props) {
   return (
     <>
       <div className="home-slider position-relative mb-60">
-        {Bigpictures.length > 5 && (
+        {Bigpictures.length > 0 && (
           <div className="container">
             <div className="home-slide-cover mt-30">
               <SliderPictureTag Items={Bigpictures} />
@@ -111,18 +111,19 @@ export default function Home(props) {
           </Link>
         </div>
       </div>
-
-      <div className="container">
-        <h3 className="section-title style-1 mb-20">
-          {translate("Les Nouveautés")} :{" "}
-        </h3>
-        <div className="row related-products position-relative">
-          <NouveautesProducts
-            Products={Products_Nouveautes}
-            translate={translate}
-          />
+      {Products_Nouveautes.length > 0 && (
+        <div className="container">
+          <h3 className="section-title style-1 mb-20">
+            {translate("Les Nouveautés")} :{" "}
+          </h3>
+          <div className="row related-products position-relative">
+            <NouveautesProducts
+              Products={Products_Nouveautes}
+              translate={translate}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
@@ -176,7 +177,7 @@ export async function getServerSideProps(context) {
   );
 
   // Query (Selection) Banniere
-  const querySelection = qs.stringify({
+  const queryBannieres = qs.stringify({
     populate: ["image"],
     filters: {
       Afficher_dans_homepage: { $eq: true },
@@ -184,7 +185,7 @@ export async function getServerSideProps(context) {
     locale: context["locale"],
   });
   const resBannieres = await axios.get(
-    `${process.env.BASE_URL_SERVER}/api/bannieres?${querySelection}`
+    `${process.env.BASE_URL_SERVER}/api/bannieres?${queryBannieres}`
   );
 
   // Query selections
@@ -263,7 +264,6 @@ export async function getServerSideProps(context) {
     `${process.env.BASE_URL_SERVER}/api/produits?${queryProductsNouveautes}`
   );
 
-  console.log(bigPicturesRes["data"]["data"]);
   return {
     props: {
       ...(await serverSideTranslations(context["locale"], ["home"])),

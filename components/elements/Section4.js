@@ -2,6 +2,8 @@
 import SliderSelection from "./SliderSlection";
 // Import from Next
 import Link from "next/link";
+// Import from Next
+import { useRouter } from "next/router";
 
 function Section4({
   Selections,
@@ -10,6 +12,20 @@ function Section4({
   Section_Libres,
   translate,
 }) {
+  // Routers
+  const router = useRouter();
+
+  const handleVoirSelection = (e, selection) => {
+    e.preventDefault();
+    router.push(
+      {
+        pathname: `/selection/${selection["id"]}/${selection["attributes"]["slug"]}`,
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
+
   return (
     <div className="row">
       <div className="col-lg-4 col-md-4 col-sm-6 col-12 mb-25 mt-5">
@@ -102,7 +118,7 @@ function Section4({
           {Designers.map((designer) => (
             <div
               key={designer["id"]}
-              className="col-lg-4 col-md-6 col-sm-6 col-4"
+              className="col-lg-6 col-md-6 col-sm-6 col-6"
             >
               <a target="_blank" href={designer["attributes"]["lien"]}>
                 <img
@@ -135,13 +151,12 @@ function Section4({
                 {selection["attributes"]["titre"]}
               </h4>
               <div className="text-center">
-                <Link
-                  href={`/selection/${selection["id"]}/${selection["attributes"]["slug"]}`}
+                <button
+                  className="btn"
+                  onClick={(e) => handleVoirSelection(e, selection)}
                 >
-                  <button className="btn">
-                    {translate("Voir la sélection")}
-                  </button>
-                </Link>
+                  {translate("Voir la sélection")}
+                </button>
               </div>
             </div>
             <div className="col-lg-1 col-md-1 col-sm-1 col-1"></div>
