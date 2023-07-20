@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 function univers({ univers }) {
+  console.log(univers);
   return (
     <article className="col-xl-3 col-lg-4 col-md-6 text-center hover-up animated">
       <div className="post-thumb">
@@ -10,7 +11,11 @@ function univers({ univers }) {
         >
           <a>
             <img
-              src={`${univers["attributes"]["image"]["data"]["attributes"]["url"]}`}
+              src={
+                univers["attributes"]["image"]["data"]
+                  ? `${univers["attributes"]["image"]["data"]["attributes"]["url"]}`
+                  : "/assets/imgs/theme/image_blanche.png"
+              }
               alt=""
               className="border-radius-15"
             />
