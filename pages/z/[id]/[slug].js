@@ -81,7 +81,7 @@ const ProductId = (props) => {
                 }}
               >
                 <div className="detail-info  pr-30 pl-30">
-                  {Exposant && (
+                  {Exposant && Exposant["attributes"]["logo"]["data"] && (
                     <img
                       className="mb-10"
                       id={Exposant["id"]}

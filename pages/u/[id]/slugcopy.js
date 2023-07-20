@@ -510,7 +510,6 @@ export async function getServerSideProps(context) {
   if (!findUnivers) findUnivers = universRes["data"]["data"];
 
   // Get all products of univers
-
   findUnivers["attributes"]["categories"]["data"].forEach((category) => {
     universProducts = universProducts.concat(
       category["attributes"]["produits"]["data"]

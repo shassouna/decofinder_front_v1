@@ -14,7 +14,7 @@ function ExposantInformations({
         <div className="vendor-logo mb-30">
           <img
             src={
-              Exposant["attributes"]["logo"]["data"]["attributes"]["url"]
+              Exposant["attributes"]["logo"]["data"]
                 ? `${Exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`
                 : "/assets/imgs/theme/image_blanche.png"
             }
