@@ -8,11 +8,7 @@ const Communiques = ({ bannieres }) => {
         {bannieres.map((banniere) => (
           <div className="text-center" key={banniere["id"]}>
             <a href={banniere["attributes"]["lien"]}>
-              <img
-                src={
-                  banniere["attributes"]["image"]["data"]["attributes"]["url"]
-                }
-              ></img>
+              <img src={banniere["attributes"]["image"]["url"]}></img>
             </a>
           </div>
         ))}
