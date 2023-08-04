@@ -19,6 +19,7 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function Home(props) {
+  console.log(props["Section_Libres"]);
   /*---------------------------------------------------Hooks begin---------------------------------------------------*/
   // Routers
   const router = useRouter();
@@ -56,31 +57,37 @@ export default function Home(props) {
         )}
       </div>
 
-      <div className="container mb-60">
-        <FourProducts Products={Products_Home} translate={translate} />
-      </div>
+      {Products_Home.length > 0 && (
+        <div className="container mb-60">
+          <FourProducts Products={Products_Home} translate={translate} />
+        </div>
+      )}
 
       <div className="container mb-120">
         <FourButtons translate={translate} />
       </div>
 
-      <div className="container mb-80">
-        <div className="carausel-10-columns-cover position-relative">
-          <h3 className="section-title style-1 mb-20">
-            {translate("Tous les Mega Univers") + " :"}
-          </h3>
-          <div className="carausel-10-columns" id="carausel-10-columns">
-            <SuperuniverssSlider Superuniverss={Superuniverss} />
+      {Superuniverss.length > 0 && (
+        <div className="container mb-80">
+          <div className="carausel-10-columns-cover position-relative">
+            <h3 className="section-title style-1 mb-20">
+              {translate("Tous les Mega Univers") + " :"}
+            </h3>
+            <div className="carausel-10-columns" id="carausel-10-columns">
+              <SuperuniverssSlider Superuniverss={Superuniverss} />
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      <div
-        className="container mb-60"
-        style={{ background: "black", padding: "25px" }}
-      >
-        <BannieresTag bannieres={Bannieres} />
-      </div>
+      {Bannieres.length > 0 && (
+        <div
+          className="container mb-60"
+          style={{ background: "black", padding: "25px" }}
+        >
+          <BannieresTag bannieres={Bannieres} />
+        </div>
+      )}
 
       <div className="container mb-0">
         <div className="carausel-10-columns-cover position-relative">
@@ -99,18 +106,19 @@ export default function Home(props) {
       <div className="container mb-60">
         <Description locale={router["locale"]} />
       </div>
-
-      <div className="container mb-60">
-        <h3 className="mb-20">{translate("Communiqués de presse")} : </h3>
-        <CommuniquesTag communiques={Communiques} translate={translate} />
-        <div style={{ textAlign: "center" }}>
-          <Link href="/cps/Tous-Les-Communiques-De-Presse.html">
-            <a className="btn w-25 hover-up" style={{ minWidth: "400px" }}>
-              {translate("Tous les communiqués de presse")}
-            </a>
-          </Link>
+      {Communiques.length > 0 && (
+        <div className="container mb-60">
+          <h3 className="mb-20">{translate("Communiqués de presse")} : </h3>
+          <CommuniquesTag communiques={Communiques} translate={translate} />
+          <div style={{ textAlign: "center" }}>
+            <Link href="/cps/Tous-Les-Communiques-De-Presse.html">
+              <a className="btn w-25 hover-up" style={{ minWidth: "400px" }}>
+                {translate("Tous les communiqués de presse")}
+              </a>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
       {Products_Nouveautes.length > 0 && (
         <div className="container">
           <h3 className="section-title style-1 mb-20">
@@ -180,6 +188,8 @@ export async function getServerSideProps(context) {
   const queryBannieres = qs.stringify({
     populate: ["image"],
     filters: {
+      date_debut: { $lt: timeNowMs },
+      date_fin: { $gt: timeNowMs },
       Afficher_dans_homepage: { $eq: true },
     },
     locale: context["locale"],
@@ -213,7 +223,7 @@ export async function getServerSideProps(context) {
   // Query Recent three exposants
   const queryTroisDerniersExposants = qs.stringify({
     populate: ["logo"],
-    sort: ["createdAt:desc"],
+    sort: ["logo:desc"],
     pagination: {
       limit: 3,
     },
@@ -230,7 +240,7 @@ export async function getServerSideProps(context) {
       date_debut: { $lt: timeNowMs },
       date_fin: { $gt: timeNowMs },
     },
-    locale: context["locale"],
+    locale: "en",
   });
   const sectionLibreRes = await axios.get(
     `${process.env.BASE_URL_SERVER}/api/section-libres?${querySectionLibre}`
@@ -239,6 +249,10 @@ export async function getServerSideProps(context) {
   // Query communiques
   const queryCommuniques = qs.stringify({
     populate: ["images"],
+    sort: ["createdAt:desc"],
+    pagination: {
+      limit: 8,
+    },
     locale: context["locale"],
   });
   const communiquesRes = await axios.get(

@@ -115,25 +115,34 @@ function Section4({
 
       <div className="col-lg-4 col-md-4 col-sm-6 col-12">
         <div className="row mb-25 featured-card">
-          {Designers.map((designer) => (
-            <div
-              key={designer["id"]}
-              className="col-lg-6 col-md-6 col-sm-6 col-6"
-            >
-              <a target="_blank" href={designer["attributes"]["lien"]}>
-                <img
-                  className="card"
-                  src={
-                    designer["attributes"]["image"]["data"]
-                      ? `${designer["attributes"]["image"]["data"]["attributes"]["url"]}`
-                      : "/assets/imgs/theme/image_blanche.png"
-                  }
-                  alt=""
-                  style={{ height: "176px", width: "100%" }}
-                />
-              </a>
-            </div>
-          ))}
+          {Designers.map(
+            (designer) => (
+              console.log(
+                designer["attributes"]["image"]["data"]["attributes"][
+                  "formats"
+                ]["small"]
+              ),
+              (
+                <div
+                  key={designer["id"]}
+                  className="col-lg-4 col-md-6 col-sm-12 col-12"
+                >
+                  <a target="_blank" href={designer["attributes"]["lien"]}>
+                    <img
+                      className="card"
+                      src={
+                        designer["attributes"]["image"]["data"]
+                          ? `${designer["attributes"]["image"]["data"]["attributes"]["url"]}`
+                          : "/assets/imgs/theme/image_blanche.png"
+                      }
+                      alt=""
+                      style={{ height: "176px", width: "100%" }}
+                    />
+                  </a>
+                </div>
+              )
+            )
+          )}
           <h6 className="text-center mb-20">Mag déco</h6>
           <h6 className="text-center">{translate("PORTRAITS DE DESIGNERS")}</h6>
         </div>

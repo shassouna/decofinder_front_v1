@@ -48,7 +48,7 @@ const Header = ({
               <div className="col-xl-12 col-lg-12">
                 {bannieres.map((banniere) => (
                   <div className="text-center" key={banniere["id"]}>
-                    <a href={banniere["attributes"]["lien"]}>
+                    <a target="_blank" href={banniere["attributes"]["lien"]}>
                       <img
                         src={
                           banniere["attributes"]["image"]["data"]["attributes"][

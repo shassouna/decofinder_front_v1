@@ -31,6 +31,7 @@ MyApp.getInitialProps = async (context) => {
   const resBannieres = await axios.get(
     `${process.env.BASE_URL_SERVER}/api/bannieres?${querySelection}`
   );
+  console.log(resBannieres.data.data);
 
   // Query Superunivers
   const querySuperunivers = qs.stringify({
@@ -54,6 +55,7 @@ function MyApp({ Component, pageProps, superuniverss, bannieres }) {
   // States
   const [search, setShowSearchingPage] = useState(false);
   const [filter, setShowFilteringPage] = useState("");
+
   return (
     <Layout
       noBreadcrumb="d-none"
