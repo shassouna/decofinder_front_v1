@@ -240,7 +240,7 @@ export async function getServerSideProps(context) {
       date_debut: { $lt: timeNowMs },
       date_fin: { $gt: timeNowMs },
     },
-    locale: "en",
+    locale: context["locale"],
   });
   const sectionLibreRes = await axios.get(
     `${process.env.BASE_URL_SERVER}/api/section-libres?${querySectionLibre}`
