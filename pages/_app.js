@@ -31,7 +31,6 @@ MyApp.getInitialProps = async (context) => {
   const resBannieres = await axios.get(
     `${process.env.BASE_URL_SERVER}/api/bannieres?${querySelection}`
   );
-  console.log(resBannieres.data.data);
 
   // Query Superunivers
   const querySuperunivers = qs.stringify({

@@ -121,139 +121,34 @@ const Header = ({
                       ) : null}
                       <ul className="language-dropdown">
                         <li>
-                          <Link
-                            href={
-                              router["query"]["id"]
-                                ? `${
-                                    router["asPath"].split(
-                                      router["asPath"].match(
-                                        router["query"]["id"]
-                                      )[0]
-                                    )[0]
-                                  }/${router["query"]["id"]}/${
-                                    router["query"]["slug"]
-                                  }`.replace("//", "/")
-                                : router["asPath"]
-                            }
-                            as={router["asPath"]}
-                            locale="fr"
-                          >
-                            <a>
-                              <img
-                                src="/assets/imgs/theme/flag-fr.png"
-                                alt=""
-                              />
-                              Français
-                            </a>
-                          </Link>
+                          <a href="/fr" locale="en">
+                            <img src="/assets/imgs/theme/flag-fr.png" alt="" />
+                            Français
+                          </a>
                         </li>
                         <li>
-                          <Link
-                            href={
-                              router["query"]["id"]
-                                ? `${
-                                    router["asPath"].split(
-                                      router["asPath"].match(
-                                        router["query"]["id"]
-                                      )[0]
-                                    )[0]
-                                  }/${router["query"]["id"]}/${
-                                    router["query"]["slug"]
-                                  }`.replace("//", "/")
-                                : router["asPath"]
-                            }
-                            as={router["asPath"]}
-                            locale="en"
-                          >
-                            <a>
-                              <img
-                                src="/assets/imgs/theme/flag-gbr.png"
-                                alt=""
-                              />
-                              English
-                            </a>
-                          </Link>
+                          <a href="/en" locale="en">
+                            <img src="/assets/imgs/theme/flag-gbr.png" alt="" />
+                            English
+                          </a>
                         </li>
                         <li>
-                          <Link
-                            href={
-                              router["query"]["id"]
-                                ? `${
-                                    router["asPath"].split(
-                                      router["asPath"].match(
-                                        router["query"]["id"]
-                                      )[0]
-                                    )[0]
-                                  }/${router["query"]["id"]}/${
-                                    router["query"]["slug"]
-                                  }`.replace("//", "/")
-                                : router["asPath"]
-                            }
-                            as={router["asPath"]}
-                            locale="de"
-                          >
-                            <a>
-                              <img
-                                src="/assets/imgs/theme/flag-de.png"
-                                alt=""
-                              />
-                              Deutsch
-                            </a>
-                          </Link>
+                          <a href="/de" locale="de">
+                            <img src="/assets/imgs/theme/flag-de.png" alt="" />
+                            Deutsch
+                          </a>
                         </li>
                         <li>
-                          <Link
-                            href={
-                              router["query"]["id"]
-                                ? `${
-                                    router["asPath"].split(
-                                      router["asPath"].match(
-                                        router["query"]["id"]
-                                      )[0]
-                                    )[0]
-                                  }/${router["query"]["id"]}/${
-                                    router["query"]["slug"]
-                                  }`.replace("//", "/")
-                                : router["asPath"]
-                            }
-                            as={router["asPath"]}
-                            locale="it"
-                          >
-                            <a>
-                              <img
-                                src="/assets/imgs/theme/flag-it.png"
-                                alt=""
-                              />
-                              Italiano
-                            </a>
-                          </Link>
+                          <a href="/it" locale="it">
+                            <img src="/assets/imgs/theme/flag-it.png" alt="" />
+                            Italiano
+                          </a>
                         </li>
                         <li>
-                          <Link
-                            href={
-                              router["query"]["id"]
-                                ? `${
-                                    router["asPath"].split(
-                                      router["asPath"].match(
-                                        router["query"]["id"]
-                                      )[0]
-                                    )[0]
-                                  }/${router["query"]["id"]}/${
-                                    router["query"]["slug"]
-                                  }`.replace("//", "/")
-                                : router["asPath"]
-                            }
-                            as={router["asPath"]}
-                            locale="es"
-                          >
-                            <a>
-                              <img
-                                src="/assets/imgs/theme/flag-es.png"
-                                alt=""
-                              />
-                              Espagnol
-                            </a>
-                          </Link>
+                          <a href="/es" locale="es">
+                            <img src="/assets/imgs/theme/flag-es.png" alt="" />
+                            Espagnol
+                          </a>
                         </li>
                       </ul>
                     </li>

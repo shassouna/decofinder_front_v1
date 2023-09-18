@@ -18,7 +18,6 @@ export default function ExposantsListResult({ translate }) {
       const exposantRes = await axios.get(
         `${process.env.BASE_URL_SERVER}/api/exposants?${query}`
       );
-      console.log(exposantRes["data"]["data"]);
       setExposants(exposantRes["data"]["data"]);
     };
     fetchData();

@@ -11,13 +11,8 @@ const Premiums = ({ premiums }) => {
       <Swiper
         slidesPerView={1}
         spaceBetween={0}
-        effect={"fade"}
-        fadeEffect={{
-          crossFade: true,
-        }}
-        pagination={{
-          clickable: true,
-        }}
+        autoplay={true}
+        pagination={true}
         navigation={{
           prevEl: ".custom_prev_i1",
           nextEl: ".custom_next_i1",
@@ -28,45 +23,59 @@ const Premiums = ({ premiums }) => {
           (premium) =>
             premium["attributes"]["image"]["data"] && (
               <SwiperSlide key={premium["id"]}>
-                <a
-                  target="_blank"
-                  href={
-                    premium["attributes"]["exposant"]["data"] &&
-                    premium["attributes"]["exposant"]["data"]["attributes"][
-                      "SRV_INTERNET"
-                    ]
-                  }
+                <div
+                  className="single-hero-slider single-animation-wrap"
+                  style={{
+                    backgroundImage: `url(${premium["attributes"]["image"]["data"]["attributes"]["url"]})`,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
                 >
-                  <div className="single-hero-slider single-animation-wrap">
-                    <div
-                      className="slider-img"
-                      style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img
-                        src={`${premium["attributes"]["image"]["data"]["attributes"]["url"]}`}
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </a>
+                  {premium["attributes"]["exposant"]["data"] &&
+                    premium["attributes"]["exposant"]["data"]["attributes"][
+                      "logo"
+                    ]["data"] && (
+                      <a
+                        style={{
+                          height: "60px",
+                          width: "182px",
+                          margin: "auto",
+                          padding: "1px 1px",
+                        }}
+                        target="_blank"
+                        href={
+                          premium["attributes"]["exposant"]["data"][
+                            "attributes"
+                          ]["SRV_INTERNET"]
+                        }
+                      >
+                        <img
+                          style={{ width: "100%", height: "100%" }}
+                          alt=""
+                          src={
+                            premium["attributes"]["exposant"]["data"][
+                              "attributes"
+                            ]["logo"]["data"]["attributes"]["url"]
+                          }
+                        />
+                      </a>
+                    )}
+                </div>
               </SwiperSlide>
             )
         )}
       </Swiper>
-
-      <div className="slider-arrow hero-slider-1-arrow">
-        <span className="slider-btn slider-prev slick-arrow custom_prev_i1">
-          <i className="fi-rs-angle-left"></i>
-        </span>
-        <span className="slider-btn slider-next slick-arrow custom_next_i1">
-          <i className="fi-rs-angle-right"></i>
-        </span>
-      </div>
+      {premiums.length > 1 && (
+        <div className="slider-arrow hero-slider-1-arrow">
+          <span className="slider-btn slider-prev slick-arrow custom_prev_i1">
+            <i className="fi-rs-angle-left"></i>
+          </span>
+          <span className="slider-btn slider-next slick-arrow custom_next_i1">
+            <i className="fi-rs-angle-right"></i>
+          </span>
+        </div>
+      )}
     </>
   );
 };

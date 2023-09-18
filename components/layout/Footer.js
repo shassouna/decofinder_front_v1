@@ -73,28 +73,44 @@ const Footer = ({ translate }) => {
                 </h4>
                 <ul className="footer-list  mb-sm-5 mb-md-0">
                   <li>
-                    <a href="#">{translate("A propos")}</a>
+                    <Link href="/index.cfm/statique/presentation">
+                      <a>{translate("A propos")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("L'équipe")}</a>
+                    <Link href="/index.cfm/statique/qui_sommes_nous">
+                      <a>{translate("L'équipe")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Audience et Visitorat")}</a>
+                    <Link href="/index.cfm/statique/audience">
+                      <a>{translate("Audience et Visitorat")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Revue de presse")}</a>
+                    <Link href="/index.cfm/statique/revuedepresse">
+                      <a>{translate("Revue de presse")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Sondage Opinion Way")}</a>
+                    <a href="/assets/pdf/ow.pdf">
+                      {translate("Sondage Opinion Way")}
+                    </a>
                   </li>
                   <li>
-                    <a href="#">{translate("Contact")}</a>
+                    <Link href="/index.cfm/statique/contacts">
+                      <a>{translate("Contact")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Recrutement")}</a>
+                    <Link href="/index.cfm/statique/recrutement">
+                      <a>{translate("Recrutement")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Mentions légales")}</a>
+                    <Link href="/index.cfm/statique/mentions_legales">
+                      <a>{translate("Mentions légales")}</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -105,16 +121,24 @@ const Footer = ({ translate }) => {
                 <h4 className="widget-title ">{translate("EXPOSER")}</h4>
                 <ul className="footer-list  mb-sm-5 mb-md-0">
                   <li>
-                    <a href="#">{translate("Utile pour l'exposant")}</a>
+                    <Link href="/index.cfm/statique/utile_exposant">
+                      <a>{translate("Utile pour l'exposant")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Témoignage exposant")}</a>
+                    <Link href="/index.cfm/statique/testimoniaux_exposants">
+                      <a>{translate("Témoignage exposant")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("FAQ Exposant")}</a>
+                    <Link href="/index.cfm/statique/faq_exposant">
+                      <a>{translate("FAQ Exposant")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">{translate("Conditions générales de vente")}</a>
+                    <Link href="/index.cfm/statique/conditions_generales_de_vente">
+                      <a>{translate("Conditions générales de vente")}</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -125,9 +149,9 @@ const Footer = ({ translate }) => {
                 <h4 className="widget-title ">{translate("VENDRE")}</h4>
                 <ul className="footer-list  mb-sm-5 mb-md-0">
                   <li>
-                    <a href="#">
-                      {translate("Vendre plus grâce à Decofinder")}
-                    </a>
+                    <Link href="/index.cfm/statique/la_marketplace">
+                      <a>{translate("Vendre plus grâce à Decofinder")}</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -140,25 +164,19 @@ const Footer = ({ translate }) => {
                 </h4>
                 <ul className="footer-list  mb-sm-5 mb-md-0">
                   <li>
-                    <a href="#">Milk & Flavoured Milk</a>
+                    <Link href="/index.cfm/statique/utile_acheteur">
+                      <a>{translate("Utile pour l'acheteur")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">Butter and Margarine</a>
+                    <Link href="/index.cfm/statique/testimoniaux_acheteurs">
+                      <a>{translate("Témoignages acheteurs")}</a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#">Eggs Substitutes</a>
-                  </li>
-                  <li>
-                    <a href="#">Marmalades</a>
-                  </li>
-                  <li>
-                    <a href="#">Sour Cream and Dips</a>
-                  </li>
-                  <li>
-                    <a href="#">Tea & Kombucha</a>
-                  </li>
-                  <li>
-                    <a href="#">Cheese</a>
+                    <Link href="/index.cfm/statique/faq_acheteurh">
+                      <a>{translate("FAQ Acheteurs")}</a>
+                    </Link>
                   </li>
                 </ul>
               </div>

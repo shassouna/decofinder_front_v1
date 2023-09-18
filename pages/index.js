@@ -19,7 +19,6 @@ import axios from "axios";
 import { useState } from "react";
 
 export default function Home(props) {
-  console.log(props["Section_Libres"]);
   /*---------------------------------------------------Hooks begin---------------------------------------------------*/
   // Routers
   const router = useRouter();
@@ -57,15 +56,17 @@ export default function Home(props) {
         )}
       </div>
 
-      {Products_Home.length > 0 && (
-        <div className="container mb-60">
-          <FourProducts Products={Products_Home} translate={translate} />
-        </div>
-      )}
+      <>
+        {Products_Home.length > 0 && (
+          <div className="container mb-60">
+            <FourProducts Products={Products_Home} translate={translate} />
+          </div>
+        )}
 
-      <div className="container mb-120">
-        <FourButtons translate={translate} />
-      </div>
+        <div className="container mb-120">
+          <FourButtons translate={translate} />
+        </div>
+      </>
 
       {Superuniverss.length > 0 && (
         <div className="container mb-80">
@@ -89,7 +90,7 @@ export default function Home(props) {
         </div>
       )}
 
-      <div className="container mb-0">
+      <div className="container">
         <div className="carausel-10-columns-cover position-relative">
           <div className="carausel-10-columns" id="carausel-10-columns">
             <Section4
@@ -106,10 +107,15 @@ export default function Home(props) {
       <div className="container mb-60">
         <Description locale={router["locale"]} />
       </div>
+
       {Communiques.length > 0 && (
         <div className="container mb-60">
-          <h3 className="mb-20">{translate("Communiqués de presse")} : </h3>
-          <CommuniquesTag communiques={Communiques} translate={translate} />
+          <h3 className="mb-20">
+            {translate("DERNIERS COMMUNIQUÉS DE PRESSE")} :{" "}
+          </h3>
+          <div className="mb-25">
+            <CommuniquesTag communiques={Communiques} translate={translate} />
+          </div>
           <div style={{ textAlign: "center" }}>
             <Link href="/cps/Tous-Les-Communiques-De-Presse.html">
               <a className="btn w-25 hover-up" style={{ minWidth: "400px" }}>
@@ -119,6 +125,7 @@ export default function Home(props) {
           </div>
         </div>
       )}
+
       {Products_Nouveautes.length > 0 && (
         <div className="container">
           <h3 className="section-title style-1 mb-20">
@@ -138,6 +145,7 @@ export default function Home(props) {
 
 export async function getServerSideProps(context) {
   // Declaration
+  console.log(context.locale);
   const timeNowMs = Date.now();
   const timeSixMonthMs = 6 * 30 * 24 * 3600 * 1000;
   const timeBeforeSixMonthMs = timeNowMs - timeSixMonthMs;

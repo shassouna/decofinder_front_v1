@@ -2,7 +2,7 @@
 import GlobalFunctions from "../../../components/elements/GlobalFunctions";
 import Sidebar from "../../../components/elements/sideBar";
 import ExpertsTag from "../../../components/elements/Experts";
-import Category from "../../../components/elements/Category";
+import CategoryTag from "../../../components/elements/Category";
 import PremiumsTag from "../../../components/elements/Premiums";
 import SingleProduct from "../../../components/elements/SingleProduct";
 // Import from libraries
@@ -243,7 +243,13 @@ function Univers(props) {
           !Couleurs.find((couleur) => couleur["checked"]) &&
           !Motifs.find((motif) => motif["checked"]) &&
           !Materiaux.find((materiau) => materiau["checked"]) && (
-            <div className="newsletter mb-15  wow animate__animated animate__fadeIn">
+            <div
+              className="newsletter mb-15  wow animate__animated animate__fadeIn univers-header_parallax"
+              style={{
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.9)),
+                  url(${Univers["attributes"]["image"]["data"]["attributes"]["url"]})`,
+              }}
+            >
               <div className="position-relative newsletter-inner">
                 <div
                   className="newsletter-content"
@@ -254,6 +260,7 @@ function Univers(props) {
                   </h2>
                   <p
                     className="mb-20"
+                    style={{ color: "white" }}
                     dangerouslySetInnerHTML={{
                       __html:
                         Univers["attributes"]["DOSSIER_TEXTE"].substring(
@@ -330,7 +337,7 @@ function Univers(props) {
                   <div className="loop-grid">
                     <div className="row">
                       {Categories.map((category) => (
-                        <Category
+                        <CategoryTag
                           key={category["id"]}
                           category={category}
                           translate={translate}
@@ -449,6 +456,7 @@ export async function getServerSideProps(context) {
   // Query univers
   const query = qs.stringify({
     populate: [
+      "image",
       // categories of univers
       "categories.typeprods.produits.exposant",
       "categories.typeprods.produits.style",
@@ -474,7 +482,9 @@ export async function getServerSideProps(context) {
       "superuniver.univers.categories.typeprods.produits.typeprod",
       // images of categories
       "categories.image",
+
       // internationalization
+      "localizations.image",
       // categories of univers
       "localizations.categories.typeprods.produits.exposant",
       "localizations.categories.typeprods.produits.style",
@@ -482,6 +492,7 @@ export async function getServerSideProps(context) {
       "localizations.categories.typeprods.produits.motif",
       "localizations.categories.typeprods.produits.materiau",
       "localizations.categories.typeprods.produits.images",
+      "localizations.categories.typeprods.produits.typeprod",
       "localizations.categories.produits.exposant",
       "localizations.categories.produits.style",
       "localizations.categories.produits.couleur",
@@ -539,6 +550,7 @@ export async function getServerSideProps(context) {
     product["attributes"]["materiau"] &&
       materiaux.push(product["attributes"]["materiau"]["data"]);
   });
+  console.log(couleurs);
   marques = GlobalFunctions["handleCountProductsOfEachFilter"](
     marques,
     "MARQUE"
@@ -562,7 +574,6 @@ export async function getServerSideProps(context) {
     materiaux,
     "LIB"
   );
-
   // Query Experts
   const queryExperts = qs.stringify({
     populate: [
@@ -581,30 +592,44 @@ export async function getServerSideProps(context) {
   } catch (err) {}
 
   // Query Premiums
-  typeprodsIds =
-    GlobalFunctions["handleGetIdsOfTypeProdssOfUnivers"](findUnivers);
-  const queryPremium = qs.stringify({
-    populate: [
-      // image
-      "image",
-      // exposant
-      "exposant",
-      // typeprod
-      "typeprod",
-    ],
-    filters: {
-      date_debut: { $lt: timeNowMs },
-      date_fin: { $gt: timeNowMs },
-      typeprod: { id: { $in: typeprodsIds } },
-    },
-    locale: context["locale"],
-  });
-  try {
-    const premiumRes = await axios.get(
-      `${process.env.BASE_URL_SERVER}/api/premiums?${queryPremium}`
-    );
-    premiums = premiumRes["data"]["data"];
-  } catch (err) {}
+  typeprodsIds = GlobalFunctions["handleSegmentArray"](
+    GlobalFunctions["handleGetIdsOfTypeProdssOfUnivers"](findUnivers),
+    50
+  );
+
+  for (const segment of typeprodsIds) {
+    const querySegment = qs.stringify({
+      populate: [
+        // image
+        "image",
+        // exposant
+        "exposant.logo",
+        // typeprod
+        "typeprod",
+      ],
+      pagination: {
+        limit: Math.ceil(10 / typeprodsIds.length), // Répartir les 10 résultats sur l'ensemble des segments
+      },
+      filters: {
+        date_debut: { $lt: timeNowMs },
+        date_fin: { $gt: timeNowMs },
+        typeprod: { id: { $in: segment } },
+      },
+    });
+
+    try {
+      const premiumRes = await axios.get(
+        `${process.env.BASE_URL_SERVER}/api/premiums?${querySegment}`
+      );
+
+      premiums.push(...premiumRes.data.data);
+    } catch (err) {
+      console.error("Erreur lors de la récupération des données :", err);
+    }
+    if (premiums.length >= 10) {
+      break;
+    }
+  }
 
   return {
     props: {

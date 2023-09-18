@@ -405,23 +405,52 @@ function Category(props) {
 
   return (
     <div className="container custom mt-50">
-      {/* Categorie decription begin */}
-      <div className="newsletter mb-15  wow animate__animated animate__fadeIn">
-        <div className="position-relative newsletter-inner">
-          <div className="newsletter-content" style={{ textAlign: "center" }}>
-            <h2 className="mb-20">
-              {translate("Categorie")} : {Category["attributes"]["LIB"]}{" "}
-            </h2>
+      <div className="mb-50">
+        {/* Categorie decription begin */}
+        {!Marques.find((marque) => marque["checked"]) &&
+          !Prices.find((price) => price["checked"]) &&
+          !Designers.find((designer) => designer["checked"]) &&
+          !Styles.find((style) => style["checked"]) &&
+          !Couleurs.find((couleur) => couleur["checked"]) &&
+          !Motifs.find((motif) => motif["checked"]) &&
+          !Materiaux.find((materiau) => materiau["checked"]) && (
             <div
-              className="mb-20"
-              dangerouslySetInnerHTML={{
-                __html: Category["attributes"]["FULLTEXT"],
+              className="newsletter mb-15  wow animate__animated animate__fadeIn univers-header_parallax"
+              style={{
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.9)),
+                  url(${Category["attributes"]["image"]["data"]["attributes"]["url"]})`,
               }}
-            />
-          </div>
-        </div>
+            >
+              <div className="position-relative newsletter-inner">
+                <div
+                  className="newsletter-content"
+                  style={{ textAlign: "center" }}
+                >
+                  <h2 className="mb-20">
+                    {translate("Categorie")} : {Category["attributes"]["LIB"]}
+                  </h2>
+                  <p
+                    className="mb-20"
+                    style={{ color: "white" }}
+                    dangerouslySetInnerHTML={{
+                      __html: Category["attributes"]["FULLTEXT"],
+                    }}
+                  />
+                  {Category["attributes"]["FULLTEXT"] && (
+                    <a
+                      href="#category-description-detail"
+                      aria-label="Lire la suite"
+                      className="btn"
+                    >
+                      {translate("Lire la suite")}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        {/* Categorie decription end */}
       </div>
-      {/* Categorie decription end */}
 
       <div className="row">
         {/* SideBar filters begin */}
@@ -468,7 +497,7 @@ function Category(props) {
           {/* list of typeproducts end */}
 
           {/* list of selections begin */}
-          {Premiums.length > 0 && (
+          {/*Premiums.length > 0 && (
             <div className="mb-100">
               <h2 className="mb-30" style={{ textAlign: "center" }}>
                 {translate("Découvrez nos sélections")} :
@@ -477,7 +506,7 @@ function Category(props) {
                 <PremiumsTag premiums={Premiums} />
               </div>
             </div>
-          )}
+          )*/}
           {/* list of selections end */}
 
           {/* list of products begin */}
@@ -553,6 +582,7 @@ export async function getServerSideProps(context) {
   // Query categories
   const query = qs.stringify({
     populate: [
+      "image",
       // products of typeprods
       "typeprods.produits.exposant",
       "typeprods.produits.typeprod",
@@ -574,7 +604,9 @@ export async function getServerSideProps(context) {
       "univer.categories.produits",
       // typeprods
       "typeprods.image",
+
       // internationalization
+      "localizations.image",
       // products of typeprods
       "localizations.typeprods.produits.exposant",
       "localizations.typeprods.produits.typeprod",

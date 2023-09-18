@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 function univers({ univers }) {
-  console.log(univers);
   return (
     <article className="col-xl-3 col-lg-4 col-md-6 text-center hover-up animated">
       <div className="post-thumb">
