@@ -580,7 +580,10 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      ...(await serverSideTranslations(context["locale"], ["marketplace"])),
+      ...(await serverSideTranslations(context["locale"], [
+        "marketplace",
+        "home",
+      ])),
       Products: resProducts["data"]["data"],
       marques: marques,
       prices: prices,

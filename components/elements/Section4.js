@@ -36,8 +36,8 @@ function Section4({
               key={exposant["id"]}
             >
               <Link
-                href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
-                as={`/ss${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                as={`/pp${exposant["id"]}/${exposant["attributes"]["slug"]}`}
               >
                 {exposant["attributes"]["logo"]["data"] ? (
                   <img

@@ -15,7 +15,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Constantes
-const limit = 10;
+const limit = 20;
 const getPaginationGroup = [1, 2, 3, 4, 5];
 const marquesFilter = "marques";
 const pricesFilter = "prices";
@@ -578,7 +578,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      ...(await serverSideTranslations(context["locale"], ["jury"])),
+      ...(await serverSideTranslations(context["locale"], ["jury", "home"])),
       Products: resProducts["data"]["data"],
       marques: marques,
       prices: prices,

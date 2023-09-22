@@ -15,7 +15,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Constantes
-const limit = 10;
+const limit = 20;
 const getPaginationGroup = [1, 2, 3, 4, 5];
 const marquesFilter = "marques";
 const pricesFilter = "prices";
@@ -26,6 +26,7 @@ const materiauxFilter = "materiaux";
 const motifsFilter = "motifs";
 
 function Jury(props) {
+  console.log(props["Products"]);
   /*---------------------------------------------------Hooks begin---------------------------------------------------*/
   // Routers
   const router = useRouter();
@@ -488,6 +489,9 @@ export async function getServerSideProps(context) {
     filters: {
       COUP_DE_COEUR: { $eq: 1 },
     },
+    pagination: {
+      limit: 100,
+    },
     locale: context["locale"],
   });
   const resProducts = await axios.get(
@@ -578,7 +582,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      ...(await serverSideTranslations(context["locale"], ["coeur"])),
+      ...(await serverSideTranslations(context["locale"], ["coeur", "home"])),
       Products: resProducts["data"]["data"],
       marques: marques,
       prices: prices,

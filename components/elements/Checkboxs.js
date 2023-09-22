@@ -20,7 +20,7 @@ const Checkboxs = (props) => {
 
   return (
     <ul className="custome-checkbox" id="style-1" ref={props["addToRefs"]}>
-      <div class="force-overflow"></div>
+      <div className="force-overflow"></div>
       {items.map((item, index) => {
         return (
           <div

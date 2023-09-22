@@ -14,8 +14,8 @@ const Revendeur = ({ revendeurs, translate }) => {
             <div className="vendor-img-action-wrap">
               <div className="vendor-img">
                 <Link
-                  href={`/ss${item["id"]}/${item["attributes"]["slug"]}`}
-                  as={`/ss/${item["id"]}/${item["attributes"]["slug"]}`}
+                  href={`/pp${item["id"]}/${item["attributes"]["slug"]}`}
+                  as={`/pp/${item["id"]}/${item["attributes"]["slug"]}`}
                 >
                   <a>
                     <img
@@ -33,8 +33,8 @@ const Revendeur = ({ revendeurs, translate }) => {
 
               <div className="mt-25">
                 <Link
-                  href={`/ss${item["id"]}/${item["attributes"]["slug"]}`}
-                  as={`/ss/${item["id"]}/${item["attributes"]["slug"]}`}
+                  href={`/pp${item["id"]}/${item["attributes"]["slug"]}`}
+                  as={`/pp/${item["id"]}/${item["attributes"]["slug"]}`}
                 >
                   <a>
                     <span className="font-small total-product">
@@ -48,8 +48,8 @@ const Revendeur = ({ revendeurs, translate }) => {
               <div className="mb-30">
                 <h4 className="mb-5">
                   <Link
-                    href={`/ss${item["id"]}/${item["attributes"]["slug"]}`}
-                    as={`/ss/${item["id"]}/${item["attributes"]["slug"]}`}
+                    href={`/pp${item["id"]}/${item["attributes"]["slug"]}`}
+                    as={`/pp/${item["id"]}/${item["attributes"]["slug"]}`}
                   >
                     <a>{item["attributes"]["NOM"]}</a>
                   </Link>

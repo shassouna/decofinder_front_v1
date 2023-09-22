@@ -38,7 +38,6 @@ const Sidebar = ({
 
   useEffect(() => {
     uls.current.forEach((ul) => {
-      console.log(ul.offsetHeight);
       if (ul.offsetHeight > 233) {
         ul.style.overflowY = "scroll";
         ul.style.height = "233px";

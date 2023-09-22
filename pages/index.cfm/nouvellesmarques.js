@@ -34,13 +34,19 @@ function Nouvellesmarques({ Exposants }) {
             <div className="vendor-img-action-wrap mb-20">
               <div className="vendor-img"></div>
               <Link
-                href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
-                as={`/ss${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                as={`/pp${exposant["id"]}/${exposant["attributes"]["slug"]}`}
               >
                 <a>
                   <img
                     className="default-img"
-                    src={`${exposant["attributes"]["logo"]["data"]["attributes"]["url"]}`}
+                    src={`${
+                      exposant["attributes"]["logo"]["data"]
+                        ? exposant["attributes"]["logo"]["data"]["attributes"][
+                            "url"
+                          ]
+                        : "/assets/imgs/theme/image_blanche.png"
+                    }`}
                     alt=""
                   />
                 </a>
@@ -51,8 +57,8 @@ function Nouvellesmarques({ Exposants }) {
                 <div>
                   <h4 className="text-center mb-5">
                     <Link
-                      href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
-                      as={`/ss${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                      href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+                      as={`/pp${exposant["id"]}/${exposant["attributes"]["slug"]}`}
                     >
                       <a>{exposant["attributes"]["NOM"]}</a>
                     </Link>
@@ -89,11 +95,10 @@ function Nouvellesmarques({ Exposants }) {
                     />
                     <strong>PAYS : </strong>
                     <span>
-                      {
+                      {exposant["attributes"]["pay"]["data"] &&
                         exposant["attributes"]["pay"]["data"]["attributes"][
                           "LIB"
-                        ]
-                      }
+                        ]}
                     </span>
                   </li>
                 </ul>
@@ -151,9 +156,9 @@ export async function getServerSideProps(context) {
       "produits.exposant",
       "produits.typeprod",
     ],
-    sort: ["createdAt:desc"],
+    sort: ["logo:desc"],
     pagination: {
-      limit: 2,
+      limit: 5,
     },
     locale: context["locale"],
   });

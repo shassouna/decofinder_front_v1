@@ -20,14 +20,12 @@ function Superunivers(props) {
   /*---------------------------------------------------Hooks end---------------------------------------------------*/
 
   return (
-    <div className="container custom mt-50">
+    <div className="container custom mt-10">
       {/* Superunivers decription begin */}
       <div className="newsletter mb-15  wow animate__animated animate__fadeIn">
         <div className="position-relative newsletter-inner">
           <div className="newsletter-content" style={{ textAlign: "center" }}>
-            <h2 className="mb-20">
-              Superunivers : {Superunivers["attributes"]["LIB"]}
-            </h2>
+            <h1 className="mb-20">{Superunivers["attributes"]["LIB"]}</h1>
             <p
               className="mb-20"
               dangerouslySetInnerHTML={{
@@ -41,7 +39,9 @@ function Superunivers(props) {
 
       {/* list of univers begin */}
       <div className="mb-50">
-        <h2 className="mb-30">{translate("Les Univers")} :</h2>
+        <h2 className="mb-30" style={{ fontSize: "28px" }}>
+          {`${translate("Les Univers")} ${Superunivers["attributes"]["LIB"]}`} :
+        </h2>
         <div className="loop-grid">
           <div className="row">
             {Universs.map((univers) => (
@@ -55,7 +55,9 @@ function Superunivers(props) {
       {/* list of univers categories begin */}
       {Universs.map((univers) => (
         <div className="mb-50" key={univers["id"]}>
-          <h2 className="mb-30">{univers["attributes"]["LIB"]}</h2>
+          <h2 className="mb-30" style={{ fontSize: "28px" }}>
+            {univers["attributes"]["LIB"]}
+          </h2>
           <h3 className="mb-30">{translate("Les catégories")} :</h3>
           <div className="loop-grid">
             <div className="row">

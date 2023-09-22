@@ -117,14 +117,22 @@ function Category(props) {
     }
 
     if (props["filterMarques"].length > 0) {
+      let filters = productsFiltered
+        .filter((product) => props["filterMarques"].includes(product["id"]))
+        .map((e) => e["attributes"]["MARQUE"]);
+
       productsFiltered = productsFiltered.filter((product) =>
-        props["filterMarques"].includes(product["id"])
+        filters.includes(product["attributes"]["MARQUE"])
       );
     }
 
     if (props["filterDesigners"].length > 0) {
+      let filters = productsFiltered
+        .filter((product) => props["filterDesigners"].includes(product["id"]))
+        .map((e) => e["attributes"]["DESIGNER"]);
+
       productsFiltered = productsFiltered.filter((product) =>
-        props["filterDesigners"].includes(product["id"])
+        filters.includes(product["attributes"]["DESIGNER"])
       );
     }
 
@@ -250,14 +258,22 @@ function Category(props) {
       }
 
       if (filterMarques.length > 0) {
+        let filters = productsFiltered
+          .filter((product) => filterMarques.includes(product["id"]))
+          .map((e) => e["attributes"]["MARQUE"]);
+
         productsFiltered = productsFiltered.filter((product) =>
-          filterMarques.includes(product["id"])
+          filters.includes(product["attributes"]["MARQUE"])
         );
       }
 
       if (filterDesigners.length > 0) {
+        let filters = productsFiltered
+          .filter((product) => filterDesigners.includes(product["id"]))
+          .map((e) => e["attributes"]["DESIGNER"]);
+
         productsFiltered = productsFiltered.filter((product) =>
-          filterDesigners.includes(product["id"])
+          filters.includes(product["attributes"]["DESIGNER"])
         );
       }
 
@@ -647,6 +663,8 @@ export async function getServerSideProps(context) {
   findCategory["attributes"]["typeprods"]["data"]
     .map((e) => e["attributes"]["produits"]["data"])
     .forEach((tab) => (categoryProducts = categoryProducts.concat(tab)));
+
+  console.log(categoryProducts);
 
   // Create filtres
   categoryProducts.forEach((product) => {

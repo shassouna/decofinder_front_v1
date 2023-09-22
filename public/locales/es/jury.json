@@ -1,4 +1,7 @@
 {
-    "Pas de produits" : "sin productos",
-    "Sélection du Jury" : "Selección de jurado"
+  "Pas de produits": "sin productos",
+  "Sélection du Jury": "Selección de jurado",
+  "Pas d'exposant": "Ningún expositor",
+  "Pas de type produit": "Sin tipo de producto",
+  "Prix sur demande": "Consultar precio"
 }

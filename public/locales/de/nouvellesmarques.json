@@ -1,6 +1,10 @@
 {
-    "Nouvelles Marques" : "Neue Marken",
-    "Adresse" : "Die Anschrift",
-    "PRODUITS" : "Produkte",
-    "Visiter le site" : "Besuchen Sie die Website"
+  "Nouvelles Marques": "Neue Marken",
+  "Adresse": "Die Anschrift",
+  "PRODUITS": "Produkte",
+  "Visiter le site": "Besuchen Sie die Website",
+  "Pas d'exposant": "Kein Aussteller",
+  "Pas de type produit": "Kein Produkttyp",
+  "Prix sur demande": "Preis auf Anfrage",
+  "Pas de produits": "keine Produkte"
 }

@@ -47,6 +47,7 @@ const Communiques = ({ communiques, translate }) => {
                     <Link
                       target="_blank"
                       href={`/cpp/${communique["id"]}/${communique["attributes"]["slug"]}`}
+                      as={`/cpp${communique["id"]}/${communique["attributes"]["slug"]}`}
                     >
                       <a className="btn btn-xs">
                         {translate("Lire plus")}

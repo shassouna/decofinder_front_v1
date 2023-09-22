@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const SingleProduct = ({ product, translate, showButtonInSingleProduct }) => {
+const SingleProduct = ({ product, translate }) => {
   const [heart, setHeart] = useState("\u2661");
 
   useEffect(() => {

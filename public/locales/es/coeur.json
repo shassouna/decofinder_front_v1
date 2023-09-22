@@ -1,4 +1,7 @@
 {
-    "Pas de produits" : "sin productos",
-    "Coups de coeur" : "Favoritos"
+  "Pas de produits": "sin productos",
+  "Coups de coeur": "Favoritos",
+  "Pas d'exposant": "Ningún expositor",
+  "Pas de type produit": "Sin tipo de producto",
+  "Prix sur demande": "Consultar precio"
 }

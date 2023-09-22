@@ -21,14 +21,14 @@ function category({ category, translate }) {
         </Link>
       </div>
       <div className="entry-content-2">
-        <h3 className="post-title mb-10">
+        <h5 className="post-title mb-10">
           <Link
             href={`/c/${category["id"]}/${category["attributes"]["slug"]}`}
             as={`/c${category["id"]}/${category["attributes"]["slug"]}`}
           >
             <a>{category["attributes"]["LIB"]}</a>
           </Link>
-        </h3>
+        </h5>
         {category["attributes"]["typeprods"] && (
           <>
             <ul className="mb-10">

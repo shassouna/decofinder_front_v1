@@ -118,14 +118,22 @@ function Typeprod(props) {
       );
     }
     if (props["filterMarques"].length > 0) {
+      let filters = productsFiltered
+        .filter((product) => props["filterMarques"].includes(product["id"]))
+        .map((e) => e["attributes"]["MARQUE"]);
+
       productsFiltered = productsFiltered.filter((product) =>
-        props["filterMarques"].includes(product["id"])
+        filters.includes(product["attributes"]["MARQUE"])
       );
     }
     // il faut vérifier que mle filtre c'est designer
     if (props["filterDesigners"].length > 0) {
+      let filters = productsFiltered
+        .filter((product) => props["filterDesigners"].includes(product["id"]))
+        .map((e) => e["attributes"]["DESIGNER"]);
+
       productsFiltered = productsFiltered.filter((product) =>
-        props["filterDesigners"].includes(product["id"])
+        filters.includes(product["attributes"]["DESIGNER"])
       );
     }
     if (props["filterStyles"].length > 0) {
@@ -246,14 +254,22 @@ function Typeprod(props) {
       }
 
       if (filterMarques.length > 0) {
+        let filters = productsFiltered
+          .filter((product) => filterMarques.includes(product["id"]))
+          .map((e) => e["attributes"]["MARQUE"]);
+
         productsFiltered = productsFiltered.filter((product) =>
-          filterMarques.includes(product["id"])
+          filters.includes(product["attributes"]["MARQUE"])
         );
       }
 
       if (filterDesigners.length > 0) {
+        let filters = productsFiltered
+          .filter((product) => filterDesigners.includes(product["id"]))
+          .map((e) => e["attributes"]["DESIGNER"]);
+
         productsFiltered = productsFiltered.filter((product) =>
-          filterDesigners.includes(product["id"])
+          filters.includes(product["attributes"]["DESIGNER"])
         );
       }
 
@@ -477,12 +493,15 @@ function Typeprod(props) {
       </div>
 
       {/* associated typeprods begin */}
-      <div className="loop-grid">
-        <h2 className="mb-30" style={{ textAlign: "center" }}>
-          {translate("Produits associés")}
-        </h2>
-        <TypeprodsAssociatedTag typeprods={Typeprods_associated} />
-      </div>
+      {Typeprods_associated.length > 0 && (
+        <div className="loop-grid">
+          <h2 className="mb-30" style={{ textAlign: "center" }}>
+            {translate("Produits associés")}
+          </h2>
+          <TypeprodsAssociatedTag typeprods={Typeprods_associated} />
+        </div>
+      )}
+
       {/* associated typeprods end */}
     </div>
   );
@@ -648,7 +667,7 @@ export async function getServerSideProps(context) {
       // image
       "image",
       // exposant
-      "exposant",
+      "exposant.logo",
       // typeprod
       "typeprod",
     ],

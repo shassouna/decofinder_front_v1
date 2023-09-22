@@ -1,4 +1,7 @@
 {
-    "Pas de produits" : "keine Produkte",
-    "Toutes les promotions" : "Toutes les promotions"
+  "Pas de produits": "keine Produkte",
+  "Toutes les promotions": "Toutes les promotions",
+  "Pas d'exposant": "Pas d'exposant",
+  "Pas de type produit": "Pas de type produit",
+  "Prix sur demande": "Prix sur demande"
 }

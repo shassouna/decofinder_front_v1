@@ -1,6 +1,10 @@
 {
-    "Nouvelles Marques" : "Nuevas marcas",
-    "Adresse" : "Dirección",
-    "PRODUITS" : "Productos",
-    "Visiter le site" : "Visite el sitio"
+  "Nouvelles Marques": "Nuevas marcas",
+  "Adresse": "Dirección",
+  "PRODUITS": "Productos",
+  "Visiter le site": "Visite el sitio",
+  "Pas d'exposant": "Ningún expositor",
+  "Pas de type produit": "Sin tipo de producto",
+  "Prix sur demande": "Consultar precio",
+  "Pas de produits": "sin productos"
 }

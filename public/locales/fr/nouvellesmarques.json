@@ -1,6 +1,10 @@
 {
-    "Nouvelles Marques" : "Nouvelles Marques",
-    "Adresse" : "Adresse",
-    "PRODUITS" : "PRODUITS",
-    "Visiter le site" : "Visiter le site"
+  "Nouvelles Marques": "Nouvelles Marques",
+  "Adresse": "Adresse",
+  "PRODUITS": "PRODUITS",
+  "Visiter le site": "Visiter le site",
+  "Pas d'exposant": "Pas d'exposant",
+  "Pas de type produit": "Pas de type produit",
+  "Prix sur demande": "Prix sur demande",
+  "Pas de produits": "Pas de produits"
 }

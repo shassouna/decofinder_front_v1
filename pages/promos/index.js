@@ -17,7 +17,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // Constantes
-const limit = 10;
+const limit = 20;
 const getPaginationGroup = [1, 2, 3, 4, 5];
 const marquesFilter = "marques";
 const pricesFilter = "prices";
@@ -419,7 +419,7 @@ function Promos(props) {
         <div className="col-lg-9">
           {/* list of products begin */}
           <div className="shop-product-fillter">
-            <Title elements={[translate("Tous les achats en ligne")]} />
+            <Title elements={[translate("Toutes les promotions")]} />
           </div>
           <div className="row product-grid-3">
             {Products.length === 0 && <h2>{translate("Pas de produits")}</h2>}
@@ -488,7 +488,7 @@ export async function getServerSideProps(context) {
       "materiau",
     ],
     filters: {
-      ACHAT_EN_LIGNE: { $eq: 1 },
+      PROMOTION: { $eq: 1 },
     },
     locale: context["locale"],
   });

@@ -98,12 +98,12 @@ const Wishlist = () => {
                         <Link
                           href={
                             product["attributes"]["exposant"]["data"]
-                              ? `/ss/${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
+                              ? `/pp/${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
                               : "#"
                           }
                           as={
                             product["attributes"]["exposant"]["data"]
-                              ? `/ss${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
+                              ? `/pp${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
                               : "#"
                           }
                         >
@@ -126,12 +126,12 @@ const Wishlist = () => {
                         <Link
                           href={
                             product["attributes"]["exposant"]["data"]
-                              ? `/ss/${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
+                              ? `/pp/${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
                               : "#"
                           }
                           as={
                             product["attributes"]["exposant"]["data"]
-                              ? `/ss${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
+                              ? `/pp${product["attributes"]["exposant"]["data"]["id"]}/${product["attributes"]["exposant"]["data"]["attributes"]["slug"]}`
                               : "#"
                           }
                         >

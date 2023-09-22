@@ -7,7 +7,7 @@ const Exposants = ({ exposants }) => {
         {exposants.slice(0, 5).map((exposant) => (
           <li key={exposant["id"]}>
             <Link
-              href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+              href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
             >
               <a>
                 <img
@@ -24,7 +24,7 @@ const Exposants = ({ exposants }) => {
         {exposants.slice(5, 10).map((exposant) => (
           <li key={exposant["id"]}>
             <Link
-              href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+              href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
             >
               <a>
                 <img
@@ -41,7 +41,7 @@ const Exposants = ({ exposants }) => {
         {exposants.slice(10, 15).map((exposant) => (
           <li key={exposant["id"]}>
             <Link
-              href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+              href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
             >
               <a>
                 <img
@@ -58,7 +58,7 @@ const Exposants = ({ exposants }) => {
         {exposants.slice(15, 20).map((exposant) => (
           <li key={exposant["id"]}>
             <Link
-              href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+              href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
             >
               <a>
                 <img
@@ -75,7 +75,7 @@ const Exposants = ({ exposants }) => {
         {exposants.slice(20, 25).map((exposant) => (
           <li key={exposant["id"]}>
             <Link
-              href={`/ss/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
+              href={`/pp/${exposant["id"]}/${exposant["attributes"]["slug"]}`}
             >
               <a>
                 <img

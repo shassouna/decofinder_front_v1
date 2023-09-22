@@ -101,9 +101,9 @@ export async function getServerSideProps(context) {
   const queryCommunique = qs.stringify({
     populate: [
       "images",
-      "exposants.pay",
+      "exposant.pay",
       "localizations.images",
-      "localizations.exposants.pay",
+      "localizations.exposant.pay",
     ],
   });
   const communiqueRes = await axios.get(
@@ -115,7 +115,7 @@ export async function getServerSideProps(context) {
     "data"
   ].find((e) => e["attributes"]["locale"] == context["locale"]);
   if (!findCommunique) findCommunique = communiqueRes["data"]["data"];
-
+  console.log(findCommunique);
   // Query designers mag
   const queryDesigners = qs.stringify({
     populate: ["image"],

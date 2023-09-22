@@ -1,4 +1,7 @@
 {
-    "Pas de produits" : "keine Produkte",
-    "Toutes les promotions" : "Alle Werbeaktionen"
+  "Pas de produits": "keine Produkte",
+  "Toutes les promotions": "Alle Werbeaktionen",
+  "Pas d'exposant": "Kein Aussteller",
+  "Pas de type produit": "Kein Produkttyp",
+  "Prix sur demande": "Preis auf Anfrage"
 }
