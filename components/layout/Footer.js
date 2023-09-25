@@ -174,7 +174,7 @@ const Footer = ({ translate }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/index.cfm/statique/faq_acheteurh">
+                    <Link href="/index.cfm/statique/faq_acheteur">
                       <a>{translate("FAQ Acheteurs")}</a>
                     </Link>
                   </li>
